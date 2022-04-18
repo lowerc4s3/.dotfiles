@@ -3,9 +3,11 @@ require('lualine').setup {
         icons_enabled = true,
         theme = 'auto',
         component_separators = { left = '', right = ''},
-        section_separators = { left = '', right = ''}, -- 
-        disabled_filetypes = {"NvimTree"},
+        section_separators = { left = '', right = ''}, -- 
+        -- disabled_filetypes = { "NvimTree", "DiffviewFiles" },
+        disabled_filetypes = {},
         always_divide_middle = true,
+        globalstatus = true,
     },
 
     sections = {
@@ -23,17 +25,21 @@ require('lualine').setup {
                 'filename',
                 padding = 0,
                 path = 1,
-                symbols = { modified = ' ', readonly = ' ', unnamed  = '' } -- 
+                symbols = { modified = ' ', readonly = ' ', unnamed  = '' }
             },
         },
 
-        lualine_x = { { 'diagnostics', update_in_insert = true } },
+        lualine_x = {
+            {
+                'diagnostics',
+                update_in_insert = false,
+                symbols = { error = " ", warn = " ", hint = " ", info = " " },
+            }
+        },
         lualine_y = {
             { 'encoding', fmt = function(str) return string.upper(str) end },
             { 'fileformat', symbols = { unix = 'LF', dos = 'CRLF', mac = 'CR' } }
         },
-        -- lualine_z = {{ 'progress', padding = 0 }, 'location'}
-        -- lualine_z = {{ 'progress', icon = " ",  padding = 0 }, 'location'}
         lualine_z = {{ '%P', icon = " ",  padding = 0 }, 'location'}
     },
     inactive_sections = {
@@ -52,6 +58,5 @@ require('lualine').setup {
         lualine_z = {}
     },
     tabline = {},
-    -- extensions = {"nvim-tree"}
     extensions = {}
 }

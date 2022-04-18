@@ -37,11 +37,12 @@ telescope.setup {
             theme = "ivy",
             mappings = {
                 i = {
-                    ["<C-a>"] = fb_actions.create,
-                    ["<C-r>"] = fb_actions.rename,
-                    ["<C-d>"] = fb_actions.remove,
-                    ["["] = fb_actions.goto_parent_dir,
-                    ["<C-.>"] = fb_actions.change_cwd,
+                    ["<C-a>"]   = fb_actions.create,
+                    ["<C-r>"]   = fb_actions.rename,
+                    ["<C-d>"]   = fb_actions.remove,
+                    ["["]       = fb_actions.goto_parent_dir,
+                    ["<C-.>"]   = fb_actions.change_cwd,
+                    ["<tab>"]   = actions.select_default,
                     -- ["<esc>"] = false,
                 }
             }

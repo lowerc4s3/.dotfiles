@@ -1,7 +1,11 @@
 require'nvim-treesitter.configs'.setup {
     -- One of "all", "maintained" (parsers with maintainers), or a list of languages
     -- ensure_installed = "maintained",
-    ensure_installed = { "yaml", "python", "c", "cpp", "lua", "bash", "vim" },
+    ensure_installed = {
+        "yaml", "python"  , "c"   ,
+        "cpp" , "lua"     , "bash",
+        "vim" , "markdown", "comment"
+    },
 
     -- Install languages synchronously (only applied to `ensure_installed`)
     sync_install = false,
@@ -34,8 +38,11 @@ require'nvim-treesitter.configs'.setup {
                 -- You can use the capture groups defined in textobjects.scm
                 ["af"] = "@function.outer",
                 ["if"] = "@function.inner",
+                ["al"] = "@loop.outer",
+                ["il"] = "@loop.inner",
                 ["ac"] = "@class.outer",
                 ["ic"] = "@class.inner",
+                ["aC"] = "@comment.outer",
                 ["aP"] = "@parameter.outer",
                 ["iP"] = "@parameter.inner",
             },

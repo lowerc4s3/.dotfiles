@@ -55,6 +55,12 @@ return require('packer').startup(function(use)
     }
 
     use {
+        'karb94/neoscroll.nvim', -- Smooth scrolling
+        -- disable = true,
+        config = function () require("custom.neoscroll") end
+    }
+
+    use {
         'kyazdani42/nvim-tree.lua', -- File tree
         requires = 'kyazdani42/nvim-web-devicons',
         cmd = {
@@ -114,12 +120,39 @@ return require('packer').startup(function(use)
         config = function() require('gitsigns').setup() end
     }
 
+    use {
+        'sindrets/diffview.nvim',
+        requires = 'nvim-lua/plenary.nvim',
+        cmd = {
+            "DiffviewOpen",
+            "DiffviewClose",
+            "DiffviewToggleFiles",
+            "DiffviewFocusFiles",
+            "DiffviewRefresh"
+        },
+        config = function ()
+            require("diffview").setup {
+                icons = {
+                    folder_closed = "",
+                    folder_open = "",
+                },
+                signs = {
+                    fold_closed = "",
+                    fold_open = "",
+                },
+                file_panel = { width = 30 }
+            }
+        end
+    }
+
     --- Editor ---
     use {
         "ahmedkhalf/project.nvim", -- Project managment
         config = function()
             require("project_nvim").setup {
                 patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", ".projectile" },
+                detection_methods = { "pattern" },
+                silent_chdir = false,
             }
         end
     }
@@ -197,13 +230,23 @@ return require('packer').startup(function(use)
     --- LSP ---
     use {
         'ray-x/lsp_signature.nvim', -- Function arguments floating window
-        event = "BufEnter"
+        -- event = "BufEnter"
+        -- ft = { "lua", "c", "cpp", "sh", "bash", "python" },
     }
 
     use {
         'neovim/nvim-lspconfig',
         after = "lsp_signature.nvim",
         config = function () require("lspconf") end
+    }
+
+    use {
+        "jose-elias-alvarez/null-ls.nvim",
+        requires = 'nvim-lua/plenary.nvim',
+        -- ft = { "lua", "c", "cpp", "sh", "bash", "python" },
+        config = function ()
+            require("custom.nullls")
+        end
     }
 
     use {
@@ -249,6 +292,15 @@ return require('packer').startup(function(use)
         branch = 'hotfix',
         cmd = { "YabsTask", "YabsDefaultTask" },
         config = function () require("custom.yabs") end
+    }
+
+    use {
+        "ellisonleao/glow.nvim",
+        cmd = "Glow",
+        config = function ()
+            vim.g.glow_style = "~/Library/Preferences/glow/catppuccin.json"
+            vim.g.glow_border = "rounded"
+        end
     }
 
     --- Debug ---

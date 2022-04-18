@@ -4,8 +4,7 @@ local cmd  = vim.cmd
 local g    = vim.g
 
 --- Set russian keymap ---
--- g.langmap = "ЙЦУКЕНГШЩЗФЫВАПРОЛДЯЧСМИТЬйцукенгшщзфывапролдячсмить;QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm"
--- set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯЖ;ABCDEFGHIJKLMNOPQRSTUVWXYZ:,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+cmd "set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯЖ;ABCDEFGHIJKLMNOPQRSTUVWXYZ:,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
 
 --- Tabs ---
 opt.expandtab      = true                             -- Turn tabs into spaces
@@ -51,6 +50,7 @@ opt.relativenumber = true                             -- Relative numberline
 opt.cursorline     = true                             -- Highlight line with cursor
 opt.signcolumn     = "yes"                            -- Always show signcolumn (e.g. LSP warnings)
 opt.ruler          = false                            -- Disable cursor position (done by lualine)
+opt.laststatus     = 3                                -- Global statusline
 
 --- Highlight yank ---
 exec([[
@@ -63,7 +63,7 @@ augroup end
 -- Don't show any numbers inside terminals (NOTE: enabling this breaks toggleterm) ---
 -- cmd [[ au TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal ]]
 
---- Leave help pages with 'q' ---
+--- Quit help pages with 'q' ---
 cmd [[ au FileType help,qf,man nnoremap <silent> <buffer> q :close<CR> ]]
 
 --- Neovide settings ---

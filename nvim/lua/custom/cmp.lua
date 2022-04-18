@@ -1,4 +1,5 @@
 local cmp = require('cmp')
+local compare = cmp.config.compare
 local luasnip = require('luasnip')
 
 luasnip.config.setup {
@@ -14,10 +15,12 @@ vim.g.completeopt = { 'menu', 'menuone', 'noselect' }
 -- local border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 
 cmp.setup {
-    documentation = {
-        -- border = border,
-        maxheight = 15,
-        maxwidth = 50,
+    window = {
+        documentation = {
+            -- border = border,
+            maxheight = 15,
+            maxwidth = 50,
+        },
     },
 
     completion = {
@@ -30,7 +33,7 @@ cmp.setup {
         end,
     },
 
-    mapping = {
+    mapping = cmp.mapping.preset.insert({
         ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
         ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
         ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
@@ -62,7 +65,7 @@ cmp.setup {
             end
         end, {'i', 's'}),
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    },
+    }),
 
     formatting = {
         format = require('lspkind').cmp_format({
@@ -72,13 +75,81 @@ cmp.setup {
             symbol_map = {
                 Function = "λ",
                 Unit = "襁",
-                Keyword = "", --
+                Keyword = "", --
                 Event = "",
                 Text = "ﮜ"
             },
             maxwidth = 50,
         })
     },
+
+    sources = cmp.config.sources({
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+        -- sorting = {
+        --     comparators = {
+        --         compare.locality,
+        --         compare.recently_used,
+        --         compare.score,
+        --         compare.offset,
+        --         compare.order
+        --     }
+        -- },
+    }),
+
+    sorting = {
+        comparators = {
+            compare.locality,
+            compare.recently_used,
+            compare.score,
+            compare.offset,
+            compare.order
+        }
+    },
+
+    experimental = { ghost_text = true },
+
+    enabled = function()
+        if require"cmp.config.context".in_treesitter_capture("comment")==true or require"cmp.config.context".in_syntax_group("Comment") then
+            return false
+        else
+            return true
+    end
+end
+}
+
+-- Use buffer source for `/`
+cmp.setup.cmdline('/', {
+    mapping = cmp.mapping.preset.cmdline(),
+    completion = {
+        keyword_length = 1,
+    },
+    enabled = true,
+    sources = { { name = 'buffer' } }
+})
+
+-- Use buffer source for `?`
+cmp.setup.cmdline('?', {
+    mapping = cmp.mapping.preset.cmdline(),
+    completion = {
+        keyword_length = 1,
+    },
+    enabled = true,
+    sources = { { name = 'buffer' } }
+})
+
+-- Use cmdline & path source for ':'
+cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    completion = {
+        keyword_length = 1,
+    },
+    enabled = true,
+    sources = cmp.config.sources({
+        { name = 'path' },
+        { name = 'cmdline' }
+    })
+})
 
 -- Text = 
 -- Method = 
@@ -105,49 +176,3 @@ cmp.setup {
 -- Event = 
 -- Operator = 
 -- TypeParameter =
-
-    sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-    }),
-
-    experimental = { ghost_text = true },
-
-    enabled = function()
-        if require"cmp.config.context".in_treesitter_capture("comment")==true or require"cmp.config.context".in_syntax_group("Comment") then
-            return false
-        else
-            return true
-    end
-end
-}
-
--- Use buffer source for `/`
-cmp.setup.cmdline('/', {
-    completion = {
-        keyword_length = 1,
-    },
-    enabled = true,
-    sources = { { name = 'buffer' } }
-})
-
--- Use buffer source for `/`
-cmp.setup.cmdline('?', {
-    completion = {
-        keyword_length = 1,
-    },
-    enabled = true,
-    sources = { { name = 'buffer' } }
-})
-
--- Use cmdline & path source for ':'
-cmp.setup.cmdline(':', {
-    completion = {
-        keyword_length = 1,
-    },
-    enabled = true,
-    sources = cmp.config.sources({
-        { name = 'path' },
-        { name = 'cmdline' }
-    })
-})
