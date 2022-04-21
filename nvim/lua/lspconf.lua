@@ -1,7 +1,6 @@
 local lspconfig = require('lspconfig')
 
 local border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
--- local border = { "┏", "━", "┓", "┃", "┛", "━", "┗", "┃", }
 
 -- local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 -- function vim.lsp.util.open_floating_preview(contents, syntax, docopts, ...)
@@ -11,7 +10,7 @@ local border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 -- end
 
 -- Set icons
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " } --
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -29,27 +28,35 @@ vim.diagnostic.config({
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Mappings
-local opts = { noremap=true, silent=true }
-vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+local opts = { silent = true }
+local map = vim.keymap.set
+
+map('n', '[d', vim.diagnostic.goto_prev, opts)
+map('n', ']d', vim.diagnostic.goto_next, opts)
 
 local on_attach = function(client, bufnr)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    local oa_opts = { silent = true, buffer = bufnr }
+    map('n', 'gD', vim.lsp.buf.declaration, oa_opts)
+    map('n', 'gd', vim.lsp.buf.definition, oa_opts)
+    map('n', 'K', vim.lsp.buf.hover, oa_opts)
+    map('n', 'gi', vim.lsp.buf.implementation, oa_opts)
+    map('n', '<C-k>', vim.lsp.buf.signature_help, oa_opts)
+    map('n', 'gr', vim.lsp.buf.references, oa_opts)
+
 
     require "lsp_signature".on_attach({
         handler_opts = { border = "none" },
         hint_enable = false,
-        -- hint_prefix = ' '
     })
 end
 
 -- Show diagnostics in floating window
-vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]]
+vim.api.nvim_create_autocmd("CursorHold", {
+    pattern = "*",
+    callback = function ()
+        vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})
+    end
+})
 
 -- LS Setup
 lspconfig.bashls.setup {
@@ -92,15 +99,11 @@ lspconfig.sumneko_lua.setup {
                 version = 'LuaJIT',
                 path = runtime_path,
             },
-            diagnostics = {
-                globals = { 'vim' },
-            },
             workspace = {
                 library = vim.api.nvim_get_runtime_file('', true),
             },
-            telemetry = {
-                enable = false,
-            },
+            diagnostics = { globals = { 'vim' } },
+            telemetry = { enable = false },
         }
     }
 }

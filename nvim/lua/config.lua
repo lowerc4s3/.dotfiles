@@ -58,7 +58,9 @@ augroup("YankHighlight", { clear = false })
 autocmd("TextYankPost", {
     group = "YankHighlight",
     pattern = "*",
-    command = 'lua vim.highlight.on_yank{timeout=100, higroup="Visual", on_visual=false}'
+    callback = function ()
+        vim.highlight.on_yank{timeout=100, higroup="Visual", on_visual=false}
+    end
 })
 
 -- Quit help pages with 'q'

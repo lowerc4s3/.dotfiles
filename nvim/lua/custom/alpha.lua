@@ -1,31 +1,5 @@
 local alpha = require("alpha")
 
--- local ascii = {
---     "   ⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀   ",
---     "   ⠀⠀⠀⠀⠀⠀⣠⣿⣿⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀   ",
---     "   ⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀   ",
---     "   ⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣦⠀⠀   ",
---     "   ⣴⣿⣷⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦   ",
---     "   ⣿⣿⣿⣿⣄⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿   ",
---     "   ⣿⣿⣿⣿⣿⣷⠀⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿   ",
---     "   ⣿⣿⣿⣿⣿⣿⣿⡄⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿   ",
---     "   ⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿   ",
---     "   ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠙⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿   ",
---     "   ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿   ",
---     "   ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠙⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿   ",
---     "   ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿   ",
---     "   ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄⠙⣿⣿⣿⣿⣿⣿⣿   ",
---     "   ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠀⢿⣿⣿⣿⣿⣿   ",
---     "   ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠙⣿⣿⣿⣿   ",
---     "   ⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠀⢿⣿⠟   ",
---     "   ⠀⠀⠛⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀⠀   ",
---     "   ⠀⠀⠀⠀⠙⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⣿⣿⣿⣿⣿⣿⣿⠋⠀⠀⠀⠀   ",
---     "   ⠀⠀⠀⠀⠀⠀⠉⢿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⡿⠉⠀⠀⠀⠀⠀⠀   ",
---     "   ⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀   ",
---     -- "                                            ",
---     -- "                N E O V I M                 ",
--- }
-
 local ascii = {
    "   ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣿⣶⣿⣦⣼⣆          ",
    "    ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦       ",
@@ -152,9 +126,22 @@ alpha.setup {
 
 -- vim.cmd "au FileType alpha set showtabline=0 laststatus=0 noruler | au BufUnload <buffer> set showtabline=2 laststatus=2 ruler"
 
-vim.cmd [[
-augroup alpha_tabline
-    au!
-    au FileType alpha set showtabline=0 laststatus=0 | au BufUnload <buffer> set showtabline=2 laststatus=3
-augroup END
-]]
+-- vim.cmd [[
+-- augroup alpha_tabline
+--     au!
+--     au FileType alpha set showtabline=0 laststatus=0 | au BufUnload <buffer> set showtabline=2 laststatus=3
+-- augroup END
+-- ]]
+--
+
+vim.api.nvim_create_augroup("alpha_tabline", { clear = true })
+vim.api.nvim_create_autocmd("Filetype", {
+    group = "alpha_tabline",
+    pattern = "alpha",
+    command = "set showtabline=0 laststatus=0"
+})
+vim.api.nvim_create_autocmd("BufUnload", {
+    group = "alpha_tabline",
+    buffer = 0,
+    command = "set showtabline=2 laststatus=3"
+})

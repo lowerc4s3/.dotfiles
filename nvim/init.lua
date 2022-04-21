@@ -7,7 +7,6 @@ if not present then
 end
 
 -- Use filetype.lua instead if filetype.vim
-vim.g.did_load_filetypes = 1
 vim.g.do_filetype_lua = 1
 
 -- Disable some builtin plugins

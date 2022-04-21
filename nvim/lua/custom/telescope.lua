@@ -4,14 +4,15 @@ local fb_actions = require("telescope").extensions.file_browser.actions
 
 telescope.setup {
     defaults = {
-        -- layout_config = {width = 0.75, prompt_position = "top", preview_cutoff = 120, horizontal = {mirror = false}, vertical = {mirror = true}},
-        prompt_prefix = "> ", -- 
-        selection_caret = " ", --❯
+        initial_mode = 'insert',
+        prompt_prefix = "> ",
+        selection_caret = " ",
         entry_prefix = "  ",
         scroll_strategy = "limit",
         -- border = false,
+        -- border = false,
         -- borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-        -- borderchars = {" ", " ", " ", " ", " ", " ", " ", " " },
+        borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
 
         mappings = {
             i = {
@@ -49,7 +50,7 @@ telescope.setup {
         },
     }
 }
--- h ttyfast
+
 telescope.load_extension("projects")
 telescope.load_extension("fzf")
 telescope.load_extension("file_browser")

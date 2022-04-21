@@ -251,7 +251,10 @@ return require('packer').startup(function(use)
         'kosayoda/nvim-lightbulb',
         after = "nvim-lspconfig",
         config = function ()
-            vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
+            vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+                pattern = "*",
+                callback = require('nvim-lightbulb').update_lightbulb,
+            })
             require("nvim-lightbulb").setup {
                 sign = { enabled = false, },
                 virtual_text = { enabled = true, text = "", hl_mode = "replace", }
