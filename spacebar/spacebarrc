@@ -1,8 +1,10 @@
 #!/usr/bin/env sh
 
+# Fonts
 ic_font="JetBrainsMono Nerd Font"
 text_font="SF UI Text"
 
+# Colors
 # white='D9E0EE'
 white='C3BAC6'
 black='1E1E2E'
@@ -40,7 +42,8 @@ spacebar -m config space_icon_strip            一 二 三 四 五 六 七 八 �
 spacebar -m config spaces_for_all_displays     on
 spacebar -m config clock_icon                  
 spacebar -m config dnd_icon                    
-spacebar -m config clock_format                "%d/%m/%y %R"
+spacebar -m config clock_format                "%R  %d/%m"
+# spacebar -m config clock_format                "%d/%m/%y %R"
 spacebar -m config right_shell                 off
 spacebar -m config right_shell_icon            
 spacebar -m config right_shell_command         "whoami"
