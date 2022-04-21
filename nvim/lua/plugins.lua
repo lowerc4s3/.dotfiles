@@ -4,12 +4,10 @@
 
 -- Plugin list
 return require('packer').startup(function(use)
-
     use 'wbthomason/packer.nvim'
 
     --- Optimization plugins ---
     use 'lewis6991/impatient.nvim' -- Cache plugin files
-    use "nathom/filetype.nvim" -- Optimized filetype implementation
     use 'antoinemadec/FixCursorHold.nvim'
 
     --- Themes ---
@@ -24,7 +22,7 @@ return require('packer').startup(function(use)
     --- UI ---
     use {
         'nvim-lualine/lualine.nvim', -- Status line
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+        requires = { 'kyazdani42/nvim-web-devicons' },
         config = function() require("custom.lualine") end
     }
 
@@ -56,8 +54,16 @@ return require('packer').startup(function(use)
 
     use {
         'karb94/neoscroll.nvim', -- Smooth scrolling
-        -- disable = true,
         config = function () require("custom.neoscroll") end
+    }
+
+    use {
+        'petertriho/nvim-scrollbar', -- Scrollbar
+        config = function ()
+            require("scrollbar").setup {
+                handle = { highlight = "CursorLine" }
+            }
+        end
     }
 
     use {
@@ -160,9 +166,6 @@ return require('packer').startup(function(use)
     use {
         "blackCauldron7/surround.nvim", -- Surround word with quotes or parentheses
         event = 'BufEnter',
-        -- event = 'BufWinEnter',
-        -- event = 'BufRead',
-        -- event = 'InsertEnter',
         config = function() require"surround".setup { mappings_style = "surround" } end
     }
 
@@ -228,11 +231,7 @@ return require('packer').startup(function(use)
     use "tpope/vim-repeat" -- Repeat more commands with dot
 
     --- LSP ---
-    use {
-        'ray-x/lsp_signature.nvim', -- Function arguments floating window
-        -- event = "BufEnter"
-        -- ft = { "lua", "c", "cpp", "sh", "bash", "python" },
-    }
+    use 'ray-x/lsp_signature.nvim' -- Function arguments floating window
 
     use {
         'neovim/nvim-lspconfig',
@@ -243,7 +242,6 @@ return require('packer').startup(function(use)
     use {
         "jose-elias-alvarez/null-ls.nvim",
         requires = 'nvim-lua/plenary.nvim',
-        -- ft = { "lua", "c", "cpp", "sh", "bash", "python" },
         config = function ()
             require("custom.nullls")
         end
@@ -317,6 +315,4 @@ return require('packer').startup(function(use)
         end
     }
     use { "rcarriga/nvim-dap-ui" } -- VSCode-like DAP UI
-
 end)
-

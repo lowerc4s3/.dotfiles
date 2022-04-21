@@ -1,5 +1,6 @@
 require("bufferline").setup{
     options = {
+        themable = false,
         offsets = { { filetype = "NvimTree", text = "", padding = 0 } },
         buffer_close_icon = "",
         modified_icon = "", -- 

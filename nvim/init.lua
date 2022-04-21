@@ -6,8 +6,9 @@ if not present then
     vim.notify("Error loading impatient")
 end
 
--- Disable default filetype detection
+-- Use filetype.lua instead if filetype.vim
 vim.g.did_load_filetypes = 1
+vim.g.do_filetype_lua = 1
 
 -- Disable some builtin plugins
 local disabled_built_ins = {
@@ -39,5 +40,3 @@ end
 require('config')
 require('plugins')
 require('mappings')
--- require('lspconf')
--- require('dapconf')

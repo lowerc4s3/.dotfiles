@@ -73,6 +73,15 @@ local header = {
    },
 }
 
+local footer = {
+    type = "text",
+    val = "Учи уроки дебил",
+    opts = {
+        position = "center",
+        hl = "Comment",
+    },
+}
+
 local function button(sc, txt, keybind)
     local sc_ = sc:gsub("%s", ""):gsub("SPC", "<leader>")
 
@@ -126,14 +135,17 @@ local buttons = {
 local section = {
     header = header,
     buttons = buttons,
+    footer = footer,
 }
 
 alpha.setup {
     layout = {
-        { type = "padding", val = 4 },
+        { type = "padding", val = 3 },
         section.header,
-        { type = "padding", val = 4 },
+        { type = "padding", val = 3 },
         section.buttons,
+        { type = "padding", val = 3 },
+        section.footer,
     },
     opts = {},
 }
@@ -143,6 +155,6 @@ alpha.setup {
 vim.cmd [[
 augroup alpha_tabline
     au!
-    au FileType alpha set showtabline=0 laststatus=0 | au BufUnload <buffer> set showtabline=2 laststatus=2
+    au FileType alpha set showtabline=0 laststatus=0 | au BufUnload <buffer> set showtabline=2 laststatus=3
 augroup END
 ]]
