@@ -81,7 +81,7 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # Add wisely, as too many plugins slow down shell startup.
 
 # plugins=(zsh-autosuggestions zsh-syntax-highlighting)
-plugins=(zsh-autosuggestions fast-syntax-highlighting)
+plugins=(zsh-autosuggestions fast-syntax-highlighting zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
