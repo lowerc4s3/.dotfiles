@@ -9,33 +9,31 @@ telescope.setup {
         selection_caret = " ",
         entry_prefix = "  ",
         scroll_strategy = "limit",
-        -- border = false,
-        -- border = false,
-        -- borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+        sorting_strategy = "ascending",
+        results_title = false,
         borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
-
+        layout_strategy = "horizontal",
+        layout_config = {
+            prompt_position = 'top',
+            horizontal = {
+                -- anchor = "S",
+                -- width = vim.o.columns,
+                -- height = 0.6,
+                preview_width = 0.5,
+            },
+        },
         mappings = {
             i = {
                 ["<C-j>"]   = actions.move_selection_next,
                 ["<C-k>"]   = actions.move_selection_previous,
-                -- ["<tab>"]   = actions.move_selection_next,
-                -- ["<S-tab>"] = actions.move_selection_previous,
                 ["<tab>"]   = actions.select_default,
                 ["<esc>"]   = actions.close,
             }
         }
     },
 
-    pickers = {
-        find_files = { theme = "ivy" },
-        oldfiles = { theme = "ivy" },
-        live_grep = { theme = "ivy" },
-        buffers = { theme = "ivy" },
-    },
-
     extensions = {
         file_browser = {
-            theme = "ivy",
             mappings = {
                 i = {
                     ["<C-a>"]   = fb_actions.create,
@@ -44,7 +42,6 @@ telescope.setup {
                     ["["]       = fb_actions.goto_parent_dir,
                     ["<C-.>"]   = fb_actions.change_cwd,
                     ["<tab>"]   = actions.select_default,
-                    -- ["<esc>"] = false,
                 }
             }
         },
@@ -54,3 +51,11 @@ telescope.setup {
 telescope.load_extension("projects")
 telescope.load_extension("fzf")
 telescope.load_extension("file_browser")
+
+vim.cmd [[
+hi link TelescopePromptBorder CursorLine
+hi link TelescopePromptNormal CursorLine
+hi link TelescopeNormal StatusLine
+hi link TelescopePreviewBorder StatusLine
+hi link TelescopeResultsBorder StatusLine
+]]
