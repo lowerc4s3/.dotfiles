@@ -25,6 +25,7 @@ opt.sidescrolloff       = 8                           -- Cursor indent
 opt.wrap                = false                       -- Dont wrap lines
 opt.timeoutlen          = 500                         -- Timeout for which-key plugin
 opt.updatetime          = 4000                        -- Swap file update delay
+-- opt.formatoptions       = "jtcrql"                    -- Autoformating opts (don't insert comment symbol after hitting o/O)
 g.cursorhold_updatetime = 400                         -- CursorHold activation time (used for lsp diagnostics)
 g.mapleader             = " "                         -- Set leader key
 g.maplocalleader        = " "                         -- Set leader key
@@ -69,5 +70,14 @@ autocmd("FileType", {
     command = "nnoremap <silent> <buffer> q :close<CR>"
 })
 
--- Don't show any numbers inside terminals (NOTE: enabling this breaks toggleterm) ---
+-- Autoformating opts (don't insert comment symbol after hitting o, O or <CR>)
+autocmd("BufEnter", {
+    pattern = "*",
+    command = 'set formatoptions-=ro'
+})
+
+-- "jtcrql"
+
+-- Don't show any numbers inside terminals
+-- NOTE: enabling this breaks toggleterm
 -- cmd [[ au TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal ]]

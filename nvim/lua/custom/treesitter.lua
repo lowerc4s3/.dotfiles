@@ -4,8 +4,8 @@ require'nvim-treesitter.configs'.setup {
     ensure_installed = {
         "yaml", "python"  , "c"   ,
         "cpp" , "lua"     , "bash",
-        "vim" , "markdown", "comment"
-    },
+        "vim" , "markdown"
+    }, -- "comment"
 
     -- Install languages synchronously (only applied to `ensure_installed`)
     sync_install = false,

@@ -113,12 +113,11 @@ return require('packer').startup(function(use)
         config = function () require("custom.toggleterm") end
     }
 
-    -- use {
-    --     "folke/todo-comments.nvim", -- Highlight todo comments
-    --     event = "BufEnter",
-    --     requires = "nvim-lua/plenary.nvim",
-    --     config = function() require("custom.todocomments") end
-    -- }
+    use {
+        "folke/todo-comments.nvim", -- Highlight todo comments
+        requires = "nvim-lua/plenary.nvim",
+        config = function() require("custom.todocomments") end
+    }
 
     use {
         'lewis6991/gitsigns.nvim',

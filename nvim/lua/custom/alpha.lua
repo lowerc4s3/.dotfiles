@@ -14,30 +14,6 @@ local ascii = {
    "       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃     ",
 }
 
--- local ascii = {
---     " /| ､        ",
---     "(°､ ｡ 7      ",
---     " |､  ~ヽ     ",
---     " じしf_,)〳  "
--- }
-
--- local ascii = {
---     '⡆⣐⢕⢕⢕⢕⢕⢕⢕⢕⠅⢗⢕⢕⢕⢕⢕⢕⢕⠕⠕⢕⢕⢕⢕⢕⢕⢕⢕⢕',
---     '⢐⢕⢕⢕⢕⢕⣕⢕⢕⠕⠁⢕⢕⢕⢕⢕⢕⢕⢕⠅⡄⢕⢕⢕⢕⢕⢕⢕⢕⢕',
---     '⢕⢕⢕⢕⢕⠅⢗⢕⠕⣠⠄⣗⢕⢕⠕⢕⢕⢕⠕⢠⣿⠐⢕⢕⢕⠑⢕⢕⠵⢕',
---     '⢕⢕⢕⢕⠁⢜⠕⢁⣴⣿⡇⢓⢕⢵⢐⢕⢕⠕⢁⣾⢿⣧⠑⢕⢕⠄⢑⢕⠅⢕',
---     '⢕⢕⠵⢁⠔⢁⣤⣤⣶⣶⣶⡐⣕⢽⠐⢕⠕⣡⣾⣶⣶⣶⣤⡁⢓⢕⠄⢑⢅⢑',
---     '⠍⣧⠄⣶⣾⣿⣿⣿⣿⣿⣿⣷⣔⢕⢄⢡⣾⣿⣿⣿⣿⣿⣿⣿⣦⡑⢕⢤⠱⢐',
---     '⢠⢕⠅⣾⣿⠋⢿⣿⣿⣿⠉⣿⣿⣷⣦⣶⣽⣿⣿⠈⣿⣿⣿⣿⠏⢹⣷⣷⡅⢐',
---     '⣔⢕⢥⢻⣿⡀⠈⠛⠛⠁⢠⣿⣿⣿⣿⣿⣿⣿⣿⡀⠈⠛⠛⠁⠄⣼⣿⣿⡇⢔',
---     '⢕⢕⢽⢸⢟⢟⢖⢖⢤⣶⡟⢻⣿⡿⠻⣿⣿⡟⢀⣿⣦⢤⢤⢔⢞⢿⢿⣿⠁⢕',
---     '⢕⢕⠅⣐⢕⢕⢕⢕⢕⣿⣿⡄⠛⢀⣦⠈⠛⢁⣼⣿⢗⢕⢕⢕⢕⢕⢕⡏⣘⢕',
---     '⢕⢕⠅⢓⣕⣕⣕⣕⣵⣿⣿⣿⣾⣿⣿⣿⣿⣿⣿⣿⣷⣕⢕⢕⢕⢕⡵⢀⢕⢕',
---     '⢑⢕⠃⡈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢃⢕⢕⢕',
---     '⣆⢕⠄⢱⣄⠛⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⢁⢕⢕⠕⢁',
---     '⣿⣦⡀⣿⣿⣷⣶⣬⣍⣛⣛⣛⡛⠿⠿⠿⠛⠛⢛⣛⣉⣭⣤⣂⢜⠕⢑⣡⣴⣿',
--- }
-
 local header = {
     type = "text",
     val = ascii,
@@ -67,7 +43,8 @@ local function button(sc, txt, keybind)
         width = 36,
         align_shortcut = "right",
         hl = "Comment",
-        hl_shortcut = "Keyword"
+        -- hl_shortcut = "Keyword"
+        hl_shortcut = "CursorLine"
     }
 
     if keybind then
@@ -88,18 +65,13 @@ end
 local buttons = {
     type = "group",
     val = {
-        button("n", "  New File  ", ":enew<CR>"),
-        button("f", "  Find File  ", ":Telescope find_files<CR>"),
-        button("r", "  Recent Files  ", ":Telescope oldfiles<CR>"),
-        button("p", "  Open Project  ", ":Telescope projects<CR>"),
-        button("d", "  Open directory  ", ":Telescope file_browser<CR>"),
-        button("l", "  Load last session  ", ":lua require('persistence').load({ last = true })<CR>"),
-        button("q", "  Quit  ", ":qa!<CR>"),
-      -- button("SPC f p", "  Find Project  ", ":Telescope projects<CR>"),
-      -- button("SPC f f", "  Find File  ", ":Telescope find_files<CR>"),
-      -- button("SPC f w", "  Find Word  ", ":Telescope live_grep<CR>"),
-      -- button("SPC f r", "ﮦ  Recent Files  ", ":Telescope oldfiles<CR>"),
-      -- button("SPC b m", "  Bookmarks  ", ":Telescope marks<CR>"),
+        button(" n ", "  New File  ", ":enew<CR>"),
+        button(" f ", "  Find File  ", ":Telescope find_files<CR>"),
+        button(" r ", "  Recent Files  ", ":Telescope oldfiles<CR>"),
+        button(" p ", "  Open Project  ", ":Telescope projects<CR>"),
+        button(" d ", "  Open directory  ", ":Telescope file_browser<CR>"),
+        button(" l ", "  Load last session  ", ":lua require('persistence').load({ last = true })<CR>"),
+        button(" q ", "  Quit  ", ":qa!<CR>"),
     },
     opts = {
         spacing = 1,
@@ -123,13 +95,6 @@ alpha.setup {
     },
     opts = {},
 }
-
--- vim.cmd [[
--- augroup alpha_tabline
---     au!
---     au FileType alpha set showtabline=0 laststatus=0 | au BufUnload <buffer> set showtabline=2 laststatus=3
--- augroup END
--- ]]
 
 vim.api.nvim_create_augroup("alpha_tabline", { clear = true })
 vim.api.nvim_create_autocmd("User", {
