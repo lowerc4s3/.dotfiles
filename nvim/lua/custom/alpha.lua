@@ -124,24 +124,21 @@ alpha.setup {
     opts = {},
 }
 
--- vim.cmd "au FileType alpha set showtabline=0 laststatus=0 noruler | au BufUnload <buffer> set showtabline=2 laststatus=2 ruler"
-
 -- vim.cmd [[
 -- augroup alpha_tabline
 --     au!
 --     au FileType alpha set showtabline=0 laststatus=0 | au BufUnload <buffer> set showtabline=2 laststatus=3
 -- augroup END
 -- ]]
---
 
 vim.api.nvim_create_augroup("alpha_tabline", { clear = true })
-vim.api.nvim_create_autocmd("Filetype", {
+vim.api.nvim_create_autocmd("User", {
     group = "alpha_tabline",
-    pattern = "alpha",
+    pattern = "AlphaReady",
     command = "set showtabline=0 laststatus=0"
 })
-vim.api.nvim_create_autocmd("BufUnload", {
+vim.api.nvim_create_autocmd("User", {
     group = "alpha_tabline",
-    buffer = 0,
+    pattern = "AlphaClosed",
     command = "set showtabline=2 laststatus=3"
 })

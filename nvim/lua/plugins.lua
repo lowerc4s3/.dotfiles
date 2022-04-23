@@ -61,7 +61,7 @@ return require('packer').startup(function(use)
         'petertriho/nvim-scrollbar', -- Scrollbar
         config = function ()
             require("scrollbar").setup {
-                handle = { highlight = "CursorLine" }
+                handle = { highlight = "CursorLine" },
             }
         end
     }
@@ -158,7 +158,7 @@ return require('packer').startup(function(use)
             require("project_nvim").setup {
                 patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", ".projectile" },
                 detection_methods = { "pattern" },
-                silent_chdir = false,
+                silent_chdir = true,
             }
         end
     }
@@ -258,6 +258,23 @@ return require('packer').startup(function(use)
             require("nvim-lightbulb").setup {
                 sign = { enabled = false, },
                 virtual_text = { enabled = true, text = "", hl_mode = "replace", }
+            }
+        end
+    }
+
+    use {
+        'j-hui/fidget.nvim',
+        after = "nvim-lspconfig",
+        config = function ()
+            require("fidget").setup {
+                text = {
+                    spinner = "dots_negative",
+                    done = "",
+                },
+
+                timer = {
+                    spinner_rate = 100,
+                }
             }
         end
     }

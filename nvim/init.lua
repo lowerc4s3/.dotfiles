@@ -37,5 +37,5 @@ end
 
 -- Load configs
 require('config')
-require('plugins')
 require('mappings')
+require('plugins')

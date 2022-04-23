@@ -19,13 +19,13 @@ require('lualine').setup {
         },
 
         lualine_c = {
-            { 'filetype', padding = 1, icon_only = true },
+            { 'filetype', padding = {left = 1, right = 0}, icon_only = true },
 
             {
                 'filename',
-                padding = 0,
+                padding = 1,
                 path = 1,
-                symbols = { modified = ' ', readonly = ' ', unnamed  = '' }
+                symbols = { modified = ' ', readonly = ' ', unnamed  = '[?]' }
             },
         },
 
@@ -50,7 +50,7 @@ require('lualine').setup {
                 'filename',
                 padding = 1,
                 path = 0,
-                symbols = { modified = ' ', readonly = ' ', unnamed  = '' }
+                symbols = { modified = ' ', readonly = ' ', unnamed  = '[?]' }
             },
         },
         lualine_x = {'location'},

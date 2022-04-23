@@ -5,9 +5,9 @@ local fb_actions = require("telescope").extensions.file_browser.actions
 telescope.setup {
     defaults = {
         initial_mode = 'insert',
-        prompt_prefix = "> ",
-        selection_caret = " ",
-        entry_prefix = "  ",
+        prompt_prefix = "  ",
+        selection_caret = " ",
+        entry_prefix = " ",
         scroll_strategy = "limit",
         sorting_strategy = "ascending",
         results_title = false,
@@ -52,10 +52,14 @@ telescope.load_extension("projects")
 telescope.load_extension("fzf")
 telescope.load_extension("file_browser")
 
+-- Set highlights
 vim.cmd [[
 hi link TelescopePromptBorder CursorLine
 hi link TelescopePromptNormal CursorLine
 hi link TelescopeNormal StatusLine
 hi link TelescopePreviewBorder StatusLine
 hi link TelescopeResultsBorder StatusLine
+hi link TelescopePreview StatusLine
+hi link TelescopeResults StatusLine
+hi link TelescopeTitle lualine_a_normal
 ]]

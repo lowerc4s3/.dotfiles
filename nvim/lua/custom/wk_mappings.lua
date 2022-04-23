@@ -26,7 +26,7 @@ wk.register({
         ["f"] = { "<cmd>Telescope find_files<CR>", " Find project files" },
         ["r"] = { "<cmd>Telescope oldfiles<CR>", "ﭯ Recent files" },
         ["b"] = { "<cmd>Telescope buffers<CR>", " Buffers" },
-        ["p"] = { "<cmd>Telescope projects theme=ivy<CR>", " Projects" },
+        ["p"] = { "<cmd>Telescope projects<CR>", " Projects" },
         ["w"] = { "<cmd>Telescope live_grep<CR>", " Word" },
         ["d"] = { "<cmd>Telescope file_browser<CR>", " Directory" },
         -- ["t"] = { "<cmd>TodoTrouble<CR>", " List todos"},
