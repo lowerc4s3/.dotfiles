@@ -2,7 +2,7 @@
 
 Pretty self explanatory, isn't it?
 
-![Man I love catppuccin!](/assets/milc.png)
+![Man I love catppuccin!](/assets/milc.jpg)
 
 ## Info:
 - *wm* – [yabai](https://github.com/koekeishiya/yabai)

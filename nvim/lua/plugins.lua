@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------------
----- Remember ro run :PackerCompile or :PackerSync after modifying configuratuion ----
+---- Remember to run :PackerCompile or :PackerSync after modifying configuratuion ----
 --------------------------------------------------------------------------------------
 
 -- Plugin list
@@ -236,7 +236,7 @@ return require('packer').startup(function(use)
     use {
         'neovim/nvim-lspconfig',
         after = "lsp_signature.nvim",
-        config = function () require("lspconf") end
+        config = function () require("custom.lsp") end
     }
 
     use {
@@ -324,8 +324,9 @@ return require('packer').startup(function(use)
     --- Debug ---
     use {
         'mfussenegger/nvim-dap',
-        config = function () require("dapconf") end
+        config = function () require("custom.dap") end
     }
+
     use {
         'mfussenegger/nvim-dap-python', -- Python DAP configurations
         after = 'nvim-dap',
@@ -334,5 +335,6 @@ return require('packer').startup(function(use)
             require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
         end
     }
+
     use { "rcarriga/nvim-dap-ui" } -- VSCode-like DAP UI
 end)
