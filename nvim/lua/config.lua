@@ -76,7 +76,13 @@ autocmd("BufEnter", {
     command = 'set formatoptions-=ro'
 })
 
--- "jtcrql"
+-- Compile plugins file whenever it's updated
+-- augroup("PackerAutoCompile", {clear = true})
+-- autocmd("BufWritePost", {
+--     group = "PackerAutoCompile",
+--     pattern = "plugins.lua",
+--     command = "source <afile> | PackerCompile"
+-- })
 
 -- Don't show any numbers inside terminals
 -- NOTE: enabling this breaks toggleterm

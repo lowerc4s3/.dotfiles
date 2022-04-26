@@ -1,16 +1,11 @@
---------------------------------------------------------------------------------------
----- Remember to run :PackerCompile or :PackerSync after modifying configuratuion ----
---------------------------------------------------------------------------------------
-
--- Plugin list
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
-    --- Optimization plugins ---
+    --- Optimization ---
     use 'lewis6991/impatient.nvim' -- Cache plugin files
     use 'antoinemadec/FixCursorHold.nvim'
 
-    --- Themes ---
+    -- Themes --
     -- use 'ful1e5/onedark.nvim'
     -- use 'Shatur/neovim-ayu'
     -- use 'NTBBloodbath/doom-one.nvim'
@@ -21,30 +16,21 @@ return require('packer').startup(function(use)
 
     --- UI ---
     use {
-        'nvim-lualine/lualine.nvim', -- Status line
+        -- Status line
+        'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons' },
         config = function() require("custom.lualine") end
     }
 
     use {
-        'goolord/alpha-nvim', -- Starting screen
+        -- Starting screen
+        'goolord/alpha-nvim',
         config = function () require("custom.alpha") end
     }
 
     use {
-        "folke/persistence.nvim", -- Session management
-        event = "BufReadPre",
-        module = "persistence",
-        config = function() require("persistence").setup() end,
-    }
-
-    use {
-        "folke/which-key.nvim", -- Nested mappings with mappings cheatsheet
-        config = function() require("custom.which-key") end
-    }
-
-    use {
-        "folke/trouble.nvim", -- Code diagnostics window
+        -- Code diagnostics window
+        "folke/trouble.nvim",
         requires = 'kyazdani42/nvim-web-devicons',
         cmd = "Trouble",
         config = function()
@@ -53,12 +39,21 @@ return require('packer').startup(function(use)
     }
 
     use {
-        'karb94/neoscroll.nvim', -- Smooth scrolling
+        -- Highlight todo comments
+        "folke/todo-comments.nvim",
+        requires = "nvim-lua/plenary.nvim",
+        config = function() require("custom.todocomments") end
+    }
+
+    use {
+        -- Smooth scrolling
+        'karb94/neoscroll.nvim',
         config = function () require("custom.neoscroll") end
     }
 
     use {
-        'petertriho/nvim-scrollbar', -- Scrollbar
+        -- Scrollbar
+        'petertriho/nvim-scrollbar',
         config = function ()
             require("scrollbar").setup {
                 handle = { highlight = "CursorLine" },
@@ -67,7 +62,54 @@ return require('packer').startup(function(use)
     }
 
     use {
-        'kyazdani42/nvim-tree.lua', -- File tree
+        -- Nested mappings with mappings cheatsheet
+        "folke/which-key.nvim",
+        config = function() require("custom.which-key") end
+    }
+
+    use 'famiu/bufdelete.nvim' -- Remove buffers without closing windows
+    use {
+        -- Tabs
+        'akinsho/bufferline.nvim',
+        requires = 'kyazdani42/nvim-web-devicons',
+        config = function () require("custom.bufferline") end
+    }
+
+    use {
+        -- Markdown preview
+        "ellisonleao/glow.nvim",
+        cmd = "Glow",
+        config = function ()
+            vim.g.glow_style = "~/Library/Preferences/glow/catppuccin.json"
+            vim.g.glow_border = "rounded"
+        end
+    }
+
+    --- File finders and managers ---
+    use {
+        -- Native finder for telescope
+        'nvim-telescope/telescope-fzf-native.nvim',
+        cmd = "Telescope",
+        run = 'make'
+    }
+
+    use {
+        -- File browser in telescope
+        "nvim-telescope/telescope-file-browser.nvim",
+        after = "telescope-fzf-native.nvim"
+    }
+
+    use {
+        -- Fuzzy finder
+        'nvim-telescope/telescope.nvim',
+        after = "telescope-file-browser.nvim",
+        requires = 'nvim-lua/plenary.nvim',
+        config = function () require("custom.telescope") end
+    }
+
+    use {
+        -- File tree
+        'kyazdani42/nvim-tree.lua',
         requires = 'kyazdani42/nvim-web-devicons',
         cmd = {
             'NvimTreeClipboard',
@@ -81,51 +123,16 @@ return require('packer').startup(function(use)
         config = function() require("custom.nvtree") end
     }
 
+    --- Git ---
     use {
-        'akinsho/bufferline.nvim', -- Tabs
-        requires = 'kyazdani42/nvim-web-devicons',
-        config = function () require("custom.bufferline") end
-    }
-
-    use 'famiu/bufdelete.nvim' -- Remove buffers without closing windows
-
-    use {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        cmd = "Telescope",
-        run = 'make'
-    }
-
-    use {
-        "nvim-telescope/telescope-file-browser.nvim", -- File browser in telescope
-        after = "telescope-fzf-native.nvim"
-    }
-
-    use {
-        'nvim-telescope/telescope.nvim', -- Fuzzy finder
-        after = "telescope-file-browser.nvim",
-        requires = 'nvim-lua/plenary.nvim',
-        config = function () require("custom.telescope") end
-    }
-
-    use {
-        "akinsho/toggleterm.nvim", -- Terminal
-        cmd = { "ToggleTerm", "ToggleTermToggleAll" },
-        config = function () require("custom.toggleterm") end
-    }
-
-    use {
-        "folke/todo-comments.nvim", -- Highlight todo comments
-        requires = "nvim-lua/plenary.nvim",
-        config = function() require("custom.todocomments") end
-    }
-
-    use {
+        -- Git integration
         'lewis6991/gitsigns.nvim',
         requires = 'nvim-lua/plenary.nvim',
         config = function() require('gitsigns').setup() end
     }
 
     use {
+        -- Cycle through modified files
         'sindrets/diffview.nvim',
         requires = 'nvim-lua/plenary.nvim',
         cmd = {
@@ -152,24 +159,15 @@ return require('packer').startup(function(use)
 
     --- Editor ---
     use {
-        "ahmedkhalf/project.nvim", -- Project managment
-        config = function()
-            require("project_nvim").setup {
-                patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", ".projectile" },
-                detection_methods = { "pattern" },
-                silent_chdir = true,
-            }
-        end
-    }
-
-    use {
-        "blackCauldron7/surround.nvim", -- Surround word with quotes or parentheses
+        -- Surround word with quotes or parentheses
+        "blackCauldron7/surround.nvim",
         event = 'BufEnter',
         config = function() require"surround".setup { mappings_style = "surround" } end
     }
 
     use {
-        'abecodes/tabout.nvim', -- Jump out of quotes and parentheses
+        -- Jump out of quotes and parentheses
+        'abecodes/tabout.nvim',
         config = function()
             require('tabout').setup {
                 tabouts = {
@@ -188,13 +186,43 @@ return require('packer').startup(function(use)
     }
 
     use {
-        'numToStr/Comment.nvim', -- Comment lines
+        -- Comment lines
+        'numToStr/Comment.nvim',
         keys = { {"n", "gc"}, {"v", "gc"} },
         config = function() require('Comment').setup() end
     }
 
     use {
-        'lukas-reineke/indent-blankline.nvim' , -- Indentation lines
+        -- Autocomplete quotes and parentheses
+        'windwp/nvim-autopairs',
+        event = 'InsertEnter',
+        config = function () require('nvim-autopairs').setup() end
+    }
+
+    use {
+        -- Alignment by character
+        "tommcdo/vim-lion",
+        keys = {
+            {"n", "gl"},
+            {"v", "gl"},
+        },
+    }
+
+    use "tpope/vim-repeat" -- Repeat more commands with dot
+
+    --- Treesitter ---
+    use {
+        -- Syntax highlighting
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
+        config = function () require("custom.treesitter") end
+    }
+
+    use 'nvim-treesitter/nvim-treesitter-textobjects'
+
+    use {
+        -- Indentation lines
+        'lukas-reineke/indent-blankline.nvim' ,
         event = 'BufEnter',
         config = function ()
             require("indent_blankline").setup {
@@ -213,22 +241,6 @@ return require('packer').startup(function(use)
         end
     }
 
-    use {
-        'windwp/nvim-autopairs', -- Autocomplete quotes and parentheses
-        event = 'InsertEnter',
-        config = function () require('nvim-autopairs').setup() end
-    }
-
-    use {
-        "tommcdo/vim-lion", -- Alignment by character
-        keys = {
-            {"n", "gl"},
-            {"v", "gl"},
-        },
-    }
-
-    use "tpope/vim-repeat" -- Repeat more commands with dot
-
     --- LSP ---
     use 'ray-x/lsp_signature.nvim' -- Function arguments floating window
 
@@ -239,6 +251,7 @@ return require('packer').startup(function(use)
     }
 
     use {
+        -- Code checking utilities integration
         "jose-elias-alvarez/null-ls.nvim",
         requires = 'nvim-lua/plenary.nvim',
         config = function ()
@@ -247,6 +260,7 @@ return require('packer').startup(function(use)
     }
 
     use {
+        -- Show bulb icon when code action is available
         'kosayoda/nvim-lightbulb',
         after = "nvim-lspconfig",
         config = function ()
@@ -262,30 +276,22 @@ return require('packer').startup(function(use)
     }
 
     use {
+        -- LSP loading status
         'j-hui/fidget.nvim',
         after = "nvim-lspconfig",
         config = function ()
             require("fidget").setup {
                 text = {
-                    spinner = "dots_negative",
+                    spinner = "dots",
                     done = "",
                 },
-
                 timer = {
-                    spinner_rate = 100,
+                    spinner_rate = 80,
                 }
             }
+            vim.cmd [[ hi link FidgetTitle Bold ]]
         end
     }
-
-    --- Treesitter ---
-    use {
-        'nvim-treesitter/nvim-treesitter', -- Syntax highlighting
-        run = ':TSUpdate',
-        config = function () require("custom.treesitter") end
-    }
-
-    use 'nvim-treesitter/nvim-treesitter-textobjects' -- Treesitter textobjects
 
     --- Completion and snippets ---
     use { 'hrsh7th/cmp-nvim-lsp',}
@@ -294,40 +300,30 @@ return require('packer').startup(function(use)
     use { 'hrsh7th/cmp-cmdline', after = "cmp-path" }
     use { 'onsails/lspkind-nvim', after = "cmp-cmdline" }
     use { 'saadparwaiz1/cmp_luasnip',after = "lspkind-nvim" } -- Completion symbols
-    use { 'L3MON4D3/LuaSnip', after = "cmp_luasnip" } -- Collection of snippets
-    use { 'rafamadriz/friendly-snippets', after = "LuaSnip" }
+    use { 'L3MON4D3/LuaSnip', after = "cmp_luasnip" }
+    use { 'rafamadriz/friendly-snippets', after = "LuaSnip" } -- Collection of snippets
     use {
         'hrsh7th/nvim-cmp',
         after = "friendly-snippets",
         config = function() require("custom.cmp") end
     }
 
-    --- Code runner ---
+    --- Terminal ---
     use {
-        'pianocomposer321/yabs.nvim',
-        requires = { 'nvim-lua/plenary.nvim' },
-        branch = 'hotfix',
-        cmd = { "YabsTask", "YabsDefaultTask" },
-        config = function () require("custom.yabs") end
+        "akinsho/toggleterm.nvim",
+        cmd = { "ToggleTerm", "ToggleTermToggleAll" },
+        config = function () require("custom.toggleterm") end
     }
 
-    use {
-        "ellisonleao/glow.nvim",
-        cmd = "Glow",
-        config = function ()
-            vim.g.glow_style = "~/Library/Preferences/glow/catppuccin.json"
-            vim.g.glow_border = "rounded"
-        end
-    }
-
-    --- Debug ---
+    --- Debugging and running ---
     use {
         'mfussenegger/nvim-dap',
         config = function () require("custom.dap") end
     }
 
     use {
-        'mfussenegger/nvim-dap-python', -- Python DAP configurations
+        -- Python DAP configurations
+        'mfussenegger/nvim-dap-python',
         after = 'nvim-dap',
         ft = 'python',
         config = function ()
@@ -335,5 +331,35 @@ return require('packer').startup(function(use)
         end
     }
 
-    use { "rcarriga/nvim-dap-ui" } -- VSCode-like DAP UI
+    use "rcarriga/nvim-dap-ui" -- VSCode-like DAP UI
+
+    use {
+        -- Build and run tasks
+        'pianocomposer321/yabs.nvim',
+        requires = { 'nvim-lua/plenary.nvim' },
+        branch = 'hotfix',
+        cmd = { "YabsTask", "YabsDefaultTask" },
+        config = function () require("custom.yabs") end
+    }
+
+    --- Project and session management ---
+    use {
+        -- Project managment
+        "ahmedkhalf/project.nvim",
+        config = function()
+            require("project_nvim").setup {
+                patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", ".projectile" },
+                detection_methods = { "pattern" },
+                silent_chdir = true,
+            }
+        end
+    }
+
+    use {
+        -- Session management
+        "folke/persistence.nvim",
+        event = "BufReadPre",
+        module = "persistence",
+        config = function() require("persistence").setup() end,
+    }
 end)

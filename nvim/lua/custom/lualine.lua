@@ -4,7 +4,6 @@ require('lualine').setup {
         theme = 'auto',
         component_separators = { left = '', right = ''},
         section_separators = { left = '', right = ''}, -- 
-        -- disabled_filetypes = { "NvimTree", "DiffviewFiles" },
         disabled_filetypes = {},
         always_divide_middle = true,
         globalstatus = true,
@@ -15,12 +14,19 @@ require('lualine').setup {
 
         lualine_b = {
             { 'branch', icon = '' },
-            { 'diff', symbols = {added = ' ', modified = ' ', removed = ' '} },
+            {
+                'diff',
+                symbols = {added = ' ', modified = ' ', removed = ' '},
+                padding = {left = 0, right = 1}
+            },
         },
 
         lualine_c = {
-            { 'filetype', padding = {left = 1, right = 0}, icon_only = true },
-
+            {
+                'filetype',
+                padding = {left = 1, right = 0},
+                icon_only = true
+            },
             {
                 'filename',
                 padding = 1,
@@ -36,12 +42,22 @@ require('lualine').setup {
                 symbols = { error = " ", warn = " ", hint = " ", info = " " },
             }
         },
+
         lualine_y = {
-            { 'encoding', fmt = function(str) return string.upper(str) end },
-            { 'fileformat', symbols = { unix = 'LF', dos = 'CRLF', mac = 'CR' } }
+            {
+                'encoding',
+                fmt = function(str) return string.upper(str) end,
+                padding = {left = 1, right = 0}
+            },
+            {
+                'fileformat',
+                symbols = { unix = 'LF', dos = 'CRLF', mac = 'CR' }
+            }
         },
-        lualine_z = {{ '%P', icon = " ",  padding = 0 }, 'location'}
+
+        lualine_z = {{ '%P', icon = "",  padding = {left = 1, right = 0} }, 'location'}
     },
+
     inactive_sections = {
         lualine_a = {},
         lualine_b = {},
