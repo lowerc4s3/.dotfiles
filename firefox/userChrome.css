@@ -49,32 +49,33 @@
     /* This will also work with custom colours from color.firefox.com. */
 
 
-    /* @media (prefers-color-scheme: dark) { :root { */
-    /**/
-    /*     --window-colour:                     #1E2021; */
-    /*     --secondary-colour:                  #191B1C; */
-    /*     --inverted-colour:                   #FAFAFC; */
-    /**/
+    /* Default colorscheme */
+    /* @media (prefers-color-scheme: dark) { :root {
+    *
+    *     --window-colour:                     #1E2021; 
+    *     --secondary-colour:                  #191B1C;
+    *     --inverted-colour:                   #FAFAFC;
+    */
         /* Containter Tab Colours */
-    /*     --uc-identity-color-blue:            #7ED6DF; */
-    /*     --uc-identity-color-turquoise:       #55E6C1; */
-    /*     --uc-identity-color-green:           #B8E994; */
-    /*     --uc-identity-color-yellow:          #F7D794; */
-    /*     --uc-identity-color-orange:          #F19066; */
-    /*     --uc-identity-color-red:             #FC5C65; */
-    /*     --uc-identity-color-pink:            #F78FB3; */
-    /*     --uc-identity-color-purple:          #786FA6; */
-    /**/
-    /*     --uc-identity-color-blue-muted:      #7ED6DF99; */
-    /*     --uc-identity-color-turquoise-muted: #55E6C199; */
-    /*     --uc-identity-color-green-muted:     #B8E99499; */
-    /*     --uc-identity-color-yellow-muted:    #F7D794CC; */
-    /*     --uc-identity-color-orange-muted:    #F19066FF; */
-    /*     --uc-identity-color-red-muted:       #FC5C65FF; */
-    /*     --uc-identity-color-pink-muted:      #F78FB399; */
-    /*     --uc-identity-color-purple-muted:    #786FA6FF; */
-    /**/
-    /* }} */
+    /*     --uc-identity-color-blue:            #7ED6DF;
+    *     --uc-identity-color-turquoise:       #55E6C1; 
+    *     --uc-identity-color-green:           #B8E994; 
+    *     --uc-identity-color-yellow:          #F7D794; 
+    *     --uc-identity-color-orange:          #F19066; 
+    *     --uc-identity-color-red:             #FC5C65; 
+    *     --uc-identity-color-pink:            #F78FB3; 
+    *     --uc-identity-color-purple:          #786FA6; 
+    *
+    *     --uc-identity-color-blue-muted:      #7ED6DF99;
+    *     --uc-identity-color-turquoise-muted: #55E6C199;
+    *     --uc-identity-color-green-muted:     #B8E99499;
+    *     --uc-identity-color-yellow-muted:    #F7D794CC;
+    *     --uc-identity-color-orange-muted:    #F19066FF;
+    *     --uc-identity-color-red-muted:       #FC5C65FF;
+    *     --uc-identity-color-pink-muted:      #F78FB399;
+    *     --uc-identity-color-purple-muted:    #786FA6FF;
+    *
+    * }} */
 
     @media (prefers-color-scheme: dark) { :root {
 
@@ -207,6 +208,9 @@
      #page-action-buttons { display: none !important; }
 
      #urlbar-go-button { display: none !important; }
+
+     /* hides extension label */
+     #identity-icon-label { display: none !important }
 
 
 
