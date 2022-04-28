@@ -13,7 +13,7 @@ opt.smarttab       = true                             -- Delete tabs
 opt.shiftwidth     = 4                                -- Tab size for autoindents
 opt.tabstop        = 4                                -- Number of spaces in tabs
 opt.softtabstop    = 4                                -- Insert tabs
-opt.smartindent    = true                             -- Autoindent new lines
+opt.autoindent     = true                             -- Autoindent new lines
 
 --- Editor prefs ---
 opt.mouse               = "a"                         -- Mouse support in all modes
@@ -25,7 +25,6 @@ opt.sidescrolloff       = 8                           -- Cursor indent
 opt.wrap                = false                       -- Dont wrap lines
 opt.timeoutlen          = 500                         -- Timeout for which-key plugin
 opt.updatetime          = 4000                        -- Swap file update delay
--- opt.formatoptions       = "jtcrql"                    -- Autoformating opts (don't insert comment symbol after hitting o/O)
 g.cursorhold_updatetime = 400                         -- CursorHold activation time (used for lsp diagnostics)
 g.mapleader             = " "                         -- Set leader key
 g.maplocalleader        = " "                         -- Set leader key
@@ -42,8 +41,8 @@ opt.splitbelow     = true                             -- Spawn window below
 
 --- UI prefs ---
 cmd 'colorscheme catppuccin'                          -- Set colorscheme
-opt.showmode = false                                  -- Dont show current mode in command line
-opt.fillchars = { eob = " " }                         -- Remove "~" chars at EOB
+opt.showmode       = false                            -- Dont show current mode in command line
+opt.fillchars      = { eob = " " }                    -- Remove "~" chars at EOB
 opt.termguicolors  = true                             -- 24-bit colors
 opt.number         = true                             -- Number line
 opt.relativenumber = true                             -- Relative numberline
@@ -57,6 +56,7 @@ opt.guifont="JetBrainsMono_Nerd_Font:h14"             -- Set font for GUI client
 -- Highlight yank
 augroup("YankHighlight", { clear = false })
 autocmd("TextYankPost", {
+    desc = "Highlight yank",
     group = "YankHighlight",
     pattern = "*",
     callback = function ()
@@ -66,12 +66,14 @@ autocmd("TextYankPost", {
 
 -- Quit help pages with 'q'
 autocmd("FileType", {
+    desc = "Quit help pages with 'q'",
     pattern = { "help", "qf", "man" },
     command = "nnoremap <silent> <buffer> q :close<CR>"
 })
 
 -- Autoformating opts (don't insert comment symbol after hitting o, O or <CR>)
 autocmd("BufEnter", {
+    desc = "Autoformating opts (don't insert comment symbol after hitting o, O or <CR>)",
     pattern = "*",
     command = 'set formatoptions-=ro'
 })

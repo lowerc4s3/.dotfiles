@@ -16,6 +16,10 @@ return require('packer').startup(function(use)
 
     --- UI ---
     use {
+        'kyazdani42/nvim-web-devicons',
+        config = function() require("custom.devicons") end
+    }
+    use {
         -- Status line
         'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons' },
@@ -25,7 +29,7 @@ return require('packer').startup(function(use)
     use {
         -- Starting screen
         'goolord/alpha-nvim',
-        config = function () require("custom.alpha") end
+        config = function() require("custom.alpha") end
     }
 
     use {
@@ -39,6 +43,16 @@ return require('packer').startup(function(use)
     }
 
     use {
+        'weilbith/nvim-code-action-menu',
+        cmd = "CodeActionMenu",
+        config = function()
+            vim.g.code_action_menu_show_details = false
+            vim.g.code_action_menu_show_diff = false
+            vim.g.code_action_menu_window_border = 'single'
+        end
+    }
+
+    use {
         -- Highlight todo comments
         "folke/todo-comments.nvim",
         requires = "nvim-lua/plenary.nvim",
@@ -48,13 +62,13 @@ return require('packer').startup(function(use)
     use {
         -- Smooth scrolling
         'karb94/neoscroll.nvim',
-        config = function () require("custom.neoscroll") end
+        config = function() require("custom.neoscroll") end
     }
 
     use {
         -- Scrollbar
         'petertriho/nvim-scrollbar',
-        config = function ()
+        config = function()
             require("scrollbar").setup {
                 handle = { highlight = "CursorLine" },
             }
@@ -72,17 +86,23 @@ return require('packer').startup(function(use)
         -- Tabs
         'akinsho/bufferline.nvim',
         requires = 'kyazdani42/nvim-web-devicons',
-        config = function () require("custom.bufferline") end
+        config = function() require("custom.bufferline") end
     }
 
     use {
         -- Markdown preview
         "ellisonleao/glow.nvim",
         cmd = "Glow",
-        config = function ()
+        config = function()
             vim.g.glow_style = "~/Library/Preferences/glow/catppuccin.json"
             vim.g.glow_border = "rounded"
         end
+    }
+
+    use {
+        'iamcco/markdown-preview.nvim',
+        -- cmd = { "MarkdownPreview", "MarkdownPreviewStop" },
+        run = ":call mkdp#util#install()"
     }
 
     --- File finders and managers ---
@@ -104,7 +124,7 @@ return require('packer').startup(function(use)
         'nvim-telescope/telescope.nvim',
         after = "telescope-file-browser.nvim",
         requires = 'nvim-lua/plenary.nvim',
-        config = function () require("custom.telescope") end
+        config = function() require("custom.telescope") end
     }
 
     use {
@@ -142,7 +162,7 @@ return require('packer').startup(function(use)
             "DiffviewFocusFiles",
             "DiffviewRefresh"
         },
-        config = function ()
+        config = function()
             require("diffview").setup {
                 icons = {
                     folder_closed = "",
@@ -162,7 +182,7 @@ return require('packer').startup(function(use)
         -- Surround word with quotes or parentheses
         "blackCauldron7/surround.nvim",
         event = 'BufEnter',
-        config = function() require"surround".setup { mappings_style = "surround" } end
+        config = function() require "surround".setup { mappings_style = "surround" } end
     }
 
     use {
@@ -171,13 +191,13 @@ return require('packer').startup(function(use)
         config = function()
             require('tabout').setup {
                 tabouts = {
-                    {open = "'", close = "'"},
-                    {open = '"', close = '"'},
-                    {open = '`', close = '`'},
-                    {open = '(', close = ')'},
-                    {open = '[', close = ']'},
-                    {open = '{', close = '}'},
-                    {open = '<', close = '>'},
+                    { open = "'", close = "'" },
+                    { open = '"', close = '"' },
+                    { open = '`', close = '`' },
+                    { open = '(', close = ')' },
+                    { open = '[', close = ']' },
+                    { open = '{', close = '}' },
+                    { open = '<', close = '>' },
                 },
             }
         end,
@@ -188,7 +208,7 @@ return require('packer').startup(function(use)
     use {
         -- Comment lines
         'numToStr/Comment.nvim',
-        keys = { {"n", "gc"}, {"v", "gc"} },
+        keys = { { "n", "gc" }, { "v", "gc" } },
         config = function() require('Comment').setup() end
     }
 
@@ -196,15 +216,15 @@ return require('packer').startup(function(use)
         -- Autocomplete quotes and parentheses
         'windwp/nvim-autopairs',
         event = 'InsertEnter',
-        config = function () require('nvim-autopairs').setup() end
+        config = function() require('nvim-autopairs').setup() end
     }
 
     use {
         -- Alignment by character
         "tommcdo/vim-lion",
         keys = {
-            {"n", "gl"},
-            {"v", "gl"},
+            { "n", "gl" },
+            { "v", "gl" },
         },
     }
 
@@ -215,16 +235,16 @@ return require('packer').startup(function(use)
         -- Syntax highlighting
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
-        config = function () require("custom.treesitter") end
+        config = function() require("custom.treesitter") end
     }
 
     use 'nvim-treesitter/nvim-treesitter-textobjects'
 
     use {
         -- Indentation lines
-        'lukas-reineke/indent-blankline.nvim' ,
+        'lukas-reineke/indent-blankline.nvim',
         event = 'BufEnter',
-        config = function ()
+        config = function()
             require("indent_blankline").setup {
                 show_current_context = true,
                 show_current_context_start = false,
@@ -244,17 +264,21 @@ return require('packer').startup(function(use)
     --- LSP ---
     use 'ray-x/lsp_signature.nvim' -- Function arguments floating window
 
+    -- use 'RishabhRD/popfix'
+    -- use 'RishabhRD/nvim-lsputils'
+
     use {
         'neovim/nvim-lspconfig',
+        -- after = "nvim-lsputils",
         after = "lsp_signature.nvim",
-        config = function () require("custom.lsp") end
+        config = function() require("custom.lsp") end
     }
 
     use {
         -- Code checking utilities integration
         "jose-elias-alvarez/null-ls.nvim",
         requires = 'nvim-lua/plenary.nvim',
-        config = function ()
+        config = function()
             require("custom.nullls")
         end
     }
@@ -263,7 +287,7 @@ return require('packer').startup(function(use)
         -- Show bulb icon when code action is available
         'kosayoda/nvim-lightbulb',
         after = "nvim-lspconfig",
-        config = function ()
+        config = function()
             vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
                 pattern = "*",
                 callback = require('nvim-lightbulb').update_lightbulb,
@@ -279,7 +303,7 @@ return require('packer').startup(function(use)
         -- LSP loading status
         'j-hui/fidget.nvim',
         after = "nvim-lspconfig",
-        config = function ()
+        config = function()
             require("fidget").setup {
                 text = {
                     spinner = "dots",
@@ -287,6 +311,11 @@ return require('packer').startup(function(use)
                 },
                 timer = {
                     spinner_rate = 80,
+                },
+                sources = {
+                    ["null-ls"] = {
+                        ignore = true,
+                    }
                 }
             }
             vim.cmd [[ hi link FidgetTitle Bold ]]
@@ -294,12 +323,12 @@ return require('packer').startup(function(use)
     }
 
     --- Completion and snippets ---
-    use { 'hrsh7th/cmp-nvim-lsp',}
+    use { 'hrsh7th/cmp-nvim-lsp', }
     use { 'hrsh7th/cmp-buffer', event = { "InsertEnter", "CmdLineEnter" } }
     use { 'hrsh7th/cmp-path', after = "cmp-buffer" }
     use { 'hrsh7th/cmp-cmdline', after = "cmp-path" }
     use { 'onsails/lspkind-nvim', after = "cmp-cmdline" }
-    use { 'saadparwaiz1/cmp_luasnip',after = "lspkind-nvim" } -- Completion symbols
+    use { 'saadparwaiz1/cmp_luasnip', after = "lspkind-nvim" } -- Completion symbols
     use { 'L3MON4D3/LuaSnip', after = "cmp_luasnip" }
     use { 'rafamadriz/friendly-snippets', after = "LuaSnip" } -- Collection of snippets
     use {
@@ -312,13 +341,13 @@ return require('packer').startup(function(use)
     use {
         "akinsho/toggleterm.nvim",
         cmd = { "ToggleTerm", "ToggleTermToggleAll" },
-        config = function () require("custom.toggleterm") end
+        config = function() require("custom.toggleterm") end
     }
 
     --- Debugging and running ---
     use {
         'mfussenegger/nvim-dap',
-        config = function () require("custom.dap") end
+        config = function() require("custom.dap") end
     }
 
     use {
@@ -326,7 +355,7 @@ return require('packer').startup(function(use)
         'mfussenegger/nvim-dap-python',
         after = 'nvim-dap',
         ft = 'python',
-        config = function ()
+        config = function()
             require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
         end
     }
@@ -339,7 +368,7 @@ return require('packer').startup(function(use)
         requires = { 'nvim-lua/plenary.nvim' },
         branch = 'hotfix',
         cmd = { "YabsTask", "YabsDefaultTask" },
-        config = function () require("custom.yabs") end
+        config = function() require("custom.yabs") end
     }
 
     --- Project and session management ---

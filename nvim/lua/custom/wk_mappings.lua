@@ -2,18 +2,18 @@ local wk = require("which-key")
 
 -- Options for which-key
 local opts = {
-    mode    = "n",   -- NORMAL mode
+    mode    = "n", -- NORMAL mode
     prefix  = "<leader>",
-    buffer  = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
-    silent  = true,  -- use `silent` when creating keymaps
-    noremap = true,  -- use `noremap` when creating keymaps
+    buffer  = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+    silent  = true, -- use `silent` when creating keymaps
+    noremap = true, -- use `noremap` when creating keymaps
     nowait  = false, -- use `nowait` when creating keymaps
 }
 
 -- Which-key mappings
 wk.register({
-    ["s"] = { "<cmd>w<CR>", " Save" },
-    ["S"] = { "<cmd>wa<CR>", " Save all" },
+    ["s"] = { "<cmd>write<CR>", " Save" },
+    ["S"] = { "<cmd>wall<CR>", " Save all" },
     ["x"] = { "<cmd>Bdelete<CR>", " Close buffer" },
     ["X"] = { "<cmd>Bdelete!<CR>", " Force close buffer" },
     ["q"] = { "<cmd>q<CR>", " Quit" },
@@ -34,7 +34,6 @@ wk.register({
 
     g = {
         name = " Git",
-        ["p"] = { "<cmd>Glow<CR>", " Preview" },
         ["d"] = { "<cmd>DiffviewOpen<CR>", " Open Diff" },
         ["c"] = { "<cmd>DiffviewClose<CR>", " Close Diff" },
     },
@@ -43,19 +42,20 @@ wk.register({
         name = '金Debug & compile',
         -- ["c"] = { "<cmd>lua require('yabs'):run_task('build')<cr>", "Compile file"},
         -- ["r"] = { "<cmd>lua require('yabs'):run_task('run')<cr>", "Run file"},
-        ["c"] = { "<cmd>YabsTask build<cr>", " Compile file"},
-        ["r"] = { "<cmd>YabsTask run<cr>", "金Run file"},
-        ["b"] = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "ﱢ Toggle breakpoint"},
-        ["d"] = { "<cmd>lua require'dap'.continue()<cr>", " Start debug"},
+        ["c"] = { "<cmd>YabsTask build<cr>", " Compile file" },
+        ["r"] = { "<cmd>YabsTask run<cr>", "金Run file" },
+        ["b"] = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "ﱢ Toggle breakpoint" },
+        ["d"] = { "<cmd>lua require'dap'.continue()<cr>", " Start debug" },
     },
 
     c = {
         name = " Code",
-        ["d"] = { "<cmd>Trouble<cr>", " Diagnostics"},
-        ["r"] = { "<cmd>lua vim.lsp.buf.rename()<CR>", " Rename"},
-        ["f"] = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "靖Format"},
+        ["d"] = { "<cmd>Trouble<cr>", " Diagnostics" },
+        ["r"] = { "<cmd>lua vim.lsp.buf.rename()<CR>", " Rename" },
+        ["f"] = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "靖Format" },
         ["R"] = { "<cmd>Telescope lsp_references<CR>", " References" },
-        ["a"] = { '<cmd>Telescope lsp_code_actions theme=cursor<CR>', " Actions" },
+        ["a"] = { '<cmd>CodeActionMenu<CR>', " Actions" },
+        -- ["a"] = { '<cmd>lua vim.lsp.buf.code_action<CR>', " Actions" },
     },
 
     p = {
@@ -66,7 +66,7 @@ wk.register({
         ["s"] = { "<cmd>PackerSync<CR>", "痢Sync" },
         ["S"] = { "<cmd>PackerStatus<CR>", " Status" },
         ["u"] = { "<cmd>PackerUpdate<CR>", "祝Update" },
-        ["r"] = { "<cmd>source %<CR>", "勒Reload neovim file"}
+        ["r"] = { "<cmd>source %<CR>", "勒Reload neovim file" }
     },
 
     w = {
@@ -76,5 +76,12 @@ wk.register({
         ["c"] = { "<C-w>c", "窱Close" },
         ["b"] = { "<C-w>=", " Balance" },
     },
+
+    m = {
+        name = " Markdown",
+        ["p"] = { "<cmd>Glow<CR>", " Preview" },
+        ["P"] = { "<cmd>MarkdownPreviewToggle<CR>", " Browser preview" },
+    }
 }, opts)
+
 -- Install –  , Window = 

@@ -33,3 +33,6 @@ map("t", "<C-\\>", "<cmd>ToggleTerm<CR>", opts)
 -- Switch buffers
 map("n", "<TAB>", "<cmd>BufferLineCycleNext<CR>", opts)
 map("n", "<S-TAB>", "<cmd>BufferLineCyclePrev<CR>", opts)
+
+-- Instant macros
+map("n", "@", '<cmd>execute "noautocmd norm!" . v:count1 . "@" . getcharstr()<CR>', opts)

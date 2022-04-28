@@ -1,7 +1,6 @@
 local lspconfig = require('lspconfig')
 
-local border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
-
+-- local border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 -- local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 -- function vim.lsp.util.open_floating_preview(contents, syntax, docopts, ...)
 --     docopts = docopts or {}
@@ -43,7 +42,6 @@ local on_attach = function(client, bufnr)
     map('n', '<C-k>', vim.lsp.buf.signature_help, oa_opts)
     map('n', 'gr', vim.lsp.buf.references, oa_opts)
 
-
     require "lsp_signature".on_attach({
         handler_opts = { border = "none" },
         hint_enable = false,
@@ -74,7 +72,6 @@ lspconfig.pylsp.setup {
     capabilities = capabilities,
     settings = {
         pylsp = {
-            -- configurationSources = {"flake8"},
             plugins = {
                 jedi_completion = {
                     include_params = true,  -- this line enables snippets

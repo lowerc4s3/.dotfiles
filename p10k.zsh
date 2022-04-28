@@ -18,8 +18,8 @@ typeset -g PROMPT2="%F{0}%(0?.%K{3}  .%K{1} )%K{0}%f  %k%b "
 
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-    os_icon                 # os identifier
     dir                     # current directory
+    os_icon                 # os identifier
   )
 
   # The list of segments shown on the right. Fill it with less important segments.
@@ -80,19 +80,13 @@ typeset -g PROMPT2="%F{0}%(0?.%K{3}  .%K{1} )%K{0}%f  %k%b "
   typeset -g POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
   # Separator between different-color segments on the right.
   typeset -g POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
-  # The right end of left prompt.
-  # typeset -g POWERLEVEL9K_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL='▓▒░'
-  # typeset -g POWERLEVEL9K_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=''
+  # The right end of left prompt. ▓▒░ 
   typeset -g POWERLEVEL9K_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=''
-  # The left end of right prompt.
-  # typeset -g POWERLEVEL9K_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL='░▒▓'
-  # typeset -g POWERLEVEL9K_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL=''
+  # The left end of right prompt. ░▒▓ 
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL=''
-  # The left end of left prompt.
-  # typeset -g POWERLEVEL9K_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=''
+  # The left end of left prompt. 
   typeset -g POWERLEVEL9K_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=''
-  # The right end of right prompt.
-  # typeset -g POWERLEVEL9K_RIGHT_PROMPT_LAST_SEGMENT_END_SYMBOL=''
+  # The right end of right prompt. 
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_LAST_SEGMENT_END_SYMBOL=''
   # Left prompt terminator for lines without any segments.
   typeset -g POWERLEVEL9K_EMPTY_LINE_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=''
@@ -101,8 +95,7 @@ typeset -g PROMPT2="%F{0}%(0?.%K{3}  .%K{1} )%K{0}%f  %k%b "
   # OS identifier color.
   typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=0
   typeset -g POWERLEVEL9K_OS_ICON_BACKGROUND=4
-  # Custom icon. הּ
-  # typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='λ'
+  # Custom icon. הּλ
   typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='$'
 
   ##################################[ dir: current directory ]##################################

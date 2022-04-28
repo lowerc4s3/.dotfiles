@@ -33,10 +33,9 @@ vim.g.nvim_tree_icons = {
     }
 }
 
-require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
+require'nvim-tree'.setup {
     auto_reload_on_write = true,
     disable_netrw = false,
-    hide_root_folder = false,
     hijack_cursor = true,
     hijack_netrw = true,
     hijack_unnamed_buffer_when_opening = false,
@@ -54,6 +53,7 @@ require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
         number = false,
         relativenumber = false,
         signcolumn = "yes",
+        hide_root_folder = false,
     },
     renderer = {
         indent_markers = {
