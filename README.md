@@ -2,8 +2,6 @@
 
 Pretty self explanatory, isn't it?
 
-![Man I love catppuccin!](/assets/milc.jpg)
-
 ## Info:
 - *wm* – [yabai](https://github.com/koekeishiya/yabai)
 - *bar* – [spacebar](https://github.com/cmacrae/spacebar)
@@ -19,3 +17,6 @@ Pretty self explanatory, isn't it?
 - *prompt* – [powerline10k](https://github.com/romkatv/powerlevel10k) (theme shamelessly stolen from _parsenoob#2556 on discord ( ͡° ͜ʖ ͡°))
 - *font* – [jetbrainsmono nerd font](https://www.nerdfonts.com/font-downloads)
 - *wallpapers* – [here](/wallpapers)
+
+## Screenshots
+![Man I love catppuccin!](/assets/milc.jpg)
