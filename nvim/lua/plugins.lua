@@ -16,6 +16,7 @@ return require('packer').startup(function(use)
 
     --- UI ---
     use {
+        -- Icons
         'kyazdani42/nvim-web-devicons',
         config = function() require("custom.devicons") end
     }
@@ -81,7 +82,12 @@ return require('packer').startup(function(use)
         config = function() require("custom.which-key") end
     }
 
-    use 'famiu/bufdelete.nvim' -- Remove buffers without closing windows
+    use {
+        -- Remove buffers without closing windows
+        'famiu/bufdelete.nvim',
+        cmd = { "Bdelete", "Bdelete!" }
+    }
+
     use {
         -- Tabs
         'akinsho/bufferline.nvim',
@@ -101,7 +107,6 @@ return require('packer').startup(function(use)
 
     use {
         'iamcco/markdown-preview.nvim',
-        -- cmd = { "MarkdownPreview", "MarkdownPreviewStop" },
         run = ":call mkdp#util#install()"
     }
 
@@ -181,8 +186,11 @@ return require('packer').startup(function(use)
     use {
         -- Surround word with quotes or parentheses
         "blackCauldron7/surround.nvim",
-        event = 'BufEnter',
-        config = function() require "surround".setup { mappings_style = "surround" } end
+        keys = {
+            { "n", "s" },
+            { "v", "s" },
+        }, -- "surround"
+        config = function() require "surround".setup { mappings_style = "sandwich" } end
     }
 
     use {
@@ -264,13 +272,8 @@ return require('packer').startup(function(use)
     --- LSP ---
     use 'ray-x/lsp_signature.nvim' -- Function arguments floating window
 
-    -- use 'RishabhRD/popfix'
-    -- use 'RishabhRD/nvim-lsputils'
-
     use {
         'neovim/nvim-lspconfig',
-        -- after = "nvim-lsputils",
-        after = "lsp_signature.nvim",
         config = function() require("custom.lsp") end
     }
 
@@ -346,7 +349,25 @@ return require('packer').startup(function(use)
 
     --- Debugging and running ---
     use {
+        -- VSCode-like DAP UI
+        "rcarriga/nvim-dap-ui",
+        cmd = {
+            "DapContinue",
+            "DapSetLogLevel",
+            "DapShowLog",
+            "DapStepInto",
+            "DapStepOut",
+            "DapStepOver",
+            "DapTerminate",
+            "DapToggleBreakpoint",
+            "DapToggleRepl",
+        }
+    }
+
+    use {
+        -- Debug adapter protocol support
         'mfussenegger/nvim-dap',
+        after = "nvim-dap-ui",
         config = function() require("custom.dap") end
     }
 
@@ -359,8 +380,6 @@ return require('packer').startup(function(use)
             require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
         end
     }
-
-    use "rcarriga/nvim-dap-ui" -- VSCode-like DAP UI
 
     use {
         -- Build and run tasks

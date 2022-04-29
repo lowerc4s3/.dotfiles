@@ -29,7 +29,7 @@ wk.register({
         ["p"] = { "<cmd>Telescope projects<CR>", " Projects" },
         ["w"] = { "<cmd>Telescope live_grep<CR>", " Word" },
         ["d"] = { "<cmd>Telescope file_browser<CR>", " Directory" },
-        -- ["t"] = { "<cmd>TodoTrouble<CR>", " List todos"},
+        ["t"] = { "<cmd>TodoTrouble<CR>", " List todos"},
     },
 
     g = {
@@ -40,12 +40,10 @@ wk.register({
 
     d = {
         name = '金Debug & compile',
-        -- ["c"] = { "<cmd>lua require('yabs'):run_task('build')<cr>", "Compile file"},
-        -- ["r"] = { "<cmd>lua require('yabs'):run_task('run')<cr>", "Run file"},
         ["c"] = { "<cmd>YabsTask build<cr>", " Compile file" },
         ["r"] = { "<cmd>YabsTask run<cr>", "金Run file" },
-        ["b"] = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "ﱢ Toggle breakpoint" },
-        ["d"] = { "<cmd>lua require'dap'.continue()<cr>", " Start debug" },
+        ["b"] = { "<cmd>DapToggleBreakpoint<cr>", "ﱢ Toggle breakpoint" },
+        ["d"] = { "<cmd>DapContinue<cr>", " Start debug" },
     },
 
     c = {
