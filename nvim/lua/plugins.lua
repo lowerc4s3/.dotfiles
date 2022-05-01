@@ -37,7 +37,7 @@ return require('packer').startup(function(use)
         -- Code diagnostics window
         "folke/trouble.nvim",
         requires = 'kyazdani42/nvim-web-devicons',
-        cmd = "Trouble",
+        cmd = { "Trouble", "TodoTrouble" },
         config = function()
             require("trouble").setup { use_diagnostic_signs = true }
         end
@@ -106,7 +106,9 @@ return require('packer').startup(function(use)
     }
 
     use {
+        -- Markdown live preview in browser
         'iamcco/markdown-preview.nvim',
+        disable = true,
         run = ":call mkdp#util#install()"
     }
 
@@ -196,6 +198,7 @@ return require('packer').startup(function(use)
     use {
         -- Jump out of quotes and parentheses
         'abecodes/tabout.nvim',
+        event = "InsertEnter",
         config = function()
             require('tabout').setup {
                 tabouts = {
@@ -216,7 +219,7 @@ return require('packer').startup(function(use)
     use {
         -- Comment lines
         'numToStr/Comment.nvim',
-        keys = { { "n", "gc" }, { "v", "gc" } },
+        keys = { { "n", "gc" }, { "v", "gc" }, { "n", "gb" } },
         config = function() require('Comment').setup() end
     }
 
@@ -240,18 +243,22 @@ return require('packer').startup(function(use)
 
     --- Treesitter ---
     use {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        event = { "BufRead", "BufNewFile" },
+    }
+
+    use {
         -- Syntax highlighting
         'nvim-treesitter/nvim-treesitter',
+        after = "nvim-treesitter-textobjects",
         run = ':TSUpdate',
         config = function() require("custom.treesitter") end
     }
 
-    use 'nvim-treesitter/nvim-treesitter-textobjects'
-
     use {
         -- Indentation lines
         'lukas-reineke/indent-blankline.nvim',
-        event = 'BufEnter',
+        event = { 'BufRead', 'BufNewFile' },
         config = function()
             require("indent_blankline").setup {
                 show_current_context = true,
@@ -270,12 +277,12 @@ return require('packer').startup(function(use)
     }
 
     --- LSP ---
-    use 'ray-x/lsp_signature.nvim' -- Function arguments floating window
-
     use {
         'neovim/nvim-lspconfig',
         config = function() require("custom.lsp") end
     }
+
+    use 'ray-x/lsp_signature.nvim' -- Function arguments floating window
 
     use {
         -- Code checking utilities integration

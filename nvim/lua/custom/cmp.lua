@@ -17,10 +17,13 @@ vim.g.completeopt = { 'menu', 'menuone', 'noselect' }
 cmp.setup {
     window = {
         documentation = {
-            -- border = border,
+            -- border = "solid",
             maxheight = 15,
             maxwidth = 50,
         },
+        -- completion = {
+        --     border = "solid",
+        -- }
     },
 
     completion = {
@@ -86,15 +89,6 @@ cmp.setup {
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
-        -- sorting = {
-        --     comparators = {
-        --         compare.locality,
-        --         compare.recently_used,
-        --         compare.score,
-        --         compare.offset,
-        --         compare.order
-        --     }
-        -- },
     }),
 
     sorting = {

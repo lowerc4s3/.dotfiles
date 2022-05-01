@@ -51,15 +51,3 @@ telescope.setup {
 telescope.load_extension("projects")
 telescope.load_extension("fzf")
 telescope.load_extension("file_browser")
-
--- Set highlights
-vim.cmd [[
-hi link TelescopePromptBorder CursorLine
-hi link TelescopePromptNormal CursorLine
-hi link TelescopeNormal StatusLine
-hi link TelescopePreviewBorder StatusLine
-hi link TelescopeResultsBorder StatusLine
-hi link TelescopePreview StatusLine
-hi link TelescopeResults StatusLine
-hi link TelescopeTitle lualine_a_normal
-]]

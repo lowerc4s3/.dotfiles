@@ -35,6 +35,8 @@ require("bufferline").setup{
         },
         buffer_selected             = { gui = "none" },
         diagnostic_selected         = { gui = "none" },
+        hint_selected               = { gui = "none" },
+        hint_diagnostic_selected    = { gui = "none" },
         info_selected               = { gui = "none" },
         info_diagnostic_selected    = { gui = "none" },
         warning_selected            = { gui = "none" },

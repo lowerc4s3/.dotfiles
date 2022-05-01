@@ -40,7 +40,6 @@ opt.splitright     = true                             -- Split window on the rig
 opt.splitbelow     = true                             -- Spawn window below
 
 --- UI prefs ---
-cmd 'colorscheme catppuccin'                          -- Set colorscheme
 opt.showmode       = false                            -- Dont show current mode in command line
 opt.fillchars      = { eob = " " }                    -- Remove "~" chars at EOB
 opt.termguicolors  = true                             -- 24-bit colors

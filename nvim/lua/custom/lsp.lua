@@ -1,5 +1,7 @@
 local lspconfig = require('lspconfig')
 
+-- -- Set borders for floating windows
+-- local border = { " ", " ", " ", " ", " ", " ", " ", " " }
 -- local border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 -- local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 -- function vim.lsp.util.open_floating_preview(contents, syntax, docopts, ...)
@@ -59,12 +61,12 @@ vim.api.nvim_create_autocmd("CursorHold", {
 -- LS Setup
 lspconfig.bashls.setup {
     on_attach = on_attach,
-    capabilities = capabilities
+    capabilities = capabilities,
 }
 
 lspconfig.clangd.setup {
     on_attach = on_attach,
-    capabilities = capabilities
+    capabilities = capabilities,
 }
 
 lspconfig.pylsp.setup {
