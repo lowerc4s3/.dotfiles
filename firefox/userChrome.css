@@ -208,6 +208,13 @@
      /* #identity-box { display: none !important } /* hides encryption AND permission items */
      #identity-permission-box { display: none !important; } /* only hides permission items */
 
+     /* center tab label */
+     .tab-content:not([pinned])::before{
+        display: -moz-box;
+        content: "";
+        -moz-box-flex: 1;
+     }
+
      /* e.g. playing indicator (secondary - not icon) */
      .tab-secondary-label { display: none !important; }
 
@@ -216,8 +223,8 @@
 
      #urlbar-go-button { display: none !important; }
 
-     /* hides extension label */
-     #identity-icon-label { display: none !important }
+     /* extension label */
+     #identity-icon-label { display: none !important; }
 
 
 
