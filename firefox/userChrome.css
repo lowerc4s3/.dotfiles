@@ -82,7 +82,7 @@
 
         --window-colour:                     #1E1E2E;
         --secondary-colour:                  #161320;
-        --inverted-colour:                   #D9E0EE;
+        --inverted-colour:                   #F5E0DC;
 
         /* Containter Tab Colours */
         --uc-identity-color-blue:            #96CDFB;
@@ -152,8 +152,14 @@
     --uc-urlbar-width: clamp(200px, 40vw, 500px);
 
     /* dynamic tab width settings */
-    --uc-active-tab-width:   clamp(100px, 20vw, 300px);
-    --uc-inactive-tab-width: clamp( 50px, 15vw, 200px);
+
+    /* default tab width */
+    /* --uc-active-tab-width:   clamp(100px, 20vw, 300px); */
+    /* --uc-inactive-tab-width: clamp( 50px, 15vw, 200px); */
+
+    /* max-width tab */
+    --uc-active-tab-width:   clamp(1000px, 100vw, 3000px);
+    --uc-inactive-tab-width: clamp( 500px, 100vw, 2000px);
 
     /* if active always shows the tab close button */
     --show-tab-close-button: none; /* DEFAULT: -moz-inline-box; */

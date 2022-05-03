@@ -20,7 +20,6 @@ DISABLE_MAGIC_FUNCTIONS="true"
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# plugins=(fast-syntax-highlighting zsh-vi-mode zoxide)
 plugins=(zsh-autosuggestions fast-syntax-highlighting zsh-vi-mode zoxide)
 
 ZSH_AUTOSUGGEST_STRATEGY=(completion history)
@@ -48,9 +47,7 @@ alias ccomp='gcc -Wall -Werror -Wpedantic -Wextra -Wfloat-conversion -Wfloat-equ
 alias o='open'
 alias owd='open ./'
 alias ra='. ranger'
-alias pos='i=1; for f in pos_0?_in.txt; do ../../app.exe < "$f" > "pos_0${i}_out.txt"; ((i++)); done'
-alias neg='i=1; for f in neg_0?_in.txt; do ../../app.exe < "$f"; echo $?; ((i++)); done'
-alias bmpush='git push https://git.iu7.bmstu.ru/iu7-cprog/iu7-cprog-labs-2022/iu7-cprog-labs-2022-kononenkokirill.git'
+source "$HOME/.private.zsh"
 
 # Exa aliases
 alias ls='exa --icons'
