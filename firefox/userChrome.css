@@ -82,7 +82,8 @@
 
         --window-colour:                     #1E1E2E;
         --secondary-colour:                  #161320;
-        --inverted-colour:                   #F5E0DC;
+        /* --inverted-colour:                   #F5E0DC; */
+        --inverted-colour:                   #C3BAC6;
 
         /* Containter Tab Colours */
         --uc-identity-color-blue:            #96CDFB;

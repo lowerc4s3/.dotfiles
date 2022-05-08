@@ -337,8 +337,7 @@ return require('packer').startup(function(use)
     use { 'hrsh7th/cmp-buffer', event = { "InsertEnter", "CmdLineEnter" } }
     use { 'hrsh7th/cmp-path', after = "cmp-buffer" }
     use { 'hrsh7th/cmp-cmdline', after = "cmp-path" }
-    use { 'onsails/lspkind-nvim', after = "cmp-cmdline" }
-    use { 'saadparwaiz1/cmp_luasnip', after = "lspkind-nvim" } -- Completion symbols
+    use { 'saadparwaiz1/cmp_luasnip', after = "cmp-cmdline" } -- Completion symbols
     use { 'L3MON4D3/LuaSnip', after = "cmp_luasnip" }
     use { 'rafamadriz/friendly-snippets', after = "LuaSnip" } -- Collection of snippets
     use {

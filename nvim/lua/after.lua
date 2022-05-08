@@ -14,3 +14,5 @@ hi link TelescopePreview StatusLine
 hi link TelescopeResults StatusLine
 hi link TelescopeTitle lualine_a_normal
 ]]
+
+-- vim.cmd [[hi link CmpItemMenu CmpItemAbbr]]

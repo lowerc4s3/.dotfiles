@@ -1,4 +1,4 @@
-# Open alacritty
+# Open terminal
 # lalt - return : open -n -a alacritty
 lalt - return : open -n -a kitty
 

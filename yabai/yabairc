@@ -1,29 +1,18 @@
 #!/usr/bin/env sh
 
-# the scripting-addition must be loaded manually if
-# you are running yabai on macOS Big Sur. Uncomment
-# the following line to have the injection performed
-# when the config is executed during startup.
-#
-# for this to work you must configure sudo such that
-# it will be able to run the command without password
-#
-# see this wiki page for information:
+# Load scripting addition
+# See this wiki page for information:
 #  - https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)
-#
 
 sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
 # external bar
-# SPACEBAR_HEIGHT=$(spacebar -m config height)
 yabai -m config external_bar all:0:32
-
 
 # global settings
 yabai -m config mouse_follows_focus          on
 yabai -m config focus_follows_mouse          autoraise
-# yabai -m config focus_follows_mouse          off
 yabai -m config window_placement             second_child
 yabai -m config window_topmost               on
 yabai -m config window_shadow                float
@@ -90,10 +79,5 @@ yabai -m rule --add app="^Spark$"                                 manage=off
 # yabai -m rule --add app="^Installer$"                             manage=off
 # yabai -m rule --add app="^VimR$" title="(Preferences)"              manage=off
 # yabai -m rule --add app="^Digital Colour Meter$"                    manage=off
-
-# move apps to spaces
-# yabai -m rule --add app="^VSCodium$" space=1
-# yabai -m rule --add app="^Safari$"   space=2
-yabai -m rule --add app="^Spotify$"  space=3
 
 echo "yabai configuration loaded.."
