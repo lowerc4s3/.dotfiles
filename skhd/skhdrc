@@ -1,6 +1,6 @@
 # Open terminal
-# lalt - return : open -n -a alacritty
-lalt - return : open -n -a kitty
+# lalt - return : open -n -a kitty
+lalt - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
 
 # Navigation
 lalt - h : yabai -m window --focus west
@@ -19,8 +19,10 @@ lalt - 7 : yabai -m space --focus 7
 lalt - 8 : yabai -m space --focus 8
 # lalt + cmd - l: yabai -m space --focus next
 # lalt + cmd - h: yabai -m space --focus prev
-shift + cmd - l: yabai -m space --focus next
-shift + cmd - h: yabai -m space --focus prev
+# shift + cmd - l: yabai -m space --focus next
+# shift + cmd - h: yabai -m space --focus prev
+lalt - 0x2F : yabai -m space --focus next
+lalt - 0x2B : yabai -m space --focus prev
 
 # Moving windows
 ctrl + lalt - h : yabai -m window --warp west
@@ -55,6 +57,11 @@ ctrl + lalt - n : yabai -m space --create && \
                   yabai -m space --focus next
 
 ctrl + lalt - x : yabai -m space --destroy
+
+# move workspaces
+shift + lalt - 0x2F : yabai -m space --move next
+shift + lalt - 0x2B : yabai -m space --move prev
+
 
 # Resize windows
 shift + lctrl + lalt - h : yabai -m window --resize left:-50:0; \

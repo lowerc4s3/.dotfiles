@@ -6,12 +6,12 @@ return require('packer').startup(function(use)
     use 'antoinemadec/FixCursorHold.nvim'
 
     -- Themes --
-    -- use 'ful1e5/onedark.nvim'
-    -- use 'Shatur/neovim-ayu'
-    -- use 'NTBBloodbath/doom-one.nvim'
-    -- use 'rmehri01/onenord.nvim'
-    -- use 'tiagovla/tokyodark.nvim'
-    -- use 'folke/tokyonight.nvim'
+    use 'ful1e5/onedark.nvim'
+    use 'Shatur/neovim-ayu'
+    use 'NTBBloodbath/doom-one.nvim'
+    use 'rmehri01/onenord.nvim'
+    use 'tiagovla/tokyodark.nvim'
+    use 'folke/tokyonight.nvim'
     use { "catppuccin/nvim", as = "catppuccin" }
 
     --- UI ---
