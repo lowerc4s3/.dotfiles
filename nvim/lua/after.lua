@@ -3,15 +3,17 @@
 -- Set colorscheme
 vim.cmd('colorscheme catppuccin')
 
--- Set telescope highlights
+-- -- Set telescope highlights
 vim.cmd [[
 hi link TelescopePromptBorder CursorLine
 hi link TelescopePromptNormal CursorLine
-hi link TelescopeNormal StatusLine
-hi link TelescopePreviewBorder StatusLine
-hi link TelescopeResultsBorder StatusLine
-hi link TelescopePreview StatusLine
-hi link TelescopeResults StatusLine
+
+hi link TelescopeNormal lualine_c_normal
+hi link TelescopePreviewBorder lualine_c_normal
+hi link TelescopeResultsBorder lualine_c_normal
+hi link TelescopePreview lualine_c_normal
+hi link TelescopeResults lualine_c_normal
+
 hi link TelescopeTitle lualine_a_normal
 ]]
 

@@ -1,5 +1,5 @@
 # Open terminal
-# lalt - return : open -n -a kitty
+# lalt - return : open -n -a alacritty
 lalt - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
 
 # Navigation
@@ -17,10 +17,7 @@ lalt - 5 : yabai -m space --focus 5
 lalt - 6 : yabai -m space --focus 6
 lalt - 7 : yabai -m space --focus 7
 lalt - 8 : yabai -m space --focus 8
-# lalt + cmd - l: yabai -m space --focus next
-# lalt + cmd - h: yabai -m space --focus prev
-# shift + cmd - l: yabai -m space --focus next
-# shift + cmd - h: yabai -m space --focus prev
+# 0x2B – <; 0x2F – >
 lalt - 0x2F : yabai -m space --focus next
 lalt - 0x2B : yabai -m space --focus prev
 
@@ -58,7 +55,7 @@ ctrl + lalt - n : yabai -m space --create && \
 
 ctrl + lalt - x : yabai -m space --destroy
 
-# move workspaces
+# move workspaces (0x2B – <; 0x2F – >)
 shift + lalt - 0x2F : yabai -m space --move next
 shift + lalt - 0x2B : yabai -m space --move prev
 

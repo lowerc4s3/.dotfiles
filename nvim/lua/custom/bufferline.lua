@@ -11,53 +11,58 @@ require("bufferline").setup{
         right_trunc_marker = "",
         max_name_length = 14,
         max_prefix_length = 13,
-        tab_size = 22,
+        tab_size = 24,
         show_tab_indicators = true,
         enforce_regular_tabs = false,
-        separator_style = "thin", --slant
+        separator_style = { "", "" }, --slant, thin
         always_show_bufferline = false,
         diagnostics = "nvim_lsp",
-        diagnostics_indicator = function(count, level, diagnostics_dict, context)
-            -- local icon = level:match("error") and " " or " "
+        -- diagnostics_indicator = function(count, level, diagnostics_dict, context)
+        diagnostics_indicator = function(count, _)
             return "[" .. count .. "]"
         end
     },
 
     highlights = {
-        fill = {
-            guibg = { attribute = "bg", highlight = "StatusLine" }
+        fill                        = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        background                  = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        separator                   = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        indicator_selected          = { guifg = { attribute = "fg", highlight = "lualine_b_normal" } },
+        buffer_selected             = { gui = "bold" },
+
+        modified                    = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        modified_visible            = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
+
+        hint                        = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        hint_diagnostic             = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        hint_selected               = { gui = "bold" },
+        hint_diagnostic_selected    = { gui = "bold" },
+
+        info                        = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        info_diagnostic             = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        info_selected               = { gui = "bold" },
+        info_diagnostic_selected    = { gui = "bold" },
+
+        warning                     = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        warning_diagnostic          = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        warning_selected            = { gui = "bold" },
+        warning_diagnostic_selected = { gui = "bold" },
+
+        error                       = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        error_diagnostic            = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        error_selected              = { gui = "bold" },
+        error_diagnostic_selected   = { gui = "bold" },
+
+        diagnostic_selected         = { gui = "bold" },
+
+        duplicate_visible = {
+            guibg = { attribute = "bg", highlight = "lualine_c_normal" },
+            gui = "italic"
         },
-        background = {
-            guibg = { attribute = "bg", highlight = "StatusLine" }
+        duplicate = {
+            guibg = { attribute = "bg", highlight = "lualine_c_normal" },
+            gui = "italic"
         },
-        separator = {
-            guibg = { attribute = "bg", highlight = "StatusLine" }
-        },
-        -- buffer_selected             = { gui = "" },
-        -- diagnostic_selected         = { gui = "" },
-        -- hint_selected               = { gui = "" },
-        -- hint_diagnostic_selected    = { gui = "" },
-        -- info_selected               = { gui = "" },
-        -- info_diagnostic_selected    = { gui = "" },
-        -- warning_selected            = { gui = "" },
-        -- warning_diagnostic_selected = { gui = "" },
-        -- error_selected              = { gui = "" },
-        -- error_diagnostic_selected   = { gui = "" },
-        -- duplicate_selected          = { gui = "" },
-        -- duplicate_visible           = { gui = "" },
-        -- duplicate                   = { gui = "" },
-        buffer_selected             = { gui = "italic" },
-        diagnostic_selected         = { gui = "italic" },
-        hint_selected               = { gui = "italic" },
-        hint_diagnostic_selected    = { gui = "italic" },
-        info_selected               = { gui = "italic" },
-        info_diagnostic_selected    = { gui = "italic" },
-        warning_selected            = { gui = "italic" },
-        warning_diagnostic_selected = { gui = "italic" },
-        error_selected              = { gui = "italic" },
-        error_diagnostic_selected   = { gui = "italic" },
-        duplicate_selected          = { gui = "italic" },
-        duplicate_visible           = { gui = "italic" },
-        duplicate                   = { gui = "italic" },
+        duplicate_selected = { gui = "italic" },
     }
 }

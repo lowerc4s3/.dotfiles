@@ -1,11 +1,13 @@
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
+
     --- Optimization ---
     use 'lewis6991/impatient.nvim' -- Cache plugin files
     use 'antoinemadec/FixCursorHold.nvim'
 
-    -- Themes --
+
+    --- Themes ---
     use 'ful1e5/onedark.nvim'
     use 'Shatur/neovim-ayu'
     use 'NTBBloodbath/doom-one.nvim'
@@ -13,6 +15,7 @@ return require('packer').startup(function(use)
     use 'tiagovla/tokyodark.nvim'
     use 'folke/tokyonight.nvim'
     use { "catppuccin/nvim", as = "catppuccin" }
+
 
     --- UI ---
     use {
@@ -44,6 +47,7 @@ return require('packer').startup(function(use)
     }
 
     use {
+        -- Code action menu
         'weilbith/nvim-code-action-menu',
         cmd = "CodeActionMenu",
         config = function()
@@ -112,6 +116,7 @@ return require('packer').startup(function(use)
         run = ":call mkdp#util#install()"
     }
 
+
     --- File finders and managers ---
     use {
         -- Native finder for telescope
@@ -150,6 +155,7 @@ return require('packer').startup(function(use)
         config = function() require("custom.nvtree") end
     }
 
+
     --- Git ---
     use {
         -- Git integration
@@ -183,6 +189,7 @@ return require('packer').startup(function(use)
             }
         end
     }
+
 
     --- Editor ---
     use {
@@ -241,6 +248,7 @@ return require('packer').startup(function(use)
 
     use "tpope/vim-repeat" -- Repeat more commands with dot
 
+
     --- Treesitter ---
     use {
         'nvim-treesitter/nvim-treesitter-textobjects',
@@ -275,6 +283,7 @@ return require('packer').startup(function(use)
             }
         end
     }
+
 
     --- LSP ---
     use {
@@ -332,6 +341,7 @@ return require('packer').startup(function(use)
         end
     }
 
+
     --- Completion and snippets ---
     use { 'hrsh7th/cmp-nvim-lsp', }
     use { 'hrsh7th/cmp-buffer', event = { "InsertEnter", "CmdLineEnter" } }
@@ -346,12 +356,14 @@ return require('packer').startup(function(use)
         config = function() require("custom.cmp") end
     }
 
+
     --- Terminal ---
     use {
         "akinsho/toggleterm.nvim",
         cmd = { "ToggleTerm", "ToggleTermToggleAll" },
         config = function() require("custom.toggleterm") end
     }
+
 
     --- Debugging and running ---
     use {
@@ -391,10 +403,10 @@ return require('packer').startup(function(use)
         -- Build and run tasks
         'pianocomposer321/yabs.nvim',
         requires = { 'nvim-lua/plenary.nvim' },
-        branch = 'hotfix',
         cmd = { "YabsTask", "YabsDefaultTask" },
         config = function() require("custom.yabs") end
     }
+
 
     --- Project and session management ---
     use {
