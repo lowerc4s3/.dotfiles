@@ -31,7 +31,7 @@ require('lualine').setup {
                 'filename',
                 padding = 1,
                 path = 1,
-                symbols = { modified = ' ', readonly = ' ', unnamed  = '[?]' }
+                symbols = { modified = ' ', readonly = ' ', unnamed  = '' }
             },
         },
 
@@ -66,7 +66,7 @@ require('lualine').setup {
                 'filename',
                 padding = 1,
                 path = 0,
-                symbols = { modified = ' ', readonly = ' ', unnamed  = '[?]' }
+                symbols = { modified = ' ', readonly = ' ', unnamed  = '' }
             },
         },
         lualine_x = {'location'},

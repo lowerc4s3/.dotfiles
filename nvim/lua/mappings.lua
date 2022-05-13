@@ -36,3 +36,7 @@ map("n", "<S-TAB>", "<cmd>BufferLineCyclePrev<CR>", opts)
 
 -- Instant macros
 map("n", "@", '<cmd>execute "noautocmd norm!" . v:count1 . "@" . getcharstr()<CR>', opts)
+
+-- Jump to diagnostics
+map('n', '[d', vim.diagnostic.goto_prev, opts)
+map('n', ']d', vim.diagnostic.goto_next, opts)

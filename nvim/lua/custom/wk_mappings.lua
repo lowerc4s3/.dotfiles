@@ -39,11 +39,18 @@ wk.register({
     },
 
     d = {
-        name = '金Debug & compile',
-        ["c"] = { "<cmd>YabsTask build<cr>", " Compile file" },
-        ["r"] = { "<cmd>YabsTask run<cr>", "金Run file" },
+        name = ' Debug',
+        -- name = '金Debug & compile',
+        -- ["c"] = { "<cmd>YabsTask build<cr>", " Compile file" },
+        -- ["r"] = { "<cmd>YabsTask run<cr>", "金Run file" },
         ["b"] = { "<cmd>DapToggleBreakpoint<cr>", "ﱢ Toggle breakpoint" },
-        ["d"] = { "<cmd>DapContinue<cr>", " Start debug" },
+        ["d"] = { "<cmd>DapContinue<cr>", "金 Start debug" },
+    },
+
+    b = {
+        name = ' Build',
+        ["r"] = { "<cmd>YabsTask run<cr>", "金Run file" },
+        ["b"] = { "<cmd>YabsTask build<cr>", " Build file" },
     },
 
     c = {

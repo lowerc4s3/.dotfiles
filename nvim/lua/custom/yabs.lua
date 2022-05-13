@@ -1,5 +1,5 @@
 local yabs = require("yabs")
-local toggleterm = function (command)
+local toggleterm = function(command)
     require("toggleterm").exec(command, 1, nil, nil, 'horizontal', false)
 end
 
@@ -26,13 +26,13 @@ yabs:setup {
                 },
                 -- WARNING: tasks chaining is broken now
                 -- build_and_run = {
-                --     command = function ()
+                --     command = function()
                 --         yabs:run_task('build', {
-                --             on_exit = function (Job, exit_code)
+                --             on_exit = function(Job, exit_code)
                 --                 -- print('ye' .. exit_code)
-                --                 -- if exit_code == 0 then
-                --                 yabs:run_task('run')
-                --                 -- end
+                --                 if exit_code == 0 then
+                --                     yabs:run_task('run')
+                --                 end
                 --             end,
                 --         })
                 --     end,

@@ -46,7 +46,7 @@ require'nvim-tree'.setup {
     sort_by = "name",
     update_cwd = true,
     view = {
-        width = 30,
+        width = 28,
         height = 30,
         side = "left",
         preserve_window_proportions = false,
@@ -70,7 +70,7 @@ require'nvim-tree'.setup {
         auto_open = true,
     },
     update_focused_file = {
-        enable = true,
+        enable = false,
         update_cwd = true,
         ignore_list = {},
     },

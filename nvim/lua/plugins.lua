@@ -95,6 +95,8 @@ return require('packer').startup(function(use)
     use {
         -- Tabs
         'akinsho/bufferline.nvim',
+        after = "catppuccin",
+        tag = "v2.0.0",
         requires = 'kyazdani42/nvim-web-devicons',
         config = function() require("custom.bufferline") end
     }
@@ -112,7 +114,7 @@ return require('packer').startup(function(use)
     use {
         -- Markdown live preview in browser
         'iamcco/markdown-preview.nvim',
-        disable = true,
+        -- disable = true,
         run = ":call mkdp#util#install()"
     }
 
