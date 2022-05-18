@@ -343,53 +343,16 @@ return require('packer').startup(function(use)
         end
     }
 
-    --- Completion and snippets ---
-    use {
-        'rafamadriz/friendly-snippets',
-        event = {"InsertEnter", "CmdLineEnter"}
-    }
-    use {
-        'L3MON4D3/LuaSnip',
-        after = "friendly-snippets"
-    }
-    use {
-        'hrsh7th/nvim-cmp',
-        after = "LuaSnip",
-        config = function() require("custom.cmp") end
-    }
-    use {
-        'saadparwaiz1/cmp_luasnip',
-        after = "nvim-cmp"
-    }
-    use {
-        'hrsh7th/cmp-nvim-lsp',
-        after = "cmp_luasnip"
-    }
-    use {
-        'hrsh7th/cmp-buffer',
-        after = "cmp-nvim-lsp"
-    }
-    use {
-        'hrsh7th/cmp-path',
-        after = "cmp-buffer"
-    }
-    use {
-        'hrsh7th/cmp-cmdline',
-        after = "cmp-path"
-    }
 
-    -- use { 'hrsh7th/cmp-nvim-lsp', }
-    -- use { 'hrsh7th/cmp-buffer', event = { "InsertEnter", "CmdLineEnter" } }
-    -- use { 'hrsh7th/cmp-path', after = "cmp-buffer" }
-    -- use { 'hrsh7th/cmp-cmdline', after = "cmp-path" }
-    -- use { 'saadparwaiz1/cmp_luasnip', after = "cmp-cmdline" } -- Completion symbols
-    -- use { 'L3MON4D3/LuaSnip', after = "cmp_luasnip" }
-    -- use { 'rafamadriz/friendly-snippets', after = "LuaSnip" } -- Collection of snippets
-    -- use {
-    --     'hrsh7th/nvim-cmp',
-    --     after = "friendly-snippets",
-    --     config = function() require("custom.cmp") end
-    -- }
+    --- Completion and snippets ---
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-cmdline'
+    use 'saadparwaiz1/cmp_luasnip' -- Completion symbols
+    use 'L3MON4D3/LuaSnip'
+    use 'rafamadriz/friendly-snippets' -- Collection of snippets
+    use { 'hrsh7th/nvim-cmp', config = function() require("custom.cmp") end }
 
 
     --- Terminal ---

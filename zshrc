@@ -43,7 +43,7 @@ export HOMEBREW_NO_ENV_HINTS=1
 # Aliases
 alias v='nvim'
 alias lsa='ls -a'
-alias ccomp='gcc -Wall -Werror -Wpedantic -Wextra -Wfloat-conversion -Wfloat-equal -std=c99 -o app.exe main.c'
+alias cbuild='gcc -Wall -Werror -Wpedantic -Wextra -Wfloat-conversion -Wfloat-equal -std=c99 -o app.exe main.c'
 alias o='open'
 alias owd='open ./'
 alias ra='. ranger'
