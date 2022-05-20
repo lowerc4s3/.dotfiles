@@ -187,7 +187,9 @@ return require('packer').startup(function(use)
                     fold_closed = "",
                     fold_open = "",
                 },
-                file_panel = { width = 30 }
+                file_panel = {
+                    win_config = { width = 30 }
+                }
             }
         end
     }
@@ -201,7 +203,9 @@ return require('packer').startup(function(use)
             { "n", "s" },
             { "v", "s" },
         }, -- "surround"
-        config = function() require "surround".setup { mappings_style = "sandwich" } end
+        config = function()
+            require "surround".setup { mappings_style = "sandwich" }
+        end
     }
 
     use {
@@ -346,7 +350,7 @@ return require('packer').startup(function(use)
     --- Completion and snippets ---
     use {
         'rafamadriz/friendly-snippets',
-        event = {"InsertEnter", "CmdLineEnter"}
+        event = { "InsertEnter", "CmdLineEnter" }
     }
     use {
         'L3MON4D3/LuaSnip',
