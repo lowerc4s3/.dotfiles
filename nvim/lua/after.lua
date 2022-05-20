@@ -15,7 +15,7 @@ hi link TelescopeResultsBorder lualine_c_normal
 hi link TelescopePreview lualine_c_normal
 hi link TelescopeResults lualine_c_normal
 
-hi link TelescopeTitle lualine_a_normal
+hi link TelescopeTitle lualine_a_insert
 ]]
 
 -- vim.cmd('hi link NvimTreeVertSplit Normal')

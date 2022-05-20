@@ -20,7 +20,8 @@ DISABLE_MAGIC_FUNCTIONS="true"
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(zsh-autosuggestions fast-syntax-highlighting zsh-vi-mode zoxide)
+# zsh-vi-mode last-working-dir 
+plugins=(zsh-autosuggestions fast-syntax-highlighting zoxide zsh-interactive-cd)
 
 ZSH_AUTOSUGGEST_STRATEGY=(completion history)
 

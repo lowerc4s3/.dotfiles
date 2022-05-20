@@ -1,16 +1,15 @@
 #!/usr/bin/env sh
 
-# Load scripting addition
-# See this wiki page for information:
-#  - https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)
-
+### Load scripting addition ###
 sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
-# external bar
+
+### Settings ###
+# External bar
 yabai -m config external_bar all:0:32
 
-# global settings
+# Global settings
 yabai -m config mouse_follows_focus          on
 yabai -m config focus_follows_mouse          autoraise
 yabai -m config window_placement             second_child
@@ -19,7 +18,7 @@ yabai -m config window_shadow                float
 yabai -m config window_opacity               on
 yabai -m config window_opacity_duration      0.0
 yabai -m config active_window_opacity        1.0
-yabai -m config normal_window_opacity        0.90
+yabai -m config normal_window_opacity        0.80
 yabai -m config window_border                off
 yabai -m config window_border_width          6
 yabai -m config active_window_border_color   0xff775759
@@ -32,7 +31,7 @@ yabai -m config mouse_action1                move
 yabai -m config mouse_action2                resize
 yabai -m config mouse_drop_action            swap
 
-# general space settings
+# General space settings
 yabai -m config layout                       bsp
 yabai -m config top_padding                  05
 yabai -m config bottom_padding               05
@@ -40,44 +39,39 @@ yabai -m config left_padding                 05
 yabai -m config right_padding                05
 yabai -m config window_gap                   05
 
-# disable tiling for apps
 
-# ru
+### Rules ###
+if [ "$(defaults read -g AppleLocale)" = "ru_RU" ]; then
+    safari_title="(Основные|Вкладки|Автозаполнение|Пароли|Поиск|Безопасность|Веб-сайты|Расширения|Дополнения)"
+    yabai -m rule --add app="^Системные настройки$"                   manage=off
+    yabai -m rule --add app="^Finder$" title="(Свойства|Настройки)"   manage=off
+    yabai -m rule --add app="^Информация о системе$"                  manage=off
+    yabai -m rule --add app="^Калькулятор$"                           manage=off
+    yabai -m rule --add app="^Мониторинг системы$"                    manage=off
+    yabai -m rule --add app="^Шрифты$"                                manage=off
+    yabai -m rule --add app="^Утилита архивирования$"                 manage=off
+    yabai -m rule --add app="^Цифровой колориметр$"                   manage=off
+    yabai -m rule --add app="^Twitter$" title="(Медиа)"               manage=off
+else
+    safari_title="(General|Tabs|Autofill|Passwords|Search|Security|Privacy|Websites|Extensions|Advanced)"
+    yabai -m rule --add app="^System Preferences$"                    manage=off
+    yabai -m rule --add app="^System Information$"                    manage=off
+    yabai -m rule --add app="^Finder$" title="(Info|Preferences)"     manage=off
+    yabai -m rule --add app="^Calculator$"                            manage=off
+    yabai -m rule --add app="^Activity Monitor$"                      manage=off
+    yabai -m rule --add app="^Font Book$"                             manage=off
+    yabai -m rule --add app="^Archive Utility$"                       manage=off
+    yabai -m rule --add app="^Digital Colour Meter$"                  manage=off
+    yabai -m rule --add app="^Twitter$" title="(Media)"               manage=off
+fi
 
-safari_title="(Основные|Вкладки|Автозаполнение|Пароли|Поиск|Безопасность|Веб-сайты|Расширения|Дополнения)"
-yabai -m rule --add app="^Системные настройки$"                   manage=off
-yabai -m rule --add app="^Finder$" title="(Свойства|Настройки)"   manage=off
-yabai -m rule --add app="^Safari$" title="$safari_title"          manage=off
-yabai -m rule --add app="^Информация о системе$"                  manage=off
-yabai -m rule --add app="^Калькулятор$"                           manage=off
-yabai -m rule --add app="^Мониторинг системы$"                    manage=off
-yabai -m rule --add app="^Шрифты$"                                manage=off
 yabai -m rule --add label="App Store" app="^App Store$"           manage=off
-yabai -m rule --add app="^Утилита архивирования$"                 manage=off
 yabai -m rule --add app="^Keka$"                                  manage=off
 yabai -m rule --add app="^Vimari$"                                manage=off
 yabai -m rule --add app="^Installer$"                             manage=off
 yabai -m rule --add app="^VimR$" title="(Preferences)"            manage=off
-yabai -m rule --add app="^Цифровой колориметр$"                   manage=off
 yabai -m rule --add app="^Twitter$" title="(Медиа)"               manage=off
 yabai -m rule --add app="^Spark$"                                 manage=off
-
-# eng
-
-# safari_title="(General|Tabs|Autofill|Passwords|Search|Security|Privacy|Websites|Extensions|Advanced)"
-# yabai -m rule --add app="^Safari$" title=$safari_title            manage=off
-# yabai -m rule --add app="^System Preferences$"                    manage=off
-# yabai -m rule --add app="^System Information$"                    manage=off
-# yabai -m rule --add app="^Finder$" title="(Info|Preferences)"     manage=off
-# yabai -m rule --add app="^Calculator$"                            manage=off
-# yabai -m rule --add app="^Activity Monitor$"                      manage=off
-# yabai -m rule --add app="^Font Book$"                             manage=off
-# yabai -m rule --add app="^App Store$"                             manage=off
-# yabai -m rule --add app="^Archive Utility$"                       manage=off
-# yabai -m rule --add app="^Keka$"                                  manage=off
-# yabai -m rule --add app="^Vimari$"                                manage=off
-# yabai -m rule --add app="^Installer$"                             manage=off
-# yabai -m rule --add app="^VimR$" title="(Preferences)"              manage=off
-# yabai -m rule --add app="^Digital Colour Meter$"                    manage=off
+yabai -m rule --add app="^Safari$" title="$safari_title"          manage=off
 
 echo "yabai configuration loaded.."
