@@ -16,6 +16,8 @@ typeset -g PROMPT2="%F{0}%(0?.%K{3}  .%K{1} )%K{0}%f  %k%b "
   # Zsh >= 5.1 is required.
   autoload -Uz is-at-least && is-at-least 5.1 || return
 
+  typeset -g POWERLEVEL9K_TERM_SHELL_INTEGRATION=true
+
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     dir                     # current directory
@@ -400,6 +402,7 @@ typeset -g PROMPT2="%F{0}%(0?.%K{3}  .%K{1} )%K{0}%f  %k%b "
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_VISUAL_IDENTIFIER_EXPANSION=''
   # Custom prefix.
   # typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_PREFIX='took '
+  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_PREFIX=' '
 
   #######################[ background_jobs: presence of background jobs ]#######################
   # Background jobs color.
@@ -786,7 +789,7 @@ typeset -g PROMPT2="%F{0}%(0?.%K{3}  .%K{1} )%K{0}%f  %k%b "
   #   - verbose: Enable instant prompt and print a warning when detecting console output during
   #              zsh initialization. Choose this if you've never tried instant prompt, haven't
   #              seen the warning, or if you are unsure what this all means.
-  typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+  typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 
   # Hot reload allows you to change POWERLEVEL9K options after Powerlevel10k has been initialized.
   # For example, you can type POWERLEVEL9K_BACKGROUND=red and see your prompt turn red. Hot reload

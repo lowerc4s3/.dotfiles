@@ -11,7 +11,7 @@ local on_attach = function(_, bufnr)
     map('n', 'gr', vim.lsp.buf.references, oa_opts)
 
     require "lsp_signature".on_attach({
-        handler_opts = { border = "none" },
+        handler_opts = { border = "solid" },
         hint_enable = false,
     })
 end

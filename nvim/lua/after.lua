@@ -1,7 +1,11 @@
---- File for performing actions after loading all plugins ---
+--- File for performing actions after loading all plugins (usually highlights) ---
+
+-- TODO: Find a way to link this to NormalFloat
+vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guibg=#181825]]
 
 -- Set colorscheme
 vim.g.tokyonight_style = "night"
+vim.g.catppuccin_flavour = "mocha"
 vim.cmd('colorscheme catppuccin')
 
 -- Set telescope highlights

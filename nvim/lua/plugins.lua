@@ -14,7 +14,20 @@ return require('packer').startup(function(use)
     use 'rmehri01/onenord.nvim'
     use 'tiagovla/tokyodark.nvim'
     use 'folke/tokyonight.nvim'
-    use { "catppuccin/nvim", as = "catppuccin" }
+    -- use { "catppuccin/nvim", as = "catppuccin" }
+    use {
+        "catppuccin/nvim",
+        as = "catppuccin",
+        config = function()
+            require("catppuccin").setup {
+                integrations = {
+                    which_key = true,
+                    telescope = false,
+                    lsp_trouble = true
+                }
+            }
+        end
+    }
 
 
     --- UI ---
@@ -53,7 +66,7 @@ return require('packer').startup(function(use)
         config = function()
             vim.g.code_action_menu_show_details = false
             vim.g.code_action_menu_show_diff = false
-            vim.g.code_action_menu_window_border = 'single'
+            vim.g.code_action_menu_window_border = 'solid'
         end
     }
 
@@ -112,7 +125,7 @@ return require('packer').startup(function(use)
         cmd = "Glow",
         config = function()
             vim.g.glow_style = "~/Library/Preferences/glow/catppuccin.json"
-            vim.g.glow_border = "rounded"
+            vim.g.glow_border = "solid"
         end
     }
 
