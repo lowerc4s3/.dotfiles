@@ -65,6 +65,11 @@ return require('packer').startup(function(use)
     }
 
     use {
+        'norcalli/nvim-colorizer.lua',
+        config = function() require('colorizer').setup() end
+    }
+
+    use {
         -- Smooth scrolling
         'karb94/neoscroll.nvim',
         config = function() require("custom.neoscroll") end
@@ -199,12 +204,12 @@ return require('packer').startup(function(use)
     use {
         -- Surround word with quotes or parentheses
         "blackCauldron7/surround.nvim",
-        keys = {
-            { "n", "s" },
-            { "v", "s" },
-        }, -- "surround"
+        -- keys = {
+        --     { "n", "s" },
+        --     { "v", "s" },
+        -- }, -- "surround"
         config = function()
-            require "surround".setup { mappings_style = "sandwich" }
+            require "surround".setup { mappings_style = "surround" }
         end
     }
 

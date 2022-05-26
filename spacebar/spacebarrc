@@ -7,12 +7,22 @@ text_font="SF UI Text"
 ### Colors ###
 
 ## Catppuccin ##
-# white='C3BAC6' # Gray 2
-white='988BA2'   # Gray 1
+
+# # v1
+# # white='C3BAC6' # Gray 2
+# white='988BA2'   # Gray 1
+# black='1F1E2F'
+# green='ABE9B3'
+# purple='C9CBFF'
+# blue='96CDFB'
+
+# Mocha
+# white='7b819d'   # Overlay 1
+white='988BA2'   # Gray 1 from v1 (much warmer)
 black='1F1E2F'
-green='ABE9B3'
-purple='C9CBFF'
-blue='96CDFB'
+green='a6e3a1'
+purple='b4befe'
+blue='87b0f9'
 
 ### Settings ###
 spacebar -m config position                    bottom
