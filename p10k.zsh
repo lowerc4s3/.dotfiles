@@ -198,9 +198,21 @@ typeset -g PROMPT2="%F{0}%(0?.%K{3}  .%K{1} )%K{0}%f  %k%b "
   # For example, given these settings:
   #
     typeset -g POWERLEVEL9K_DIR_CLASSES=(
-      '~/work(|/*)'  WORK     ''
-      '~(|/*)'       HOME     ''
-      '*'            DEFAULT  '')
+      # '~/work(|/*)'  WORK     ''
+      # '~(|/*)'       HOME     ''
+
+      '~'                              HOME         ''
+      '~/Downloads(|/*)'               DOWNLOADS    ''
+      '~/Applications(|/*)'            APPLICATIONS ''
+      '~/.config(|/*)'                 CONFIG       ''
+      '~/dots(|/*)'                    CONFIG       ''
+      '~/Documents(|/*)'               DOCUMENTS    ''
+      '~/Desktop(|/*)'                 DESKTOP      ''
+      '~/Music(|/*)'                   MUSIC        ''
+      '~/Pictures(|/*)'                PICTURES     ''
+      '~/Public(|/*)'                  PUBLIC       ''
+      '~/bmstu(|/*)'                   WORK         ''
+      '*'                              DEFAULT      '')
 
   #####################################[ vcs: git status ]######################################
   # Version control system colors.

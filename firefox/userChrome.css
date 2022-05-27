@@ -53,7 +53,7 @@
 
         --window-colour:                     #1E1E2E;
         --secondary-colour:                  #11111B;
-        --inverted-colour:                   #A1A8C9;
+        --inverted-colour:                   #c6d0f5;
 
         --uc-identity-color-blue:            #87B0F9;
         --uc-identity-color-turquoise:       #94E2D5;
@@ -92,14 +92,14 @@
         --uc-identity-color-pink:            #EA76CB;
         --uc-identity-color-purple:          #7287FD;
 
-        --uc-identity-color-blue-muted:      #1D65F5FF;
-        --uc-identity-color-turquoise-muted: #209FB5FF;
+        --uc-identity-color-blue-muted:      #1E66F5FF;
+        --uc-identity-color-turquoise-muted: #179299FF;
         --uc-identity-color-green-muted:     #40A02BFF;
-        --uc-identity-color-yellow-muted:    #E49320FF;
+        --uc-identity-color-yellow-muted:    #DF8E1DFF;
         --uc-identity-color-orange-muted:    #FE640BFF;
-        --uc-identity-color-red-muted:       #FC5C65FF;
-        --uc-identity-color-pink-muted:      #EC83D0FF;
-        --uc-identity-color-purple-muted:    #822FEEFF;
+        --uc-identity-color-red-muted:       #D20F39FF;
+        --uc-identity-color-pink-muted:      #EA76CBFF;
+        --uc-identity-color-purple-muted:    #7287FDFF;
 
     }}
 
