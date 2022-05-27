@@ -48,49 +48,80 @@
     /* Comment this block out if you want to keep the default theme colour. */
     /* This will also work with custom colours from color.firefox.com. */
 
-    /* catppuccin mocha */
+
+    /* Default colorscheme */
+    /* @media (prefers-color-scheme: dark) { :root {
+    *
+    *     --window-colour:                     #1E2021; 
+    *     --secondary-colour:                  #191B1C;
+    *     --inverted-colour:                   #FAFAFC;
+    */
+        /* Containter Tab Colours */
+    /*     --uc-identity-color-blue:            #7ED6DF;
+    *     --uc-identity-color-turquoise:       #55E6C1; 
+    *     --uc-identity-color-green:           #B8E994; 
+    *     --uc-identity-color-yellow:          #F7D794; 
+    *     --uc-identity-color-orange:          #F19066; 
+    *     --uc-identity-color-red:             #FC5C65; 
+    *     --uc-identity-color-pink:            #F78FB3; 
+    *     --uc-identity-color-purple:          #786FA6; 
+    *
+    *     --uc-identity-color-blue-muted:      #7ED6DF99;
+    *     --uc-identity-color-turquoise-muted: #55E6C199;
+    *     --uc-identity-color-green-muted:     #B8E99499;
+    *     --uc-identity-color-yellow-muted:    #F7D794CC;
+    *     --uc-identity-color-orange-muted:    #F19066FF;
+    *     --uc-identity-color-red-muted:       #FC5C65FF;
+    *     --uc-identity-color-pink-muted:      #F78FB399;
+    *     --uc-identity-color-purple-muted:    #786FA6FF;
+    *
+    * }} */
+
+    /* catppuccin */
     @media (prefers-color-scheme: dark) { :root {
 
         --window-colour:                     #1E1E2E;
-        --secondary-colour:                  #11111B;
-        --inverted-colour:                   #A1A8C9;
+        --secondary-colour:                  #161320;
+        /* --inverted-colour:                   #F5E0DC; */
+        --inverted-colour:                   #C3BAC6;
 
-        --uc-identity-color-blue:            #87B0F9;
-        --uc-identity-color-turquoise:       #94E2D5;
-        --uc-identity-color-green:           #A6E3A1;
-        --uc-identity-color-yellow:          #F9E2AF;
-        --uc-identity-color-orange:          #FAB387;
-        --uc-identity-color-red:             #F38BA8;
+        /* Containter Tab Colours */
+        --uc-identity-color-blue:            #96CDFB;
+        --uc-identity-color-turquoise:       #B5E8E0;
+        --uc-identity-color-green:           #ABE9B3;
+        --uc-identity-color-yellow:          #FAE3B0;
+        --uc-identity-color-orange:          #F8BD96;
+        --uc-identity-color-red:             #F28FAD;
         --uc-identity-color-pink:            #F5C2E7;
-        --uc-identity-color-purple:          #B4BEFE;
+        --uc-identity-color-purple:          #C9CBFF;
 
-        --uc-identity-color-blue-muted:      #87B0F999;
-        --uc-identity-color-turquoise-muted: #94E2D599;
-        --uc-identity-color-green-muted:     #A6E3A199;
-        --uc-identity-color-yellow-muted:    #F9E2AFCC;
-        --uc-identity-color-orange-muted:    #FAB387FF;
-        --uc-identity-color-red-muted:       #F38BA8FF;
+        --uc-identity-color-blue-muted:      #96CDFB99;
+        --uc-identity-color-turquoise-muted: #B5E8E099;
+        --uc-identity-color-green-muted:     #ABE9B399;
+        --uc-identity-color-yellow-muted:    #FAE3B0CC;
+        --uc-identity-color-orange-muted:    #F8BD96FF;
+        --uc-identity-color-red-muted:       #F28FADFF;
         --uc-identity-color-pink-muted:      #F5C2E799;
-        --uc-identity-color-purple-muted:    #B4BEFEFF;
+        --uc-identity-color-purple-muted:    #C9CBFFFF;
 
     }}
 
 
-    /* catppuccin latte */
     @media (prefers-color-scheme: light) { :root {
 
-        --window-colour:                     #EFF1F5;
-        --secondary-colour:                  #ccd0da;
-        --inverted-colour:                   #4C4F69;
+        --window-colour:                     #FAFAFC;
+        --secondary-colour:                  #EAEAEC;
+        --inverted-colour:                   #1E2021;
 
-        --uc-identity-color-blue:            #1E66F5;
-        --uc-identity-color-turquoise:       #179299;
+        /* Containter Tab Colours */
+        --uc-identity-color-blue:            #1D65F5;
+        --uc-identity-color-turquoise:       #209FB5;
         --uc-identity-color-green:           #40A02B;
-        --uc-identity-color-yellow:          #DF8E1D;
+        --uc-identity-color-yellow:          #E49320;
         --uc-identity-color-orange:          #FE640B;
-        --uc-identity-color-red:             #D20F39;
-        --uc-identity-color-pink:            #EA76CB;
-        --uc-identity-color-purple:          #7287FD;
+        --uc-identity-color-red:             #FC5C65;
+        --uc-identity-color-pink:            #EC83D0;
+        --uc-identity-color-purple:          #822FEE;
 
         --uc-identity-color-blue-muted:      #1D65F5FF;
         --uc-identity-color-turquoise-muted: #209FB5FF;

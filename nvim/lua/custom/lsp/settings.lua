@@ -25,6 +25,15 @@ vim.diagnostic.config({
 vim.api.nvim_create_autocmd("CursorHold", {
     pattern = "*",
     callback = function ()
-        vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})
+        local opts = {
+            focusable = false,
+            close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+            border = 'solid',
+            source = 'always',
+            prefix = ' ',
+            scope = 'cursor',
+        }
+        vim.diagnostic.open_float(nil, opts)
+        -- vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})
     end
 })
