@@ -1,8 +1,5 @@
 -- Load impatient
-local present, impatient = pcall(require, "impatient")
-
-if not present then
-    -- impatient.enable_profile()
+if not pcall(require, "impatient") then
     vim.notify("Error loading impatient")
 end
 
