@@ -11,7 +11,7 @@ require("bufferline").setup{
         right_trunc_marker = "", --
         max_name_length = 14,
         max_prefix_length = 13,
-        tab_size = 22,
+        tab_size = 28,
         show_tab_indicators = true,
         enforce_regular_tabs = false,
         separator_style = { "", "" }, --slant, thin

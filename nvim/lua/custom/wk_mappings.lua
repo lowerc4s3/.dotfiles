@@ -16,7 +16,7 @@ wk.register({
     ["S"] = { "<cmd>wall<CR>", " Save all" },
     ["x"] = { "<cmd>Bdelete<CR>", " Close buffer" },
     ["X"] = { "<cmd>Bdelete!<CR>", " Force close buffer" },
-    ["q"] = { "<cmd>q<CR>", " Quit" },
+    ["q"] = { "<cmd>qa<CR>", " Quit" },
     ["/"] = { "<cmd>NvimTreeFocus<cr>", "פּ Open file tree" },
     ["."] = { "<cmd>Telescope file_browser<CR>", " Find files" },
     ["<leader>"] = { "<cmd>Telescope find_files<CR>", " Find project files" },
@@ -29,7 +29,7 @@ wk.register({
         ["p"] = { "<cmd>Telescope projects<CR>", " Projects" },
         ["w"] = { "<cmd>Telescope live_grep<CR>", " Word" },
         ["d"] = { "<cmd>Telescope file_browser<CR>", " Directory" },
-        ["t"] = { "<cmd>TodoTrouble<CR>", " List todos"},
+        ["t"] = { "<cmd>TodoTelescope<CR>", " List todos"},
     },
 
     g = {

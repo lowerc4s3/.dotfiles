@@ -81,7 +81,8 @@ return require('packer').startup(function(use)
         'norcalli/nvim-colorizer.lua',
         config = function()
             require('colorizer').setup {
-                "*";
+                "*",
+                "!packer",
                 css = { names = false, RRGGBBAA = true, css = true }
             }
         end
@@ -146,7 +147,7 @@ return require('packer').startup(function(use)
     use {
         -- Native finder for telescope
         'nvim-telescope/telescope-fzf-native.nvim',
-        cmd = "Telescope",
+        cmd = { "Telescope", "TodoTelescope" },
         run = 'make'
     }
 
@@ -222,10 +223,6 @@ return require('packer').startup(function(use)
     use {
         -- Surround word with quotes or parentheses
         "blackCauldron7/surround.nvim",
-        -- keys = {
-        --     { "n", "s" },
-        --     { "v", "s" },
-        -- }, -- "surround"
         config = function()
             require "surround".setup { mappings_style = "surround" }
         end
