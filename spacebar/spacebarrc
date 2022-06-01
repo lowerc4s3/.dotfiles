@@ -17,7 +17,6 @@ text_font="SF UI Text"
 # blue='96CDFB'
 
 # Mocha
-# white='988BA2' # Gray 1 from v1 (much warmer)
 # white='7b819d' # Overlay 1
 white='9399b2' # Overlay 2
 black='1F1E2F'
