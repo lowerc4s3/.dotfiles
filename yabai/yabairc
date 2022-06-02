@@ -74,4 +74,7 @@ yabai -m rule --add app="^Twitter$" title="(Медиа)"               manage=of
 yabai -m rule --add app="^Spark$"                                 manage=off
 yabai -m rule --add app="^Safari$" title="$safari_title"          manage=off
 
+# temp
+yabai -m rule --add app="^Main$"                                  manage=off
+
 echo "yabai configuration loaded.."

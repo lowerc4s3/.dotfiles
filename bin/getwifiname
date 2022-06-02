@@ -1,0 +1,9 @@
+#!/bin/bash
+
+name=$(/Sy*/L*/Priv*/Apple8*/V*/C*/R*/airport -I | sed -n 's/^.*SSID: \(.*\)$/\1/p')
+
+if [ -z "$name" ]; then
+    echo Not connected
+else
+    echo "$name"
+fi

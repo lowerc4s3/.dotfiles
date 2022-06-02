@@ -17,14 +17,15 @@
 /* -------- VOMNIBAR & HUD -------- */
     --fg: #CDD6F4;
     --fg-dark: #6C7086;
-    --fg-url: #89B4FA; 
+    --fg-url: #9399b2; 
     --fg-match: #A6E3A1;
+    --fg-source: #89b4fa;
     /* ALTERNATIVE `--fg-match' COLOR: 
     --fg-match: #F29A4A; */
 
     --bg: #1E1E2E;
     --bg-searcharea: #181825;
-    --bg-selected: #45475A;
+    --bg-selected: #11111B;
 
     --border: #313244;
 
@@ -120,19 +121,20 @@
 }
 
 #vomnibar li .vomnibarTopHalf {
-    padding: var(--padding);
+    padding-top: var(--padding);
+    padding-bottom: var(--padding);
 }
 
 #vomnibar li .vomnibarBottomHalf {
-    padding-top: 0px;
-    padding-bottom: 1px;
+    padding-top: var(--padding);
+    padding-bottom: var(--padding);
 }
 
 #vomnibar li .vomnibarSource {
-    color: #B4BEFE;
+    color: var(--fg-source);
     /* color: var(--fg-dark); */
     /* font-family: var(--font); */
-    font-size: 12;
+    font-size: 15;
     font-weight: var(--font-weight-bold);
     text-transform: uppercase; /* `.vomnibarSource` will be in all uppercase letters. Delete to revert to original */
 }
@@ -168,13 +170,17 @@
     border-radius: 8px;
 }
 
-#vomnibar li.vomnibarSelected .vomnibarUrl { /* Changes '.vomnibarURL' to '--fg-match' when selected */
-    /* color: var(--fg-match); */
-}
-
-#vomnibar li.vomnibarSelected .vomnibarMatch {  /* Changes '.vomnibarMatch' to '--fg' when selected */
+/* #vomnibar li.vomnibarSelected .vomnibarUrl {
     color: var(--fg);
 }
+
+#vomnibar li.vomnibarSelected .vomnibarMatch {
+    color: var(--fg);
+}
+
+#vomnibar li.vomnibarSelected .vomnibarSource {
+    color: var(--fg);
+} */
 
 /* -------- HUD -------- */
 div.vimiumHUD {
