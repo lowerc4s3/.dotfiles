@@ -47,7 +47,7 @@ alias lsa='ls -a'
 alias cbuild='gcc -Wall -Werror -Wpedantic -Wextra -Wfloat-conversion -Wfloat-equal -std=c99 -o app.exe main.c'
 alias o='open'
 alias owd='open ./'
-alias ra='. ranger'
+alias fm='. ranger'
 source "$HOME/.private.zsh"
 
 # Exa aliases
