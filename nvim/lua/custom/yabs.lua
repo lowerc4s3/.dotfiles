@@ -21,7 +21,7 @@ yabs:setup {
                     output = 'quickfix',
                 },
                 run = {
-                    command = './app.exe',
+                    command = 'clear; ./app.exe',
                     output = toggleterm
                 },
                 -- WARNING: tasks chaining is broken now

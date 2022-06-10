@@ -20,7 +20,7 @@ require'nvim-tree'.setup {
         number = false,
         relativenumber = false,
         signcolumn = "yes",
-        hide_root_folder = false,
+        hide_root_folder = true,
     },
     renderer = {
         root_folder_modifier = ':e',
@@ -75,23 +75,36 @@ require'nvim-tree'.setup {
         custom = { ".DS_Store" },
         exclude = {},
     },
-    actions = {
-      use_system_clipboard = true,
-      change_dir = {
+    filesystem_watchers = {
         enable = true,
-        global = false,
-      },
-      open_file = {
-        quit_on_open = false,
-        resize_window = false,
-        window_picker = {
-          enable = true,
-          chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
-          exclude = {
-            filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
-            buftype = { "nofile", "terminal", "help" },
-          },
+        interval = 100,
+    },
+    actions = {
+        use_system_clipboard = true,
+        change_dir = {
+            enable = true,
+            global = false,
         },
-      },
+        open_file = {
+            quit_on_open = false,
+            resize_window = false,
+            window_picker = {
+                enable = true,
+                chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+                exclude = {
+                    filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
+                    buftype = { "nofile", "terminal", "help" },
+                },
+            },
+        },
+    },
+    trash = {
+        cmd = "trash -rf",
+        require_confirm = true,
+    },
+    live_filter = {
+        -- prefix = "[FILTER]: ",
+        prefix = "[] ",
+        always_show_folders = true,
     },
 }

@@ -52,7 +52,7 @@ spacebar -m config space_icon_color_secondary  0xff78c4d4
 spacebar -m config space_icon_color_tertiary   0xfffff9b0
 spacebar -m config space_icon_strip            A B C D E F G H I J L # 一 二 三 四 五 六 七 八 九 十
 spacebar -m config spaces_for_all_displays     on
-spacebar -m config clock_icon                  􀐫 #  
+spacebar -m config clock_icon                  􀐬 #   􀐫
 spacebar -m config dnd_icon                    􀆺 # 
 spacebar -m config clock_format                "%R" # %R – %d.%m
 spacebar -m config right_shell                 on

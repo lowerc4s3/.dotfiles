@@ -18,15 +18,13 @@ end
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-lspconfig.bashls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
-lspconfig.clangd.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
+local no_setup = { 'bashls', 'clangd' }
+for _, server in ipairs(no_setup) do
+    lspconfig[server].setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+    }
+end
 
 lspconfig.pylsp.setup {
     on_attach = on_attach,

@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
-
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/foreverd34d/.oh-my-zsh"
 
@@ -24,6 +17,9 @@ DISABLE_MAGIC_FUNCTIONS="true"
 plugins=(zsh-autosuggestions fast-syntax-highlighting zoxide zsh-interactive-cd)
 
 ZSH_AUTOSUGGEST_STRATEGY=(completion history)
+
+ZSH_CACHE_DIR="$ZSH/cache"
+ZSH_COMPDUMP="$ZSH_CACHE_DIR/.zcompdump"
 
 source $ZSH/oh-my-zsh.sh
 
