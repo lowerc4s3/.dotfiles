@@ -44,6 +44,7 @@ alias cbuild='gcc -Wall -Werror -Wpedantic -Wextra -Wfloat-conversion -Wfloat-eq
 alias o='open'
 alias owd='open ./'
 alias fm='. ranger'
+alias fhistory='history | rg'
 source "$HOME/.private.zsh"
 
 # Exa aliases
