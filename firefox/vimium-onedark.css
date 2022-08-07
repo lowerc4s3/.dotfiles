@@ -1,0 +1,210 @@
+:root {
+    --font-size: 15;
+    --font-size-hints: 12;
+    --font-size-url: 14;
+
+    --font-weight: normal;
+    --font-weight-medium: medium;
+    --font-weight-bold: bold;
+
+    /* --font: "Helvetica Neue", "Helvetica", "Arial", sans-serif; /* Font used in the UI */ */
+    --font: -moz-window;
+  
+    --padding: 2px;
+    --padding-vomnibar: 6px;
+    --shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+/* -------- VOMNIBAR & HUD -------- */
+    --fg: #979FAD;
+    --fg-dark: #6B727D;
+    --fg-url: #59626F; 
+    --fg-match: #98C379;
+    --fg-source: #61AFEF;
+    /* ALTERNATIVE `--fg-match' COLOR: 
+    --fg-match: #F29A4A; */
+
+    --bg: #282C34;
+    /* --bg-searcharea: #2F333D; */
+    --bg-searcharea: #1F232B;
+    --bg-selected: #3A3F4B;
+
+    --border: #2F333D;
+
+/* -------- HINTS -------- */
+    --bg-hints: #E5C17C;      /* Background color of link hints */
+    --border-hints: #E5C17C;  /* Border color of link hints */
+    --fg-hints: #282C34;      /* Text color of link hints, (don't forget to change `#vimiumHintMarkerContainer div > .matchingCharacter ~ span`) */
+}
+
+/* --------------------------------- CSS --------------------------------- */
+
+/* -------- HINTS -------- */
+#vimiumHintMarkerContainer div.internalVimiumHintMarker, #vimiumHintMarkerContainer div.vimiumHintMarker {
+    background: var(--bg-hints);
+    border: 1px solid var(--border-hints);
+    box-shadow: var(--shadow);
+    padding: 2px 3px;
+}
+
+#vimiumHintMarkerContainer div span {
+    color: var(--fg-hints);
+    /* font-family: var(--font); */
+    font-size: var(--font-size-hints);
+    font-weight: var(--font-weight-bold);
+    text-shadow: none;
+}
+
+#vimiumHintMarkerContainer div > .matchingCharacter {
+    opacity: 0.3;
+}
+
+#vimiumHintMarkerContainer div > .matchingCharacter ~ span {
+    color: var(--hints-main-fg);
+}
+
+/* -------- VOMNIBAR -------- */
+#vomnibar {
+    animation: show 150ms cubic-bezier(0, 0, 0.2, 1) forwards;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    border-radius: 8px;
+}
+
+/* Animate Slide in */
+@keyframes show {
+    0% {
+        opacity: 0;
+        /* transform: translateY(50px); */
+    }
+    100% {
+        opacity: 1;
+        /* transform: translateY(0); */
+    }
+}
+
+#vomnibar .vomnibarSearchArea,
+#vomnibar input {
+    /* ALTERNATE BACKGROUND COLOR:
+    background: transparent; */
+    background: var(--bg-searcharea);
+    border: none;
+    box-shadow: none;
+    color: var(--fg);
+    /* font-family: var(--font); */
+    font-size: var(--font-size);
+    font-weight: var(--font-weight);
+}
+
+#vomnibar .vomnibarSearchArea {
+    padding: 8px 30px;
+    border-radius: 8px;
+}
+
+#vomnibar input {
+    border: none;
+    padding: var(--padding);
+}
+
+#vomnibar ul {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    margin: 0;
+    padding: var(--padding-vomnibar);
+}
+
+#vomnibar li {
+    border-bottom: none;
+    padding-top: 8px;
+    padding-left: var(--padding-vomnibar);
+    padding-right: var(--padding-vomnibar);
+    padding-bottom: 8px;
+}
+
+#vomnibar li .vomnibarTopHalf {
+    padding-top: var(--padding);
+    padding-bottom: var(--padding);
+}
+
+#vomnibar li .vomnibarBottomHalf {
+    padding-top: var(--padding);
+    padding-bottom: var(--padding);
+}
+
+#vomnibar li .vomnibarSource {
+    color: var(--fg-source);
+    /* color: var(--fg-dark); */
+    /* font-family: var(--font); */
+    font-size: 15;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase; /* `.vomnibarSource` will be in all uppercase letters. Delete to revert to original */
+}
+
+#vomnibar li em,
+#vomnibar li .vomnibarTitle {
+    color: var(--fg);
+    /* font-family: var(--font); */
+    font-size: var(--font-size);
+    font-weight: var(--font-weight-medium);
+}
+
+#vomnibar li .vomnibarUrl {
+    color: var(--fg-url);
+    /* font-family: var(--font); */
+    font-size: var(--font-size-url);
+    font-weight: var(--font-weight-medium);
+}
+
+#vomnibar li .vomnibarMatch {
+    color: var(--fg-match);
+    /* font-weight: normal; */
+    font-weight: bold;
+}
+
+#vomnibar li .vomnibarTitle .vomnibarMatch {
+    color: var(--fg);
+    font-weight: bold;  
+}
+
+#vomnibar li.vomnibarSelected {
+    background-color: var(--bg-selected);
+    border-radius: 8px;
+}
+
+/* #vomnibar li.vomnibarSelected .vomnibarUrl {
+    color: var(--fg);
+}
+
+#vomnibar li.vomnibarSelected .vomnibarMatch {
+    color: var(--fg);
+}
+
+#vomnibar li.vomnibarSelected .vomnibarSource {
+    color: var(--fg);
+} */
+
+/* -------- HUD -------- */
+div.vimiumHUD {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    border-radius: 8px;
+}
+
+div.vimiumHUD span#hud-find-input,
+div.vimiumHUD .vimiumHUDSearchAreaInner {
+    color: var(--fg);
+    /* font-family: var(--font); */
+    font-size: 13;
+    font-weight: var(--font-weight-medium);
+}
+
+div.vimiumHUD .hud-find {
+    background-color: transparent;
+    border: none;
+}
+
+div.vimiumHUD .vimiumHUDSearchArea {
+    background-color: transparent;
+    padding: 6px;
+}

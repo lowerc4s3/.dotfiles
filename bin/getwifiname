@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#
+# Print current wi-fi connection name or "Not connected" if not connected
+# Used by spacebar
+#
+
 name=$(/Sy*/L*/Priv*/Apple8*/V*/C*/R*/airport -I | sed -n 's/^.*SSID: \(.*\)$/\1/p')
 
 if [ -z "$name" ]; then

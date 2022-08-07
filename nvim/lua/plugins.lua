@@ -129,15 +129,16 @@ return require('packer').startup(function(use)
         "ellisonleao/glow.nvim",
         cmd = "Glow",
         config = function()
-            vim.g.glow_style = "~/Library/Preferences/glow/catppuccin.json"
-            vim.g.glow_border = "solid"
+            require("glow").setup {
+                style = "auto", -- "~/Library/Preferences/glow/catppuccin.json"
+                border = "solid"
+            }
         end
     }
 
     use {
         -- Markdown live preview in browser
         'iamcco/markdown-preview.nvim',
-        -- disable = true,
         run = ":call mkdp#util#install()"
     }
 
@@ -221,7 +222,8 @@ return require('packer').startup(function(use)
     --- Editor ---
     use {
         -- Surround word with quotes or parentheses
-        "blackCauldron7/surround.nvim",
+        -- (local copy of blackCauldron7's surround.nvim, original was deleted)
+        "~/.config/nvim/localplug/surround.nvim",
         config = function()
             require "surround".setup { mappings_style = "surround" }
         end
@@ -344,8 +346,9 @@ return require('packer').startup(function(use)
     }
 
     use {
-        -- LSP loading status
+        -- LSP loading status (currently disabled)
         'j-hui/fidget.nvim',
+        disable = true,
         after = "nvim-lspconfig",
         config = function()
             require("fidget").setup {

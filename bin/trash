@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#
+# Safe rm alternative (moves to trash)
+# Written by kaelzhang (https://github.com/kaelzhang/shell-safe-rm)
+#
+
 # You could modify these environment variables to change the default constants
 # Default to ~/.Trash on Mac, ~/.local/share/Trash/files on Linux.
 DEFAULT_TRASH="$HOME/.Trash"

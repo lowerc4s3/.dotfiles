@@ -1,3 +1,7 @@
+#
+# Prompt made by _parsenoob#2556
+#
+
 typeset -g PROMPT2="%F{0}%(0?.%K{3}  .%K{1} )%K{0}%f  %k%b "
 
 # Temporarily change options.

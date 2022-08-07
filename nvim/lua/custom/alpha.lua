@@ -90,8 +90,8 @@ alpha.setup {
         section.header,
         { type = "padding", val = 3 },
         section.buttons,
-        { type = "padding", val = 3 },
-        section.footer,
+        -- { type = "padding", val = 3 },
+        -- section.footer,
     },
     opts = {},
 }

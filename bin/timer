@@ -1,8 +1,0 @@
-#!/bin/bash
-
-for s in $(seq 1 "$1"); do
-    echo -n "$s "
-    sleep 1
-done
-
-echo "Done!"

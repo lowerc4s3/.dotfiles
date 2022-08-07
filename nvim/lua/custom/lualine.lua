@@ -89,5 +89,5 @@ require('lualine').setup {
         lualine_z = {}
     },
     tabline = {},
-    extensions = {}
+    extensions = { 'man', 'nvim-dap-ui', 'toggleterm', 'nvim-tree' }
 }

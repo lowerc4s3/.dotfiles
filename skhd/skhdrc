@@ -1,6 +1,13 @@
+#
+# wm-independent bindings
+#
+
 # Open terminal
-# lalt - return : open -n -a alacritty
 lalt - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
+
+#
+# yabai bindings
+#
 
 # Navigation
 lalt - h : yabai -m window --focus west

@@ -58,7 +58,27 @@ require("dapui").setup({
         edit   = "e",
         repl   = "r",
     },
-    sidebar = {
+    layouts = {
+        {
+            elements = {
+                'scopes',
+                'breakpoints',
+                'stacks',
+                'watches',
+            },
+            size = 40,
+            position = 'left',
+        },
+        {
+            elements = {
+                'repl',
+                'console',
+            },
+            size = 10,
+            position = 'bottom',
+        },
+    },
+    --[[ sidebar = {
         -- You can change the order of elements in the sidebar
         elements = {
             -- Provide as ID strings or tables with "id" and "size" keys
@@ -78,7 +98,7 @@ require("dapui").setup({
         elements = { "repl", "console" },
         size = 5,
         position = "bottom", -- Can be "left", "right", "top", "bottom"
-    },
+    }, ]]
     floating = {
         max_height = nil, -- These can be integers or a float between 0 and 1.
         max_width = nil, -- Floats will be treated as percentage of your screen.

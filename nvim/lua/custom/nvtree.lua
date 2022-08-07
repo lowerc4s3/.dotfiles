@@ -77,7 +77,8 @@ require'nvim-tree'.setup {
     },
     filesystem_watchers = {
         enable = true,
-        interval = 100,
+        debounce_delay = 100,
+        -- interval = 100,
     },
     actions = {
         use_system_clipboard = true,
