@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# template_dir="$HOME/bmstu_templates/c_project"
+template_dir="$HOME/bmstu/templates/cproject"
+
+# function seloption {
+#     cat << EOF
+# 1. Компаратор, сравнивающий числа
+# 2. Компаратор, сравнивающий строки после 'Result: '
+# EOF
+#
+#     option=0
+#     read -rp "Выберите вариант: " option
+#     return "$option"
+# }
+
+# seloption
+# option=$?
+#
+# case $option in
+#     1) 
+
+cp -r "$template_dir"/* ./

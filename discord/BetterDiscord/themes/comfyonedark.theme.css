@@ -1,0 +1,156 @@
+/**
+* @name ComfyOneDark
+* @author Nyria#3863
+* @description Stay comfy while talking to your friends, ported to OneDark by AbdelrhmanNile (Pirate).
+* @invite rtBQX5D3bD
+* @version 2.1
+* @donate https://ko-fi.com/nyria
+*/
+
+@import "https://nyri4.github.io/Comfy/betterdiscord/main.css";
+
+/* ═══════『 ⚠️・Important tips 』═══════
+*
+*   ➥ To comment or uncomment a line you need to put those "/" and "*" characters as you can see at the beginning and ending of my comments.
+*      (You don't need to put a * at each line like I do, it's just for readability). See more here : https://developer.mozilla.org/en-US/docs/Web/CSS/Comments
+*
+*   ➥ You can play with the values and see how it goes, don't delete "px" after the value if you don't have knowledges in CSS.
+*
+*   ➥ To change the colors, replace the HEX code with the one you picked here : https://htmlcolorcodes.com
+*/
+
+/* ═══════『 🚫 ・ No scrollbars 』- Comment the line below if you want the scrollbar back */
+::-webkit-scrollbar { display: none;}.content-1x5b-n { margin: 0 !important; border-radius: 0; }.mainContent-u_9PKf { padding-left: 8px;}.container-2Pjhx- { margin: 0; max-width: unset; }.layout-2DM8Md { border-radius: 0; padding: 0 16px;}.unread-2lAfLh { z-index: 1;} .buttons-3JBrkn { padding-right: 10px !important;}
+
+/* ═══════『 🎵 ・ Better SpotifyControls seek bar 』- Comment the line below if you want the dafault one */
+.container-6sXIoE { border-bottom: none !important; margin-bottom: 0 !important;}.container-6sXIoE .timeline-UWmgAx { position: relative !important;}.container-6sXIoE .bar-g2ZMIm { position: absolute !important; bottom: -6px !important; left: -8px !important; width: 240px !important; height: 53px !important;margin: 0 !important;-webkit-mask-image: linear-gradient(0.25turn, #0008, #0002) !important;mask-image: linear-gradient(0.25turn, #0008, #0002) !important;border-radius: 0 !important;}.barFill-Dhkah7 { border-radius: 0 !important;}.container-6sXIoE.maximized-vv2Wr0 .bar-g2ZMIm { height: 88px !important;}.container-6sXIoE .button-14-BFJ:hover { background-color: transparent !important;}.barFill-Dhkah7, .timeline-UWmgAx:hover .barFill-Dhkah7 { background: var(--spotify-color) !important;}.inner-WRV6k5 { z-index: 1 !important;}.barText-lmqc5O, .grabber-7sd5f5 { display: none !important;}
+
+:root { 
+
+/* ═══════『 🖼️ ・ Background in the status picker 』═══════
+*
+*   ➥ Image : Replace the url of the current image with yours
+*
+*   ➥ Color : Delete the url("https://mywebsite/example.png") and replace it by an HEX color
+*
+*   ℹ️ : This background isn't and cannot be linked to the new Nitro banners or USRBG 
+*/
+
+--status-background: url('https://i.imgur.com/ODa8LKK.jpg');
+
+/* ═══════『 ⚙️ / 🎤 / 🎧 ・ User button 』═══════
+*
+*   ➥ A higher value will means more space between the icons and a lower ...
+*
+*    ℹ️ : If you want to revert those to the old area, join the support server and check #css-snippets
+*
+*/
+
+/* Spacing - Default value : 8px */
+--user-buttons-spacing: 8px;
+
+/* Color - Default value : #61afef */
+--user-buttons-color:#61afef;
+
+/* ═══════『 ⭕ Roundness settings 』═══════
+*
+*    ➥ A higher value will means more rounded corners and a lower ...
+*       0 ➜ Square
+*       25 ➜ Circle
+*/
+
+/* Avatars - Default value : 5px */
+--avatar-radius: 5px;  
+
+/* Status - Default value : 3px */
+--status-radius: 3px; 
+
+/* Servers - Default value : 8px */
+--server-radius: 8px;
+
+/* ═══════『 😃 Colored emoji picker 』═══════
+*   Change the value to "100%" if you want the default one */
+
+--colored-emoji: grayscale(0%);
+
+/* ═══════『 📜 Server/channel list 』═══════ */
+
+/* Mention - Default value : #e06c75 */
+--mention-color: #e06c75;
+
+/* Unread - Default value : #c678dd */
+--unread-color: #c678dd;
+
+/*  『 🔴 Mention colors in chat 』 */
+
+/* Bar on the right - Default value : #e06c75 */
+--mention-color-bar: #e06c75;
+
+/* Background - Default value : #C662621F */
+--mention-color-background: #C662621F;
+
+/* On hover - Default value : #C6626226 */
+--mention-color-hover: #C6626226;
+
+/* ═══════『 💬 Chat buttons 』═══════ */
+
+/* Default value : #61afef */
+--chat-buttons: #61afef;
+
+/* ═══════『 💬 SpotifyControls seek bar 』═══════
+*   ℹ️ : If you don't have the plugin : https://betterdiscord.app/plugin/SpotifyControls */
+
+/* Default value : #1EDC62 */
+--spotify-color: #1EDC62;
+
+/* ═══════『 🟢 Status 』═══════ */
+
+/* Online - Default value : #98c379 */
+--online: #98c379;
+
+/* Iddle - Default value : #d19a66 */
+--iddle: #d19a66;
+
+/* Do Not Disturb - Default value : #e06c75 */
+--dnd: #e06c75;
+
+/* Offline - Default value : #747F8D */
+--offline: #747f8D;
+
+/* Streaming - Default value : #c678dd */
+--streaming: #c678dd;
+
+/* ═══════『 🔰 Role circle in user popout 』═══════
+*   Default value : 5px */
+
+--role-circle: 5px;
+
+/* ═══════『 🗑️ Discord logo 』═══════
+*   Set it to "block" if you still want it */
+
+--discord-logo: none;
+
+}
+ 
+:root.theme-dark {
+    --background-primary: #1e222a;
+    --background-secondary: #353b45;
+    --background-secondary-alt: #3e4451;
+    --background-tertiary: #282c34;
+    --background-mobile-primary: #23283D;
+    --background-mobile-secondary: #1E2233;
+    --channeltextarea-background: #353b45;
+    --background-accent: #56b6c2;
+    --background-message-hover: transparent;
+    --background-modifier-hover: #00000010;
+    --background-modifier-active: #0000001a;
+    --background-modifier-selected: #0000001f;
+    --deprecated-card-bg: #12141F63;
+    --background-floating: #101320;
+    --deprecated-quickswitcher-input-background:#101320;
+    --elevation-low: none;
+    --scrollbar-auto-thumb: #121722;
+    --scrollbar-auto-track: #191F2E;
+    --scrollbar-thin-thumb: #141925;
+    --activity-card-background: #101320;
+}

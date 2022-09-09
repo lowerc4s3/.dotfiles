@@ -3,3 +3,5 @@
 nvim/sessions
 nvim/plugin
 private.zsh
+discord/BetterDiscord/data/**
+discord/BetterDiscord/Dictionaries/**
