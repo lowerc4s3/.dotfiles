@@ -313,7 +313,7 @@ handle_mime() {
             env HIGHLIGHT_OPTIONS="${HIGHLIGHT_OPTIONS}" highlight \
                 --out-format="${highlight_format}" \
                 --force -- "${FILE_PATH}" && exit 5
-            env COLORTERM=8bit bat --color=always --style="plain" \
+            env COLORTERM=8bit bat --color=always --style="numbers" \
                 -- "${FILE_PATH}" && exit 5
             # env COLORTERM=8bit bat --color=always --style="numbers" \
             #     --theme=base16 -- "${FILE_PATH}" && exit 5

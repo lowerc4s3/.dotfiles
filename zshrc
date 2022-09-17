@@ -14,7 +14,7 @@ DISABLE_MAGIC_FUNCTIONS="true"
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # zsh-vi-mode last-working-dir 
-plugins=(zsh-autosuggestions fast-syntax-highlighting zoxide zsh-interactive-cd)
+plugins=(zsh-autosuggestions fast-syntax-highlighting zoxide)
 
 ZSH_AUTOSUGGEST_STRATEGY=(completion history)
 
@@ -52,11 +52,14 @@ alias owd='open ./'             # Open current dir in Finder (macOS)
 alias fm='. ranger'             # Ranger shortcut (switches dir when leaving ranger)
 alias fhistory='history | rg'   # Searches history
 alias info='info --vi-keys'     # Enables vi keybindigs in info
+alias vc='v *.c'                # Opens all C files in cwd
+alias vch='v *.h *.c'           # Opens all C and header files in cwd
 
 source "$HOME/.private.zsh"
 
 # Git aliases
 alias gl='git log --graph --abbrev-commit --decorate --date=relative --all'
+alias glo='git log --oneline --graph --abbrev-commit --decorate --date=relative --all'
 alias gst='git status --short --find-renames --branch'
 alias gstu='git status --short --find-renames --branch --untracked-files'
 alias ga='git add'
