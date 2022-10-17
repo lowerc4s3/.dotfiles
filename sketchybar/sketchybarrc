@@ -1,0 +1,118 @@
+#!/usr/bin/env sh
+
+PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
+
+#
+# Colors
+#
+
+## Onedark
+BLACK='292d34'
+TEXT='979fad'
+BLUE='61afef'
+
+
+#
+# Bar settings
+#
+
+sketchybar --bar    height=30           \
+                    blur_radius=50      \
+                    position=bottom     \
+                    padding_left=2      \
+                    padding_right=4     \
+                    margin=5            \
+                    y_offset=2          \
+                    corner_radius=8     \
+                    sticky=on           \
+                    color=0xff$BLACK
+
+
+#
+# Item defaults
+#
+
+sketchybar --default    updates=when_shown                                  \
+                        drawing=on                                          \
+                        icon.font="JetBrainsMono Nerd Font:Regular:14.5"    \
+                        icon.color=0xff$TEXT                                \
+                        label.font="SF UI Text:Regular:14.5"                \
+                        label.color=0xff$TEXT                               \
+                        label.padding_left=2                                \
+                        label.padding_right=2                               \
+                        icon.padding_left=3                                 \
+                        icon.padding_right=3                                \
+                        background.padding_left=6                           \
+                        background.padding_right=6                          \
+
+
+#
+# Right items
+#
+
+## Space indicators
+
+SPACE_ICONS=("一" "二" "三" "四" "五" "六" "七" "八" "九" "十") # ("1" "2" "3" "4" "5" "6" "7" "8" "9" "10")
+
+for i in "${!SPACE_ICONS[@]}"
+do
+    sid=$((i + 1))
+    sketchybar --add       space           space.$sid left                             \
+               --set       space.$sid      associated_space=$sid                       \
+                                           icon="${SPACE_ICONS[i]}"                    \
+                                           icon.padding_left=8                         \
+                                           icon.padding_right=8                        \
+                                           icon.highlight_color=0xff$BLACK             \
+                                           background.padding_left=4                   \
+                                           background.padding_right=4                  \
+                                           background.color=0xff$BLUE                  \
+                                           background.corner_radius=8                  \
+                                           background.height=24                        \
+                                           background.drawing=off                      \
+                                           label.drawing=off                           \
+                                           script="$PLUGIN_DIR/space.sh"               \
+                                           click_script="yabai -m space --focus $sid"
+done
+
+
+#
+# Center items
+#
+
+## Focused app name
+sketchybar --add        item front_app      center                              \
+           --set        front_app           script="$PLUGIN_DIR/front_app.sh"   \
+                                            icon.drawing=off                    \
+           --subscribe  front_app           front_app_switched
+
+
+#
+# Right items
+#
+
+sketchybar --add        item            clock right                     \
+           --set        clock           update_freq=10                  \
+                                        script="$PLUGIN_DIR/clock.sh"   \
+\
+           --add        item            battery right                   \
+           --set        battery         script="$PLUGIN_DIR/battery.sh" \
+                                        update_freq=10                  \
+           --subscribe  battery         system_woke                     \
+\
+           --add        item            wifi right                      \
+           --set        wifi            script="$PLUGIN_DIR/wifi.sh"    \
+                                        update_freq=10                  \
+\
+           --add        event           input_change 'AppleSelectedInputSourcesChangedNotification' \
+           --add        item            keyboard right                                              \
+           --set        keyboard        script="$PLUGIN_DIR/keyboard.sh"                            \
+           --subscribe  keyboard        input_change                                                \
+
+# # TODO: subscribe battery updates to events
+           # --subscribe  battery         system_woke battery_state_changed battery_level_changed
+           # --add        event           battery_state_changed "UIDeviceBatteryStateDidChangeNotification" \
+           # --add        event           battery_level_changed "UIDeviceBatteryLevelDidChangeNotification" \
+
+
+sketchybar --update
+echo "sketchybar configuration loaded.."
