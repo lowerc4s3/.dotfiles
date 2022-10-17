@@ -14,6 +14,36 @@ vim.g.completeopt = { 'menu', 'menuone', 'noselect' }
 
 -- local border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 
+-- -- Codicons
+-- local icons = {
+--     Text          = "",
+--     Method        = "",
+--     Function      = "",
+--     Constructor   = "",
+--     Field         = "",
+--     Variable      = "",
+--     Class         = "",
+--     Interface     = "",
+--     Module        = "",
+--     Property      = "",
+--     Unit          = "",
+--     Value         = "",
+--     Enum          = "",
+--     Keyword       = "",
+--     Snippet       = "",
+--     Color         = "",
+--     File          = "",
+--     Reference     = "",
+--     Folder        = "",
+--     EnumMember    = "",
+--     Constant      = "",
+--     Struct        = "",
+--     Event         = "",
+--     Operator      = "",
+--     TypeParameter = "",
+-- }
+
+-- Old icons
 local icons = {
     Text          = "", -- ﮜ 
     Method        = "",

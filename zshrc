@@ -54,6 +54,7 @@ alias fhistory='history | rg'   # Searches history
 alias info='info --vi-keys'     # Enables vi keybindigs in info
 alias vc='v *.c'                # Opens all C files in cwd
 alias vch='v *.h *.c'           # Opens all C and header files in cwd
+alias pdb='python3 -m pdb'      # Python debugger shortcut
 
 source "$HOME/.private.zsh"
 

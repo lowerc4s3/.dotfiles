@@ -205,18 +205,19 @@ typeset -g PROMPT2="%F{0}%(0?.%K{3}  .%K{1} )%K{0}%f  %k%b "
       # '~/work(|/*)'  WORK     ''
       # '~(|/*)'       HOME     ''
 
-      '~'                              HOME         ''
-      '~/Downloads(|/*)'               DOWNLOADS    ''
-      '~/Applications(|/*)'            APPLICATIONS ''
-      '~/.config(|/*)'                 CONFIG       ''
-      '~/dots(|/*)'                    CONFIG       ''
-      '~/Documents(|/*)'               DOCUMENTS    ''
-      '~/Desktop(|/*)'                 DESKTOP      ''
-      '~/Music(|/*)'                   MUSIC        ''
-      '~/Pictures(|/*)'                PICTURES     ''
-      '~/Public(|/*)'                  PUBLIC       ''
-      '~/bmstu(|/*)'                   WORK         ''
-      '*'                              DEFAULT      '')
+      '~'                               HOME            ''
+      '~/Downloads(|/*)'                DOWNLOADS       ''
+      '~/Applications(|/*)'             APPLICATIONS    ''
+      '~/.config(|/*)'                  CONFIG          ''
+      '~/dots(|/*)'                     CONFIG          ''
+      '~/Documents(|/*)'                DOCUMENTS       ''
+      '~/Desktop(|/*)'                  DESKTOP         ''
+      '~/Music(|/*)'                    MUSIC           ''
+      '~/Pictures(|/*)'                 PICTURES        ''
+      '~/Public(|/*)'                   PUBLIC          ''
+      '~/bmstu(|/*)'                    WORK            ''
+      '/Volumes(|/*)'                   VOLUMES         ''
+      '*'                               DEFAULT         '')
 
   #####################################[ vcs: git status ]######################################
   # Version control system colors.

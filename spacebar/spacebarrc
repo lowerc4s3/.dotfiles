@@ -68,6 +68,7 @@ spacebar -m config clock_format                "%R" # %R – %d.%m
 spacebar -m config right_shell                 on
 spacebar -m config right_shell_icon            􀷗 # ﬉
 spacebar -m config right_shell_icon_color      0xff$text
-spacebar -m config right_shell_command         "env PATH='~/bin/:$PATH' getwifiname"
+# spacebar -m config right_shell_command         "env PATH='~/bin/:$PATH' getwifiname"
+spacebar -m config right_shell_command         "/Users/foreverd34d/bin/getwifiname"
 
 echo "spacebar configuration loaded.."
