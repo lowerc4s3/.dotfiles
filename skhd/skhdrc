@@ -63,8 +63,8 @@ ctrl + lalt - n : yabai -m space --create && \
 ctrl + lalt - x : yabai -m space --destroy
 
 # move workspaces (0x2B – ,; 0x2F – .)
-shift + lalt - 0x2F : yabai -m space --move next
-shift + lalt - 0x2B : yabai -m space --move prev
+shift + lalt - 0x2F : yabai -m space --swap next
+shift + lalt - 0x2B : yabai -m space --swap prev
 
 # Resize windows
 shift + lctrl + lalt - h : yabai -m window --resize left:-50:0; \

@@ -1,0 +1,37 @@
+#!/usr/bin/env sh
+
+#
+# Colors
+#
+
+# ## Onedark
+# BG='292d34'
+# FG='979fad'
+# BLUE='61afef'
+
+# ## Nord
+# BG='2e3440'
+# BG_SEC='3b4252'
+# FG='d8dee9'
+# BLUE='81a1c1'
+# GREEN='a3be8c'
+# RED='bf616a'
+# CYAN='88c0d0'
+
+## Catppuccin frappe
+BG='303446'
+BG_SEC='414559'
+FG='c6d0f5'
+BLUE='8caaee'
+GREEN='a6d189'
+RED='e78284'
+
+## Bar colors
+SK_BAR=0xff$BG
+SK_TEXT=0xff$FG
+SK_SPACE_HL_BG=0xff$BLUE
+SK_SPACE_HL_FG=0xff$BG
+SK_SPACE_OCCUPIED_FG=0xff$BLUE
+SK_ITEM_BG=0xff$BG_SEC
+SK_BATTERY_CHARGING=0xff$GREEN
+SK_BATTERY_LOW=0xff$RED
