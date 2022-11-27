@@ -2,8 +2,7 @@
 
 -- Set colorscheme
 vim.g.tokyonight_style = "night"
-vim.g.catppuccin_flavour = "mocha"
-vim.cmd('colorscheme onedark')
+-- vim.cmd('colorscheme catppuccin')
 
 -- Set highlights
 vim.cmd [[

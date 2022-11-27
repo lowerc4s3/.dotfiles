@@ -19,12 +19,14 @@ return require('packer').startup(function(use)
         as = "catppuccin",
         config = function()
             require("catppuccin").setup {
+                flavour = 'frappe',
                 integrations = {
                     which_key = true,
                     telescope = false,
                     lsp_trouble = true
                 }
             }
+        vim.cmd('colorscheme catppuccin')
         end
     }
 
@@ -98,7 +100,15 @@ return require('packer').startup(function(use)
         'petertriho/nvim-scrollbar',
         config = function()
             require("scrollbar").setup {
-                handle = { highlight = "CursorLine" },
+                handle = {
+                    highlight = "CursorLine",
+                },
+                excluded_filetypes = {
+                    "NvimTree",
+                },
+                handlers = {
+                    cursor = false
+                }
             }
         end
     }
@@ -220,6 +230,7 @@ return require('packer').startup(function(use)
 
 
     --- Editor ---
+
     use {
         -- Surround word with quotes or parentheses
         -- (local copy of blackCauldron7's surround.nvim, original was deleted)
@@ -476,7 +487,7 @@ return require('packer').startup(function(use)
         config = function()
             require("project_nvim").setup {
                 patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", ".projectile" },
-                detection_methods = { "pattern" },
+                detection_methods = { "lsp", "pattern" },
                 silent_chdir = true,
             }
         end

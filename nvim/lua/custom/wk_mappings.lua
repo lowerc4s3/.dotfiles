@@ -40,9 +40,6 @@ wk.register({
 
     d = {
         name = ' Debug',
-        -- name = '金Debug & compile',
-        -- ["c"] = { "<cmd>YabsTask build<cr>", " Compile file" },
-        -- ["r"] = { "<cmd>YabsTask run<cr>", "金Run file" },
         ["b"] = { "<cmd>DapToggleBreakpoint<cr>", "ﱢ Toggle breakpoint" },
         ["d"] = { "<cmd>DapContinue<cr>", "金 Start debug" },
     },
@@ -56,8 +53,8 @@ wk.register({
     c = {
         name = " Code",
         ["d"] = { "<cmd>Trouble<cr>", " Diagnostics" },
-        ["r"] = { "<cmd>lua vim.lsp.buf.rename()<CR>", " Rename" },
-        ["f"] = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "靖Format" },
+        ["r"] = { vim.lsp.buf.rename, " Rename" },
+        ["f"] = { function () vim.lsp.buf.format { async = true } end, "靖Format" },
         ["R"] = { "<cmd>Telescope lsp_references<CR>", " References" },
         ["a"] = { '<cmd>CodeActionMenu<CR>', " Actions" },
         -- ["a"] = { '<cmd>lua vim.lsp.buf.code_action<CR>', " Actions" },

@@ -26,7 +26,7 @@ local filename = {
     'filename',
     padding = 1,
     path = 1,
-    symbols = { modified = ' ', readonly = ' ', unnamed = '' }
+    symbols = { modified = '', readonly = '', unnamed = '' }
 }
 
 local diagnostics = {
@@ -56,7 +56,7 @@ local filename_inactive = {
     'filename',
     padding = 1,
     path = 0,
-    symbols = { modified = ' ', readonly = ' ', unnamed = '' }
+    symbols = { modified = '', readonly = '', unnamed = '' }
 }
 
 --- Setup ---
@@ -89,5 +89,5 @@ require('lualine').setup {
         lualine_z = {}
     },
     tabline = {},
-    extensions = { 'man', 'nvim-dap-ui', 'toggleterm', 'nvim-tree' }
+    extensions = { 'nvim-dap-ui', 'toggleterm', 'nvim-tree' }
 }
