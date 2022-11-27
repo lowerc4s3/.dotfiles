@@ -15,25 +15,22 @@
     --shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
 /* -------- VOMNIBAR & HUD -------- */
-    --fg: #979FAD;
-    --fg-dark: #6B727D;
-    --fg-url: #59626F; 
-    --fg-match: #98C379;
-    --fg-source: #61AFEF;
-    /* ALTERNATIVE `--fg-match' COLOR: 
-    --fg-match: #F29A4A; */
+    --fg: #D8DEE9;
+    --fg-dark: #4C566A;
+    --fg-url: #5E81AC; 
+    --fg-match: #A3BE8C;
+    --fg-source: #81A1C1;
 
-    --bg: #282C34;
-    /* --bg-searcharea: #2F333D; */
-    --bg-searcharea: #1F232B;
-    --bg-selected: #3A3F4B;
+    --bg: #2E3440;
+    --bg-searcharea: #3B4252;
+    --bg-selected: #434C5E;
 
-    --border: #2F333D;
+    --border: #3B4252;
 
 /* -------- HINTS -------- */
-    --bg-hints: #E5C17C;      /* Background color of link hints */
-    --border-hints: #E5C17C;  /* Border color of link hints */
-    --fg-hints: #282C34;      /* Text color of link hints, (don't forget to change `#vimiumHintMarkerContainer div > .matchingCharacter ~ span`) */
+    --bg-hints: #EBCB8B;      /* Background color of link hints */
+    --border-hints: #EBCB8B;  /* Border color of link hints */
+    --fg-hints: #2E3440;      /* Text color of link hints, (don't forget to change `#vimiumHintMarkerContainer div > .matchingCharacter ~ span`) */
 }
 
 /* --------------------------------- CSS --------------------------------- */

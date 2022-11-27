@@ -76,6 +76,34 @@
     }} */
 
 
+    /* catppuccin frappe */
+    @media (prefers-color-scheme: dark) { :root {
+
+        --window-colour:                     #303446;
+        --secondary-colour:                  #414559;
+        --inverted-colour:                   #C6D0F5;
+
+        --uc-identity-color-blue:            #89B4FA;
+        --uc-identity-color-turquoise:       #94E2D5;
+        --uc-identity-color-green:           #A6E3A1;
+        --uc-identity-color-yellow:          #F9E2AF;
+        --uc-identity-color-orange:          #FAB387;
+        --uc-identity-color-red:             #F38BA8;
+        --uc-identity-color-pink:            #F5C2E7;
+        --uc-identity-color-purple:          #B4BEFE;
+
+        --uc-identity-color-blue-muted:      #87B0F999;
+        --uc-identity-color-turquoise-muted: #94E2D599;
+        --uc-identity-color-green-muted:     #A6E3A199;
+        --uc-identity-color-yellow-muted:    #F9E2AFCC;
+        --uc-identity-color-orange-muted:    #FAB387FF;
+        --uc-identity-color-red-muted:       #F38BA8FF;
+        --uc-identity-color-pink-muted:      #F5C2E799;
+        --uc-identity-color-purple-muted:    #B4BEFEFF;
+
+    }}
+
+
     /* catppuccin latte */
     /* @media (prefers-color-scheme: light) { :root {
 
@@ -103,12 +131,41 @@
 
     }} */
 
-    /* onedark */
-    @media (prefers-color-scheme: dark) { :root {
 
-        --window-colour:                     #282C34;
-        --secondary-colour:                  #1F232B;
-        --inverted-colour:                   #979FAD;
+    /* onedark */
+    /* @media (prefers-color-scheme: dark) { :root { */
+    /**/
+    /*     --window-colour:                     #282C34; */
+    /*     --secondary-colour:                  #1F232B; */
+    /*     --inverted-colour:                   #979FAD; */
+    /**/
+    /*     --uc-identity-color-blue:            #89B4FA; */
+    /*     --uc-identity-color-turquoise:       #94E2D5; */
+    /*     --uc-identity-color-green:           #A6E3A1; */
+    /*     --uc-identity-color-yellow:          #F9E2AF; */
+    /*     --uc-identity-color-orange:          #FAB387; */
+    /*     --uc-identity-color-red:             #F38BA8; */
+    /*     --uc-identity-color-pink:            #F5C2E7; */
+    /*     --uc-identity-color-purple:          #B4BEFE; */
+    /**/
+    /*     --uc-identity-color-blue-muted:      #87B0F999; */
+    /*     --uc-identity-color-turquoise-muted: #94E2D599; */
+    /*     --uc-identity-color-green-muted:     #A6E3A199; */
+    /*     --uc-identity-color-yellow-muted:    #F9E2AFCC; */
+    /*     --uc-identity-color-orange-muted:    #FAB387FF; */
+    /*     --uc-identity-color-red-muted:       #F38BA8FF; */
+    /*     --uc-identity-color-pink-muted:      #F5C2E799; */
+    /*     --uc-identity-color-purple-muted:    #B4BEFEFF; */
+    /**/
+    /* }} */
+
+
+    /* nord */
+    /* @media (prefers-color-scheme: dark) { :root {
+
+        --window-colour:                     #2E3440;
+        --secondary-colour:                  #434C5E;
+        --inverted-colour:                   #D8DEE9;
 
         --uc-identity-color-blue:            #89B4FA;
         --uc-identity-color-turquoise:       #94E2D5;
@@ -128,7 +185,7 @@
         --uc-identity-color-pink-muted:      #F5C2E799;
         --uc-identity-color-purple-muted:    #B4BEFEFF;
 
-    }}
+    }} */
 
 
 
@@ -223,6 +280,7 @@
      /* extension label */
      #identity-icon-label { display: none !important; }
 
+     #alltabs-button { display: none !important; }
 
 
 
