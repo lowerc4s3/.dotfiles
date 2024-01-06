@@ -6,12 +6,12 @@ require'nvim-web-devicons'.setup {
             name = "Markdown",
         },
         py = {
-            icon = "",
+            icon = "󰌠",
             color = "#3477AC",
             name = "Py",
         },
         NvimTree = {
-            icon = "פּ",
+            icon = "󰙅",
             color = "#6d8086",
             name = "NvimTree"
         },
@@ -31,12 +31,12 @@ require'nvim-web-devicons'.setup {
             name = "TelescopePrompt"
         },
         glowpreview = {
-            icon = "",
+            icon = "󰂽",
             color = "#519aba",
             name = "glowpreview"
         },
         packer = {
-            icon = "",
+            icon = "󰏓",
             color = "#c19a6c",
             name = "packer"
         }

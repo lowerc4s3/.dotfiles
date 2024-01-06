@@ -1,69 +1,74 @@
-require("bufferline").setup{
+local bufferline = require("bufferline")
+
+bufferline.setup {
     options = {
         themable = false,
-        offsets = { { filetype = "NvimTree", text = "", padding = 0 } },
-        buffer_close_icon = "",
-        modified_icon = "", -- 
-        close_icon = "",
-        show_close_icon = false,
-        show_buffer_close_icons = false,
-        left_trunc_marker = "", --
-        right_trunc_marker = "", --
+        numbers = "none",
+        indicator = { style = "none" },
+        buffer_close_icon = "󰅖",
+        modified_icon = "",
+        close_icon = "󰅙",
+        left_trunc_marker = "󰁍",
+        right_trunc_marker = "󰁔",
         max_name_length = 14,
         max_prefix_length = 13,
-        tab_size = 24,
-        show_tab_indicators = true,
-        enforce_regular_tabs = false,
-        separator_style = { "", "" }, --slant, thin
-        always_show_bufferline = false,
+        tab_size = 22,
         diagnostics = "nvim_lsp",
-        -- diagnostics_indicator = function(count, level, diagnostics_dict, context)
         diagnostics_indicator = function(count, _)
             return "[" .. count .. "]"
-        end
+        end,
+        offsets = { { filetype = "NvimTree", text = "" } },
+        color_icons = true,
+        show_buffer_close_icons = false,
+        show_tab_indicators = false,
+        separator_style = { "", "" },
+        always_show_bufferline = false,
+        hover = { enabled = false, },
+        sort_by = "insert_after_current",
     },
 
+    -- highlights = require("catppuccin.groups.integrations.bufferline").get()
+
     highlights = {
-        modified                    = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
-        -- modified_visible            = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        modified                    = { bg = { attribute = "bg", highlight = "lualine_c_normal" } },
 
-        hint                        = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
-        hint_diagnostic             = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
-        hint_selected               = { gui   = "bold" },
-        hint_diagnostic_selected    = { gui   = "bold" },
+        hint                        = { bg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        hint_diagnostic             = { bg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        hint_selected               = { italic = false, bold = true },
+        hint_diagnostic_selected    = { italic = false, bold = true },
 
-        info                        = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
-        info_diagnostic             = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
-        info_selected               = { gui   = "bold" },
-        info_diagnostic_selected    = { gui   = "bold" },
+        info                        = { bg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        info_diagnostic             = { bg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        info_selected               = { italic = false, bold = true },
+        info_diagnostic_selected    = { italic = false, bold = true },
 
-        warning                     = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
-        warning_diagnostic          = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
-        warning_selected            = { gui   = "bold" },
-        warning_diagnostic_selected = { gui   = "bold" },
+        warning                     = { bg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        warning_diagnostic          = { bg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        warning_selected            = { italic = false, bold = true },
+        warning_diagnostic_selected = { italic = false, bold = true },
 
-        error                       = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
-        error_diagnostic            = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
-        error_selected              = { gui   = "bold" },
-        error_diagnostic_selected   = { gui   = "bold" },
+        error                       = { bg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        error_diagnostic            = { bg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        error_selected              = { italic = false, bold = true },
+        error_diagnostic_selected   = { italic = false, bold = true },
 
-        diagnostic_selected         = { gui   = "bold" },
+        diagnostic_selected         = { italic = false, bold = true },
 
         duplicate_visible = {
-            guibg = { attribute = "bg", highlight = "Normal" },
-            gui = "italic"
+            bg = { attribute = "bg", highlight = "Normal" },
+            italic = true
         },
         duplicate = {
-            guibg = { attribute = "bg", highlight = "lualine_c_normal" },
-            gui = "italic"
+            bg = { attribute = "bg", highlight = "lualine_c_normal" },
+            italic = true
         },
-        duplicate_selected = { gui = "italic" },
+        duplicate_selected = { italic = true },
 
-        fill                        = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
-        background                  = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
-        separator                   = { guibg = { attribute = "bg", highlight = "lualine_c_normal" } },
-        indicator_selected          = { guifg = { attribute = "fg", highlight = "Ignore" } },
-        buffer_visible              = { guibg = { attribute = "bg", highlight = "Normal" } },
-        buffer_selected             = { gui   = "bold" },
+        fill                        = { bg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        background                  = { bg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        separator                   = { bg = { attribute = "bg", highlight = "lualine_c_normal" } },
+        -- indicator_selected          = { fg = { attribute = "fg", highlight = "Ignore" } },
+        buffer_visible              = { bg = { attribute = "bg", highlight = "Normal" } },
+        buffer_selected             = { italic = false, bold = true },
     }
 }

@@ -263,11 +263,13 @@
      #identity-permission-box { display: none !important; } /* only hides permission items */
 
      /* center tab label */
-     .tab-content:not([pinned])::before{
-        display: -moz-box;
-        content: "";
-        -moz-box-flex: 1;
-     }
+    .tab-icon-stack {
+      margin-inline-start: auto
+    }
+    .tab-label-container {
+      max-width: min-content;
+      margin-inline-end: auto;
+    }
 
      /* e.g. playing indicator (secondary - not icon) */
      .tab-secondary-label { display: none !important; }

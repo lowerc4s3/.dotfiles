@@ -1,184 +1,196 @@
-return require('packer').startup(function(use)
-    use 'wbthomason/packer.nvim'
+-- Bootstrap lazy.nvim plugin manager
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        'git',
+        'clone',
+        '--filter=blob:none',
+        'https://github.com/folke/lazy.nvim.git',
+        '--branch=stable', -- latest stable release
+        lazypath,
+    })
+end
+vim.opt.rtp:prepend(lazypath)
 
+require('lazy').setup({
+    'folke/lazy.nvim',
 
     --- Optimization ---
-    use 'lewis6991/impatient.nvim' -- Cache plugin files
-    use 'antoinemadec/FixCursorHold.nvim'
-
+    { 'lewis6991/impatient.nvim',   enabled = false },
+    'antoinemadec/FixCursorHold.nvim',
 
     --- Themes ---
-    use 'ful1e5/onedark.nvim'
-    use 'Shatur/neovim-ayu'
-    use 'NTBBloodbath/doom-one.nvim'
-    use 'rmehri01/onenord.nvim'
-    use 'tiagovla/tokyodark.nvim'
-    use 'folke/tokyonight.nvim'
-    use {
-        "catppuccin/nvim",
-        as = "catppuccin",
+    { 'ful1e5/onedark.nvim',        lazy = true },
+    { 'Shatur/neovim-ayu',          lazy = true },
+    { 'NTBBloodbath/doom-one.nvim', lazy = true },
+    { 'rmehri01/onenord.nvim',      lazy = true },
+    { 'tiagovla/tokyodark.nvim',    lazy = true },
+    { 'folke/tokyonight.nvim',      lazy = true },
+
+    {
+        'catppuccin/nvim',
+        name = 'catppuccin',
+        priority = 1000,
         config = function()
-            require("catppuccin").setup {
-                flavour = 'frappe',
-                integrations = {
-                    which_key = true,
-                    telescope = false,
-                    lsp_trouble = true
-                }
-            }
-        vim.cmd('colorscheme catppuccin')
+            require('custom.catppuccin')
+            vim.cmd('colorscheme catppuccin')
         end
-    }
+    },
 
 
     --- UI ---
-    use {
+    {
         -- Icons
         'kyazdani42/nvim-web-devicons',
-        config = function() require("custom.devicons") end
-    }
-    use {
+        lazy = true,
+        config = function() require('custom.devicons') end
+    },
+
+    {
         -- Status line
         'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons' },
-        config = function() require("custom.lualine") end
-    }
+        dependencies = 'kyazdani42/nvim-web-devicons',
+        config = function() require('custom.lualine') end
+    },
 
-    use {
+    {
         -- Starting screen
         'goolord/alpha-nvim',
-        config = function() require("custom.alpha") end
-    }
+        event = 'VimEnter',
+        config = function() require('custom.alpha') end
+    },
 
-    use {
+    {
         -- Code diagnostics window
-        "folke/trouble.nvim",
-        requires = 'kyazdani42/nvim-web-devicons',
-        cmd = { "Trouble", "TodoTrouble" },
-        config = function()
-            require("trouble").setup { use_diagnostic_signs = true }
-        end
-    }
+        'folke/trouble.nvim',
+        dependencies = 'kyazdani42/nvim-web-devicons',
+        -- cmd = { 'Trouble', 'TroubleToggle', 'TodoTrouble' },
+        cmd = { 'Trouble', 'TroubleToggle' },
+        opts = {
+            use_diagnostic_signs = true
+        }
+    },
 
-    use {
+    {
         -- Code action menu
         'weilbith/nvim-code-action-menu',
-        cmd = "CodeActionMenu",
+        cmd = 'CodeActionMenu',
         config = function()
             vim.g.code_action_menu_show_details = false
             vim.g.code_action_menu_show_diff = false
             vim.g.code_action_menu_window_border = 'solid'
         end
-    }
+    },
 
-    use {
-        -- Highlight todo comments
-        "folke/todo-comments.nvim",
-        requires = "nvim-lua/plenary.nvim",
-        config = function() require("custom.todocomments") end
-    }
+    {
+        -- Highlight todo comments (disabled atm)
+        'folke/todo-comments.nvim',
+        enabled = false,
+        cmd = { 'TodoTrouble', 'TodoTelescope' },
+        event = { 'BufReadPost', 'BufNewFile' },
+        dependencies = 'nvim-lua/plenary.nvim',
+        config = function() require('custom.todocomments') end
+    },
 
-    use {
+    {
+        -- Highlight color codes like #FFFFFF
         'norcalli/nvim-colorizer.lua',
-        config = function()
-            require('colorizer').setup {
-                "*",
-                "!packer",
-                css = { names = false, RRGGBBAA = true, css = true }
-            }
-        end
-    }
+        event = { 'BufReadPre', 'BufNewFile' },
+        opts = {
+            '*',
+            '!packer',
+            '!lazy',
+            css = { names = false, RRGGBBAA = true, css = true }
+        }
+    },
 
-    use {
+    {
         -- Smooth scrolling
         'karb94/neoscroll.nvim',
-        config = function() require("custom.neoscroll") end
-    }
+        config = function() require('custom.neoscroll') end
+    },
 
-    use {
+    {
         -- Scrollbar
         'petertriho/nvim-scrollbar',
-        config = function()
-            require("scrollbar").setup {
-                handle = {
-                    highlight = "CursorLine",
-                },
-                excluded_filetypes = {
-                    "NvimTree",
-                },
-                handlers = {
-                    cursor = false
-                }
+        opts = {
+            handle = {
+                highlight = 'CursorLine',
+            },
+            excluded_filetypes = {
+                'NvimTree',
+            },
+            handlers = {
+                cursor = false
             }
-        end
-    }
+        }
+    },
 
-    use {
+    {
         -- Nested mappings with mappings cheatsheet
-        "folke/which-key.nvim",
-        config = function() require("custom.which-key") end
-    }
+        'folke/which-key.nvim',
+        config = function() require('custom.which-key') end
+    },
 
-    use {
+    {
         -- Remove buffers without closing windows
         'famiu/bufdelete.nvim',
-        cmd = { "Bdelete", "Bdelete!" }
-    }
+        -- cmd = { 'Bdelete', 'Bdelete!' }
+        cmd = 'Bdelete',
+    },
 
-    use {
+    {
         -- Tabs
         'akinsho/bufferline.nvim',
-        after = "catppuccin",
-        tag = "v2.0.0",
-        requires = 'kyazdani42/nvim-web-devicons',
-        config = function() require("custom.bufferline") end
-    }
+        event = 'VeryLazy',
+        dependencies = {
+            'kyazdani42/nvim-web-devicons',
+        },
+        config = function() require('custom.bufferline') end
+    },
 
-    use {
+    {
         -- Markdown preview
-        "ellisonleao/glow.nvim",
-        cmd = "Glow",
-        config = function()
-            require("glow").setup {
-                style = "auto", -- "~/Library/Preferences/glow/catppuccin.json"
-                border = "solid"
-            }
-        end
-    }
+        'ellisonleao/glow.nvim',
+        cmd = 'Glow',
+        opts = {
+            style = 'auto', -- '~/Library/Preferences/glow/catppuccin.json'
+            border = 'solid'
+        }
+    },
 
-    use {
+    {
         -- Markdown live preview in browser
         'iamcco/markdown-preview.nvim',
-        run = ":call mkdp#util#install()"
-    }
+        ft = 'markdown',
+        build = ':call mkdp#util#install()'
+    },
 
-
-    --- File finders and managers ---
-    use {
+    {
         -- Native finder for telescope
         'nvim-telescope/telescope-fzf-native.nvim',
-        cmd = { "Telescope", "TodoTelescope" },
-        run = 'make'
-    }
+        lazy = true,
+        build =
+        'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+    },
 
-    use {
-        -- File browser in telescope
-        "nvim-telescope/telescope-file-browser.nvim",
-        after = "telescope-fzf-native.nvim"
-    }
-
-    use {
+    {
         -- Fuzzy finder
         'nvim-telescope/telescope.nvim',
-        after = "telescope-file-browser.nvim",
-        requires = 'nvim-lua/plenary.nvim',
-        config = function() require("custom.telescope") end
-    }
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope-fzf-native.nvim',
+            'nvim-telescope/telescope-file-browser.nvim', -- File browser in telescope
+            'nvim-telescope/telescope-ui-select.nvim',    -- Telescope picker for vim.ui.select
+        },
+        cmd = { 'Telescope' },
+        config = function() require('custom.telescope') end
+    },
 
-    use {
+    {
         -- File tree
         'kyazdani42/nvim-tree.lua',
-        requires = 'kyazdani42/nvim-web-devicons',
+        dependencies = 'kyazdani42/nvim-web-devicons',
         cmd = {
             'NvimTreeClipboard',
             'NvimTreeClose',
@@ -188,316 +200,385 @@ return require('packer').startup(function(use)
             'NvimTreeToggle',
             'NvimTreeFocus',
         },
-        config = function() require("custom.nvtree") end
-    }
+        config = function() require('custom.nvtree') end
+    },
 
 
     --- Git ---
-    use {
+    {
         -- Git integration
         'lewis6991/gitsigns.nvim',
-        requires = 'nvim-lua/plenary.nvim',
+        event = { 'BufReadPre', 'BufNewFile' },
+        dependencies = 'nvim-lua/plenary.nvim',
         config = function() require('gitsigns').setup() end
-    }
+    },
 
-    use {
+    {
         -- Cycle through modified files
         'sindrets/diffview.nvim',
-        requires = 'nvim-lua/plenary.nvim',
+        dependencies = 'nvim-lua/plenary.nvim',
         cmd = {
-            "DiffviewOpen",
-            "DiffviewClose",
-            "DiffviewToggleFiles",
-            "DiffviewFocusFiles",
-            "DiffviewRefresh"
+            'DiffviewOpen',
+            'DiffviewClose',
+            'DiffviewToggleFiles',
+            'DiffviewFocusFiles',
+            'DiffviewRefresh'
         },
-        config = function()
-            require("diffview").setup {
-                icons = {
-                    folder_closed = "",
-                    folder_open = "",
-                },
-                signs = {
-                    fold_closed = "",
-                    fold_open = "",
-                },
-                file_panel = {
-                    win_config = { width = 30 }
-                }
+        opts = {
+            icons = {
+                folder_closed = '󰉋',
+                folder_open = '󰉋',
+            },
+            signs = {
+                fold_closed = '',
+                fold_open = '',
+            },
+            file_panel = {
+                win_config = { width = 30 }
             }
-        end
-    }
+        },
+    },
 
 
     --- Editor ---
-
-    use {
+    {
         -- Surround word with quotes or parentheses
         -- (local copy of blackCauldron7's surround.nvim, original was deleted)
-        "~/.config/nvim/localplug/surround.nvim",
-        config = function()
-            require "surround".setup { mappings_style = "surround" }
-        end
-    }
+        dir = '~/.config/nvim/localplug/surround.nvim',
+        opts = { mappings_style = 'surround' }
+    },
 
-    use {
+    {
+        "chrisgrieser/nvim-spider",
+        enabled = false,
+        keys = {
+            {
+                "e",
+                "<cmd>lua require('spider').motion('e')<CR>",
+                mode = { "n", "o", "x" },
+            },
+            {
+                "w",
+                "<cmd>lua require('spider').motion('w')<CR>",
+                mode = { "n", "o", "x" },
+            },
+            {
+                "b",
+                "<cmd>lua require('spider').motion('b')<CR>",
+                mode = { "n", "o", "x" },
+            },
+            {
+                "ge",
+                "<cmd>lua require('spider').motion('ge')<CR>",
+                mode = { "n", "o", "x" },
+            }
+        },
+    },
+
+    {
         -- Jump out of quotes and parentheses
         'abecodes/tabout.nvim',
-        event = "InsertEnter",
-        config = function()
-            require('tabout').setup {
-                tabouts = {
-                    { open = "'", close = "'" },
-                    { open = '"', close = '"' },
-                    { open = '`', close = '`' },
-                    { open = '(', close = ')' },
-                    { open = '[', close = ']' },
-                    { open = '{', close = '}' },
-                    { open = '<', close = '>' },
-                },
-            }
-        end,
-        wants = 'nvim-treesitter', -- or require if not used so far
-        after = 'nvim-cmp' -- if a completion plugin is using tabs load it before
-    }
+        event = 'InsertEnter',
+        opts = {
+            tabouts = {
+                { open = "'", close = "'" },
+                { open = '"', close = '"' },
+                { open = '`', close = '`' },
+                { open = '(', close = ')' },
+                { open = '[', close = ']' },
+                { open = '{', close = '}' },
+                { open = '<', close = '>' },
+            },
+        },
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+            'hrsh7th/nvim-cmp',
+        },
+    },
 
-    use {
+    {
         -- Comment lines
         'numToStr/Comment.nvim',
-        keys = { { "n", "gc" }, { "v", "gc" }, { "n", "gb" } },
+        keys = { { 'gc', mode = { 'n', 'v' } }, { 'gb', mode = { 'n', 'v' } } },
         config = function() require('Comment').setup() end
-    }
+    },
 
-    use {
+    {
         -- Autocomplete quotes and parentheses
         'windwp/nvim-autopairs',
         event = 'InsertEnter',
         config = function() require('nvim-autopairs').setup() end
-    }
+    },
 
-    use {
+    {
         -- Alignment by character
-        "tommcdo/vim-lion",
+        'tommcdo/vim-lion',
         keys = {
-            { "n", "gl" },
-            { "v", "gl" },
+            { 'gl', mode = { 'n', 'v' } },
         },
-    }
+    },
 
-    use "tpope/vim-repeat" -- Repeat more commands with dot
+    {
+        -- Repeat more commands with dot
+        'tpope/vim-repeat',
+        event = 'VeryLazy'
+    },
 
 
     --- Treesitter ---
-    use {
-        'nvim-treesitter/nvim-treesitter-textobjects',
-        event = { "BufRead", "BufNewFile" },
-    }
-
-    use {
+    {
         -- Syntax highlighting
         'nvim-treesitter/nvim-treesitter',
-        after = "nvim-treesitter-textobjects",
-        run = ':TSUpdate',
-        config = function() require("custom.treesitter") end
-    }
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter-textobjects',
+            'rush-rs/tree-sitter-asm',
+            'lukas-reineke/indent-blankline.nvim',
+        },
+        event = { 'BufReadPost', 'BufNewFile' },
+        build = ':TSUpdate',
+        config = function() require('custom.treesitter') end
+    },
 
-    use {
+    {
         -- Indentation lines
         'lukas-reineke/indent-blankline.nvim',
-        event = { 'BufRead', 'BufNewFile' },
-        config = function()
-            require("indent_blankline").setup {
-                show_current_context = true,
-                show_current_context_start = false,
-                filetype_exclude = {
-                    "packer",
-                    "NvimTree",
-                    "Trouble",
-                    "alpha",
-                    "toggleterm",
-                    "terminal",
-                    "help"
-                }
+        version = '2.20.8', -- TODO: update to v3
+        -- main = 'ibl',
+        -- config = function()
+        --     require("ibl").setup {
+        --         indent = {
+        --             char = '│',
+        --         },
+        --         scope = {
+        --             enabled = true
+        --         }
+        --     }
+        -- end
+        opts = {
+            show_current_context = true,
+            show_current_context_start = false,
+            filetype_exclude = {
+                'packer',
+                'NvimTree',
+                'Trouble',
+                'alpha',
+                'toggleterm',
+                'terminal',
+                'help'
             }
-        end
-    }
+        }
+    },
 
 
     --- LSP ---
-    use {
+    {
         'neovim/nvim-lspconfig',
-        config = function() require("custom.lsp") end
-    }
+        event = { 'BufReadPre', 'BufNewFile' },
+        config = function() require('custom.lsp') end
+    },
 
-    use 'ray-x/lsp_signature.nvim' -- Function arguments floating window
+    'ray-x/lsp_signature.nvim', -- Function arguments floating window
 
-    use {
-        -- Code checking utilities integration
-        "jose-elias-alvarez/null-ls.nvim",
-        requires = 'nvim-lua/plenary.nvim',
+    {
+        -- Clangd extensions support
+        'p00f/clangd_extensions.nvim',
+        dependencies = {
+            'neovim/nvim-lspconfig',
+        },
+        -- ft = { 'c', 'cpp' },
         config = function()
-            require("custom.nullls")
+            require('custom.lsp.clangd')
         end
-    }
+    },
 
-    use {
+    {
+        -- Code checking utilities integration
+        'jose-elias-alvarez/null-ls.nvim',
+        event = { 'BufReadPre', 'BufNewFile' },
+        dependencies = 'nvim-lua/plenary.nvim',
+        config = function()
+            require('custom.nullls')
+        end
+    },
+
+    {
         -- Show bulb icon when code action is available
         'kosayoda/nvim-lightbulb',
-        after = "nvim-lspconfig",
+        dependencies = 'neovim/nvim-lspconfig',
         config = function()
-            vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-                pattern = "*",
+            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+                pattern = '*',
                 callback = require('nvim-lightbulb').update_lightbulb,
             })
-            require("nvim-lightbulb").setup {
+            require('nvim-lightbulb').setup {
                 sign = { enabled = false, },
-                virtual_text = { enabled = true, text = "", hl_mode = "replace", }
+                virtual_text = { enabled = true, text = '', hl_mode = 'replace', }
             }
         end
-    }
+    },
 
-    use {
-        -- LSP loading status (currently disabled)
-        'j-hui/fidget.nvim',
-        disable = true,
-        after = "nvim-lspconfig",
+    {
+        -- Tree-like view for symbols
+        'simrat39/symbols-outline.nvim',
+        dependencies = 'neovim/nvim-lspconfig',
+        cmd = 'SymbolsOutline',
         config = function()
-            require("fidget").setup {
+            require('custom.symbols-outline')
+        end
+    },
+
+    {
+        -- LSP loading status (disabled atm)
+        'j-hui/fidget.nvim',
+        enabled = false,
+        dependencies = 'nvim-lspconfig',
+        config = function()
+            require('fidget').setup {
                 text = {
-                    spinner = "dots",
-                    done = "",
+                    spinner = 'dots',
+                    done = '󰄬',
                 },
                 timer = {
                     spinner_rate = 80,
                 },
                 sources = {
-                    ["null-ls"] = {
+                    ['null-ls'] = {
                         ignore = true,
                     }
                 }
             }
             vim.cmd [[ hi link FidgetTitle Bold ]]
         end
-    }
+    },
+
+    {
+        -- VS Code like winbar
+        'utilyre/barbecue.nvim',
+        dependencies = 'SmiteshP/nvim-navic',
+        opts = {
+            show_dirname = true,
+            show_basename = true,
+            show_modified = true,
+            symbols = { modified = '󰆓', },
+            exclude_filetypes = { "toggleterm", "terminal" },
+        }
+    },
+
 
     --- Completion and snippets ---
-    use {
-        'rafamadriz/friendly-snippets',
-        event = { "InsertEnter", "CmdLineEnter" }
-    }
-    use {
-        'L3MON4D3/LuaSnip',
-        after = "friendly-snippets"
-    }
-    use {
+    {
+        -- Completion engine
         'hrsh7th/nvim-cmp',
-        after = "LuaSnip",
-        config = function() require("custom.cmp") end
-    }
-    use {
-        'saadparwaiz1/cmp_luasnip',
-        after = "nvim-cmp"
-    }
-    use {
-        'hrsh7th/cmp-nvim-lsp',
-        after = "cmp_luasnip"
-    }
-    use {
-        'hrsh7th/cmp-buffer',
-        after = "cmp-nvim-lsp"
-    }
-    use {
-        'hrsh7th/cmp-path',
-        after = "cmp-buffer"
-    }
-    use {
-        'hrsh7th/cmp-cmdline',
-        after = "cmp-path"
-    }
-
-    -- use { 'hrsh7th/cmp-nvim-lsp', }
-    -- use { 'hrsh7th/cmp-buffer', event = { "InsertEnter", "CmdLineEnter" } }
-    -- use { 'hrsh7th/cmp-path', after = "cmp-buffer" }
-    -- use { 'hrsh7th/cmp-cmdline', after = "cmp-path" }
-    -- use { 'saadparwaiz1/cmp_luasnip', after = "cmp-cmdline" } -- Completion symbols
-    -- use { 'L3MON4D3/LuaSnip', after = "cmp_luasnip" }
-    -- use { 'rafamadriz/friendly-snippets', after = "LuaSnip" } -- Collection of snippets
-    -- use {
-    --     'hrsh7th/nvim-cmp',
-    --     after = "friendly-snippets",
-    --     config = function() require("custom.cmp") end
-    -- }
+        dependencies = {
+            'rafamadriz/friendly-snippets', -- General snippet collection
+            'L3MON4D3/LuaSnip',             -- Snippet engine
+            'saadparwaiz1/cmp_luasnip',     -- luasnip support
+            'hrsh7th/cmp-nvim-lsp',         -- lsp support
+            'hrsh7th/cmp-buffer',           -- autocomplete from text
+            'hrsh7th/cmp-path',             -- path autocompletion
+            'hrsh7th/cmp-cmdline',          -- cmdline autocompletion
+        },
+        event = { 'InsertEnter', 'CmdLineEnter' },
+        config = function() require('custom.cmp') end
+    },
 
 
     --- Terminal ---
-    use {
-        "akinsho/toggleterm.nvim",
-        cmd = { "ToggleTerm", "ToggleTermToggleAll" },
-        config = function() require("custom.toggleterm") end
-    }
+    {
+        'akinsho/toggleterm.nvim',
+        cmd = { 'ToggleTerm', 'ToggleTermToggleAll' },
+        config = function() require('custom.toggleterm') end
+    },
 
 
-    --- Debugging and running ---
-    use {
-        -- VSCode-like DAP UI
-        "rcarriga/nvim-dap-ui",
-        cmd = {
-            "DapContinue",
-            "DapSetLogLevel",
-            "DapShowLog",
-            "DapStepInto",
-            "DapStepOut",
-            "DapStepOver",
-            "DapTerminate",
-            "DapToggleBreakpoint",
-            "DapToggleRepl",
-        }
-    }
-
-    use {
+    --- Debugging and building ---
+    {
         -- Debug adapter protocol support
         'mfussenegger/nvim-dap',
-        after = "nvim-dap-ui",
-        config = function() require("custom.dap") end
-    }
+        dependencies = 'rcarriga/nvim-dap-ui', -- VSCode-like DAP UI
+        cmd = {
+            'CMakeDebug',
+            'DapContinue',
+            'DapSetLogLevel',
+            'DapShowLog',
+            'DapStepInto',
+            'DapStepOut',
+            'DapStepOver',
+            'DapTerminate',
+            'DapToggleBreakpoint',
+            'DapToggleRepl',
+        },
+        after = 'nvim-dap-ui',
+        config = function() require('custom.dap') end
+    },
 
-    use {
+    {
         -- Python DAP configurations
         'mfussenegger/nvim-dap-python',
-        after = 'nvim-dap',
+        dependencies = 'mfussenegger/nvim-dap',
         ft = 'python',
         config = function()
             require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
         end
-    }
+    },
 
-    use {
-        -- Build and run tasks
-        'pianocomposer321/yabs.nvim',
-        requires = { 'nvim-lua/plenary.nvim' },
-        cmd = { "YabsTask", "YabsDefaultTask" },
-        config = function() require("custom.yabs") end
-    }
+    {
+        -- CMake integration
+        'Civitasv/cmake-tools.nvim',
+        cmd = {
+            'CMakeGenerate',
+            'CMakeBuild',
+            'CMakeRun',
+            'CMakeDebug',
+            'CMakeSelectBuildType',
+            'CMakeSelectBuildTarget',
+            'CMakeSelectLaunchTarget',
+            'CMakeSelectKit',
+            'CMakeSelectConfigurePreset',
+            'CMakeSelectBuildPreset',
+            'CMakeOpen',
+            'CMakeClose',
+            'CMakeInstall',
+            'CMakeClean',
+            'CMakeStop',
+        },
+        opts = {
+            cmake_command = 'cmake',
+            cmake_build_directory = 'build',
+            cmake_build_directory_prefix = '',
+            cmake_generate_options = { '-D', 'CMAKE_EXPORT_COMPILE_COMMANDS=1', '-D', 'CMAKE_CXX_COMPILER=clang++' },
+            cmake_soft_link_compile_commands = true,
+            cmake_build_options = {},
+            cmake_console_size = 10,
+            cmake_console_position = 'belowright',
+            cmake_show_console = 'always',
+            cmake_dap_configuration = { name = 'cpp', type = 'lldb', request = 'launch' },
+            cmake_variants_message = {
+                short = { show = true },
+                long = { show = true, max_length = 40 }
+            }
+        }
+    },
 
 
     --- Project and session management ---
-    use {
+    {
         -- Project managment
-        "ahmedkhalf/project.nvim",
+        'ahmedkhalf/project.nvim',
         config = function()
-            require("project_nvim").setup {
-                patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", ".projectile" },
-                detection_methods = { "lsp", "pattern" },
-                silent_chdir = true,
+            require('project_nvim').setup {
+                patterns = { '.git', '_darcs', '.hg', '.bzr', '.svn', 'Makefile', 'package.json', 'CMakeLists.txt',
+                    '.projectile' },
+                detection_methods = { 'lsp', 'pattern' },
+                -- silent_chdir = true,
             }
         end
-    }
+    },
 
-    use {
+    {
         -- Session management
-        "folke/persistence.nvim",
-        event = "BufReadPre",
-        module = "persistence",
-        config = function() require("persistence").setup() end,
-    }
-end)
+        'folke/persistence.nvim',
+        event = 'BufReadPre',
+        config = function() require('persistence').setup() end,
+    },
+})

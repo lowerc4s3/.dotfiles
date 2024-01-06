@@ -21,6 +21,9 @@ ZSH_AUTOSUGGEST_STRATEGY=(completion history)
 ZSH_CACHE_DIR="$ZSH/cache"
 ZSH_COMPDUMP="$ZSH_CACHE_DIR/.zcompdump"
 
+# Additional zsh completions (https://github.com/zsh-users/zsh-completions required)
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+
 source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -32,14 +35,16 @@ source $ZSH/oh-my-zsh.sh
 
 # Path
 path+=( ~/.emacs.d/bin ~/bin ~/.local/bin ~/.spicetify )
+# PATH="/usr/local/opt/llvm/bin:/usr/local/opt/qt@5/bin:$PATH"
 PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH
 
 # Env variables
-export LESSHISTFILE='-'
-export EDITOR='nvim'
-export HOMEBREW_NO_ENV_HINTS=1
-export ASAN_OPTIONS=detect_leaks=1
+export LESSHISTFILE='-'             # Don't create .lesshst
+export EDITOR='nvim'                # Set default editor
+export HOMEBREW_NO_ENV_HINTS=1      # Don't show homebrew's hints
+export ASAN_OPTIONS=detect_leaks=1  # Enable LeakSanitizer on macOS
+# export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/qt@5/lib/pkgconfig"
 
 #
 # Aliases
@@ -50,11 +55,13 @@ alias v='nvim'                  # Neovim shortcut
 alias o='open'                  # macOS open shortcut
 alias owd='open ./'             # Open current dir in Finder (macOS)
 alias fm='. ranger'             # Ranger shortcut (switches dir when leaving ranger)
+alias rf='rifle'                # Rifle, the ranger file opener shortcut
 alias fhistory='history | rg'   # Searches history
 alias info='info --vi-keys'     # Enables vi keybindigs in info
 alias vc='v *.c'                # Opens all C files in cwd
 alias vch='v *.h *.c'           # Opens all C and header files in cwd
 alias pdb='python3 -m pdb'      # Python debugger shortcut
+alias py='python3'              # Python
 
 source "$HOME/.private.zsh"
 
@@ -76,6 +83,24 @@ alias lsa='exa -a --icons --group-directories-first'
 alias ll='exa -lah --icons --group-directories-first'
 alias l='exa -lh --icons --group-directories-first'
 alias tree='exa --tree --icons --group-directories-first'
+
+# Brew aliases
+alias bupd='brew update'
+alias bupg='brew upgrade'
+alias binfo='brew info'
+alias bsync='brew update && brew upgrade'
+alias brm='brew rm'
+alias bout='brew outdated'
+alias binst='brew install'
+alias bsstop='brew services stop'
+alias bsstart='brew services start'
+alias bsrestart='brew services restart'
+alias bsrch='brew search'
+
+# yabai shortcuts
+alias yrestart='yabai --restart-service'
+alias ystop='yabai --stop-service'
+alias ystart='yabai --start-service'
 
 #
 # Set fzf theme

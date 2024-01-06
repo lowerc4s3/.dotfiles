@@ -101,7 +101,7 @@ typeset -g PROMPT2="%F{0}%(0?.%K{3}  .%K{1} )%K{0}%f  %k%b "
   # OS identifier color.
   typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=0
   typeset -g POWERLEVEL9K_OS_ICON_BACKGROUND=4
-  # Custom icon. הּλ
+  # Custom icon. 󰘵λ
   typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='$'
 
   ##################################[ dir: current directory ]##################################
@@ -184,7 +184,7 @@ typeset -g PROMPT2="%F{0}%(0?.%K{3}  .%K{1} )%K{0}%f  %k%b "
 
   # The default icon shown next to non-writable and non-existent directories when
   # POWERLEVEL9K_DIR_SHOW_WRITABLE is set to v3.
-  typeset -g POWERLEVEL9K_LOCK_ICON=''
+  typeset -g POWERLEVEL9K_LOCK_ICON='󰌾'
 
   # POWERLEVEL9K_DIR_CLASSES allows you to specify custom icons and colors for different
   # directories. It must be an array with 3 * N elements. Each triplet consists of:
@@ -205,19 +205,19 @@ typeset -g PROMPT2="%F{0}%(0?.%K{3}  .%K{1} )%K{0}%f  %k%b "
       # '~/work(|/*)'  WORK     ''
       # '~(|/*)'       HOME     ''
 
-      '~'                               HOME            ''
-      '~/Downloads(|/*)'                DOWNLOADS       ''
-      '~/Applications(|/*)'             APPLICATIONS    ''
-      '~/.config(|/*)'                  CONFIG          ''
-      '~/dots(|/*)'                     CONFIG          ''
-      '~/Documents(|/*)'                DOCUMENTS       ''
-      '~/Desktop(|/*)'                  DESKTOP         ''
-      '~/Music(|/*)'                    MUSIC           ''
-      '~/Pictures(|/*)'                 PICTURES        ''
-      '~/Public(|/*)'                   PUBLIC          ''
-      '~/bmstu(|/*)'                    WORK            ''
-      '/Volumes(|/*)'                   VOLUMES         ''
-      '*'                               DEFAULT         '')
+      '~'                               HOME            ''
+      '~/Downloads(|/*)'                DOWNLOADS       ''
+      '~/Applications(|/*)'             APPLICATIONS    ''
+      '~/.config(|/*)'                  CONFIG          '󰢻'
+      '~/dots(|/*)'                     CONFIG          '󰢻'
+      '~/Documents(|/*)'                DOCUMENTS       ''
+      '~/Desktop(|/*)'                  DESKTOP         '󰍹'
+      '~/Music(|/*)'                    MUSIC           '󰝚'
+      '~/Pictures(|/*)'                 PICTURES        '󰋯'
+      '~/Public(|/*)'                   PUBLIC          '󰡉'
+      '~/bmstu(|/*)'                    WORK            ''
+      '/Volumes(|/*)'                   VOLUMES         '󰋊'
+      '*'                               DEFAULT         '')
 
   #####################################[ vcs: git status ]######################################
   # Version control system colors.
@@ -228,7 +228,7 @@ typeset -g PROMPT2="%F{0}%(0?.%K{3}  .%K{1} )%K{0}%f  %k%b "
   typeset -g POWERLEVEL9K_VCS_LOADING_BACKGROUND=0
 
   # Branch icon. Set this parameter to '\uF126 ' for the popular Powerline branch icon.
-  typeset -g POWERLEVEL9K_VCS_BRANCH_ICON=' '
+  typeset -g POWERLEVEL9K_VCS_BRANCH_ICON='󰊢 '
 
   # Untracked files icon. It's really a question mark, your font isn't broken.
   # Change the value of this parameter to show a different icon.
@@ -372,21 +372,21 @@ typeset -g PROMPT2="%F{0}%(0?.%K{3}  .%K{1} )%K{0}%f  %k%b "
   # Status on success. No content, just an icon. No need to show it if prompt_char is enabled as
   # it will signify success by turning green.
   typeset -g POWERLEVEL9K_STATUS_OK=true
-  typeset -g POWERLEVEL9K_STATUS_OK_VISUAL_IDENTIFIER_EXPANSION=''
+  typeset -g POWERLEVEL9K_STATUS_OK_VISUAL_IDENTIFIER_EXPANSION='󰄬'
   typeset -g POWERLEVEL9K_STATUS_OK_FOREGROUND=0
   typeset -g POWERLEVEL9K_STATUS_OK_BACKGROUND=2
 
   # Status when some part of a pipe command fails but the overall exit status is zero. It may look
   # like this: 1|0.
   typeset -g POWERLEVEL9K_STATUS_OK_PIPE=true
-  typeset -g POWERLEVEL9K_STATUS_OK_PIPE_VISUAL_IDENTIFIER_EXPANSION=''
+  typeset -g POWERLEVEL9K_STATUS_OK_PIPE_VISUAL_IDENTIFIER_EXPANSION='󰄭'
   typeset -g POWERLEVEL9K_STATUS_OK_PIPE_FOREGROUND=0
   typeset -g POWERLEVEL9K_STATUS_OK_PIPE_BACKGROUND=2
 
   # Status when it's just an error code (e.g., '1'). No need to show it if prompt_char is enabled as
   # it will signify error by turning red.
   typeset -g POWERLEVEL9K_STATUS_ERROR=true
-  typeset -g POWERLEVEL9K_STATUS_ERROR_VISUAL_IDENTIFIER_EXPANSION=''
+  typeset -g POWERLEVEL9K_STATUS_ERROR_VISUAL_IDENTIFIER_EXPANSION='󰅖'
   typeset -g POWERLEVEL9K_STATUS_ERROR_FOREGROUND=3
   typeset -g POWERLEVEL9K_STATUS_ERROR_BACKGROUND=1
 
@@ -394,14 +394,14 @@ typeset -g PROMPT2="%F{0}%(0?.%K{3}  .%K{1} )%K{0}%f  %k%b "
   typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL=true
   # Use terse signal names: "INT" instead of "SIGINT(2)".
   typeset -g POWERLEVEL9K_STATUS_VERBOSE_SIGNAME=false
-  typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_VISUAL_IDENTIFIER_EXPANSION=''
+  typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_VISUAL_IDENTIFIER_EXPANSION='󰅖'
   typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_FOREGROUND=3
   typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_BACKGROUND=1
 
   # Status when some part of a pipe command fails and the overall exit status is also non-zero.
   # It may look like this: 1|0.
   typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE=true
-  typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_VISUAL_IDENTIFIER_EXPANSION=''
+  typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_VISUAL_IDENTIFIER_EXPANSION='󰅖'
   typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_FOREGROUND=3
   typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_BACKGROUND=1
 
@@ -419,7 +419,7 @@ typeset -g PROMPT2="%F{0}%(0?.%K{3}  .%K{1} )%K{0}%f  %k%b "
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_VISUAL_IDENTIFIER_EXPANSION=''
   # Custom prefix.
   # typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_PREFIX='took '
-  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_PREFIX=' '
+  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_PREFIX='󰄉 '
 
   #######################[ background_jobs: presence of background jobs ]#######################
   # Background jobs color.
@@ -666,7 +666,7 @@ typeset -g PROMPT2="%F{0}%(0?.%K{3}  .%K{1} )%K{0}%f  %k%b "
   # Show node version only when in a directory tree containing package.json.
   typeset -g POWERLEVEL9K_NODE_VERSION_PROJECT_ONLY=true
   # Custom icon.
-  typeset -g POWERLEVEL9K_NODE_VERSION_VISUAL_IDENTIFIER_EXPANSION=''
+  typeset -g POWERLEVEL9K_NODE_VERSION_VISUAL_IDENTIFIER_EXPANSION='󰏗'
 
   #######################[ go_version: go version (https://golang.org) ]########################
   # Go version color.

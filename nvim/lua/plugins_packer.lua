@@ -1,3 +1,4 @@
+-- Old plugin file
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
@@ -14,7 +15,14 @@ return require('packer').startup(function(use)
     use 'rmehri01/onenord.nvim'
     use 'tiagovla/tokyodark.nvim'
     use 'folke/tokyonight.nvim'
-    use { "catppuccin/nvim", as = "catppuccin" }
+    use {
+        "catppuccin/nvim",
+        as = "catppuccin",
+        config = function()
+            require("custom.catppuccin")
+            vim.cmd('colorscheme catppuccin')
+        end
+    }
 
 
     --- UI ---
@@ -23,6 +31,7 @@ return require('packer').startup(function(use)
         'kyazdani42/nvim-web-devicons',
         config = function() require("custom.devicons") end
     }
+
     use {
         -- Status line
         'nvim-lualine/lualine.nvim',
@@ -33,6 +42,7 @@ return require('packer').startup(function(use)
     use {
         -- Starting screen
         'goolord/alpha-nvim',
+        event = "VimEnter",
         config = function() require("custom.alpha") end
     }
 
@@ -53,7 +63,7 @@ return require('packer').startup(function(use)
         config = function()
             vim.g.code_action_menu_show_details = false
             vim.g.code_action_menu_show_diff = false
-            vim.g.code_action_menu_window_border = 'single'
+            vim.g.code_action_menu_window_border = 'solid'
         end
     }
 
@@ -62,6 +72,17 @@ return require('packer').startup(function(use)
         "folke/todo-comments.nvim",
         requires = "nvim-lua/plenary.nvim",
         config = function() require("custom.todocomments") end
+    }
+
+    use {
+        'norcalli/nvim-colorizer.lua',
+        config = function()
+            require('colorizer').setup {
+                "*",
+                "!packer",
+                css = { names = false, RRGGBBAA = true, css = true }
+            }
+        end
     }
 
     use {
@@ -75,7 +96,15 @@ return require('packer').startup(function(use)
         'petertriho/nvim-scrollbar',
         config = function()
             require("scrollbar").setup {
-                handle = { highlight = "CursorLine" },
+                handle = {
+                    highlight = "CursorLine",
+                },
+                excluded_filetypes = {
+                    "NvimTree",
+                },
+                handlers = {
+                    cursor = false
+                }
             }
         end
     }
@@ -96,7 +125,7 @@ return require('packer').startup(function(use)
         -- Tabs
         'akinsho/bufferline.nvim',
         after = "catppuccin",
-        tag = "v2.0.0",
+        -- tag = "v2.0.0",
         requires = 'kyazdani42/nvim-web-devicons',
         config = function() require("custom.bufferline") end
     }
@@ -106,15 +135,17 @@ return require('packer').startup(function(use)
         "ellisonleao/glow.nvim",
         cmd = "Glow",
         config = function()
-            vim.g.glow_style = "~/Library/Preferences/glow/catppuccin.json"
-            vim.g.glow_border = "rounded"
+            require("glow").setup {
+                style = "auto", -- "~/Library/Preferences/glow/catppuccin.json"
+                border = "solid"
+            }
         end
     }
 
     use {
         -- Markdown live preview in browser
         'iamcco/markdown-preview.nvim',
-        -- disable = true,
+        ft = "markdown",
         run = ":call mkdp#util#install()"
     }
 
@@ -123,7 +154,7 @@ return require('packer').startup(function(use)
     use {
         -- Native finder for telescope
         'nvim-telescope/telescope-fzf-native.nvim',
-        cmd = "Telescope",
+        cmd = { "Telescope", "TodoTelescope" },
         run = 'make'
     }
 
@@ -131,6 +162,12 @@ return require('packer').startup(function(use)
         -- File browser in telescope
         "nvim-telescope/telescope-file-browser.nvim",
         after = "telescope-fzf-native.nvim"
+    }
+
+    use {
+        -- Telescope picker for vim.ui.select
+        'nvim-telescope/telescope-ui-select.nvim',
+        after = "telescope-file-browser.nvim"
     }
 
     use {
@@ -187,7 +224,9 @@ return require('packer').startup(function(use)
                     fold_closed = "",
                     fold_open = "",
                 },
-                file_panel = { width = 30 }
+                file_panel = {
+                    win_config = { width = 30 }
+                }
             }
         end
     }
@@ -196,12 +235,11 @@ return require('packer').startup(function(use)
     --- Editor ---
     use {
         -- Surround word with quotes or parentheses
-        "blackCauldron7/surround.nvim",
-        keys = {
-            { "n", "s" },
-            { "v", "s" },
-        }, -- "surround"
-        config = function() require "surround".setup { mappings_style = "sandwich" } end
+        -- (local copy of blackCauldron7's surround.nvim, original was deleted)
+        "~/.config/nvim/localplug/surround.nvim",
+        config = function()
+            require "surround".setup { mappings_style = "surround" }
+        end
     }
 
     use {
@@ -221,8 +259,8 @@ return require('packer').startup(function(use)
                 },
             }
         end,
-        wants = 'nvim-treesitter', -- or require if not used so far
-        after = 'nvim-cmp' -- if a completion plugin is using tabs load it before
+        wants = 'nvim-treesitter',
+        after = 'nvim-cmp'
     }
 
     use {
@@ -257,6 +295,8 @@ return require('packer').startup(function(use)
         event = { "BufRead", "BufNewFile" },
     }
 
+    use 'rush-rs/tree-sitter-asm'
+
     use {
         -- Syntax highlighting
         'nvim-treesitter/nvim-treesitter',
@@ -286,14 +326,55 @@ return require('packer').startup(function(use)
         end
     }
 
-
     --- LSP ---
     use {
         'neovim/nvim-lspconfig',
         config = function() require("custom.lsp") end
     }
 
-    use 'ray-x/lsp_signature.nvim' -- Function arguments floating window
+    use 'ray-x/lsp_signature.nvim'    -- Function arguments floating window
+
+    use "p00f/clangd_extensions.nvim" -- Clangd extensions support
+
+    use {
+        -- CMake integration
+        'Civitasv/cmake-tools.nvim',
+        cmd = {
+            "CMakeGenerate",
+            "CMakeBuild",
+            "CMakeRun",
+            "CMakeDebug",
+            "CMakeSelectBuildType",
+            "CMakeSelectBuildTarget",
+            "CMakeSelectLaunchTarget",
+            "CMakeSelectKit",
+            "CMakeSelectConfigurePreset",
+            "CMakeSelectBuildPreset",
+            "CMakeOpen",
+            "CMakeClose",
+            "CMakeInstall",
+            "CMakeClean",
+            "CMakeStop",
+        },
+        config = function()
+            require("cmake-tools").setup {
+                cmake_command = "cmake",
+                cmake_build_directory = "build",
+                cmake_build_directory_prefix = "",
+                cmake_generate_options = { "-D", "CMAKE_EXPORT_COMPILE_COMMANDS=1", "-D", "CMAKE_CXX_COMPILER=clang++" },
+                cmake_soft_link_compile_commands = true,
+                cmake_build_options = {},
+                cmake_console_size = 10,
+                cmake_console_position = "belowright",
+                cmake_show_console = "always",
+                cmake_dap_configuration = { name = "cpp", type = "lldb", request = "launch" },
+                cmake_variants_message = {
+                    short = { show = true },
+                    long = { show = true, max_length = 40 }
+                }
+            }
+        end
+    }
 
     use {
         -- Code checking utilities integration
@@ -315,20 +396,30 @@ return require('packer').startup(function(use)
             })
             require("nvim-lightbulb").setup {
                 sign = { enabled = false, },
-                virtual_text = { enabled = true, text = "", hl_mode = "replace", }
+                virtual_text = { enabled = true, text = "", hl_mode = "replace", }
             }
         end
     }
 
     use {
-        -- LSP loading status
+        'simrat39/symbols-outline.nvim',
+        after = 'nvim-lspconfig',
+        cmd = 'SymbolsOutline',
+        config = function()
+            require("custom.symbols-outline")
+        end
+    }
+
+    use {
+        -- LSP loading status (currently disabled)
         'j-hui/fidget.nvim',
+        -- disable = true,
         after = "nvim-lspconfig",
         config = function()
             require("fidget").setup {
                 text = {
                     spinner = "dots",
-                    done = "",
+                    done = "󰄬",
                 },
                 timer = {
                     spinner_rate = 80,
@@ -343,16 +434,68 @@ return require('packer').startup(function(use)
         end
     }
 
+    use {
+        -- VS Code like winbar
+        "utilyre/barbecue.nvim",
+        requires = "SmiteshP/nvim-navic",
+        config = function()
+            require("barbecue").setup {
+                show_dirname = true,
+                show_basename = true,
+                show_modified = true,
+                symbols = { modified = "󰆓", },
+            }
+        end
+    }
 
     --- Completion and snippets ---
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
-    use 'saadparwaiz1/cmp_luasnip' -- Completion symbols
-    use 'L3MON4D3/LuaSnip'
-    use 'rafamadriz/friendly-snippets' -- Collection of snippets
-    use { 'hrsh7th/nvim-cmp', config = function() require("custom.cmp") end }
+    use {
+        'rafamadriz/friendly-snippets',
+        event = { "InsertEnter", "CmdLineEnter" }
+    }
+    use {
+        'L3MON4D3/LuaSnip',
+        after = "friendly-snippets"
+    }
+    use {
+        'hrsh7th/nvim-cmp',
+        after = "LuaSnip",
+        requires = "onsails/lspkind.nvim",
+        config = function() require("custom.cmp") end
+    }
+    use {
+        'saadparwaiz1/cmp_luasnip',
+        after = "nvim-cmp"
+    }
+    use {
+        'hrsh7th/cmp-nvim-lsp',
+        after = "cmp_luasnip"
+    }
+    use {
+        'hrsh7th/cmp-buffer',
+        after = "cmp-nvim-lsp"
+    }
+    use {
+        'hrsh7th/cmp-path',
+        after = "cmp-buffer"
+    }
+    use {
+        'hrsh7th/cmp-cmdline',
+        after = "cmp-path"
+    }
+
+    -- use { 'hrsh7th/cmp-nvim-lsp', }
+    -- use { 'hrsh7th/cmp-buffer', event = { "InsertEnter", "CmdLineEnter" } }
+    -- use { 'hrsh7th/cmp-path', after = "cmp-buffer" }
+    -- use { 'hrsh7th/cmp-cmdline', after = "cmp-path" }
+    -- use { 'saadparwaiz1/cmp_luasnip', after = "cmp-cmdline" } -- Completion symbols
+    -- use { 'L3MON4D3/LuaSnip', after = "cmp_luasnip" }
+    -- use { 'rafamadriz/friendly-snippets', after = "LuaSnip" } -- Collection of snippets
+    -- use {
+    --     'hrsh7th/nvim-cmp',
+    --     after = "friendly-snippets",
+    --     config = function() require("custom.cmp") end
+    -- }
 
 
     --- Terminal ---
@@ -368,6 +511,7 @@ return require('packer').startup(function(use)
         -- VSCode-like DAP UI
         "rcarriga/nvim-dap-ui",
         cmd = {
+            "CMakeDebug",
             "DapContinue",
             "DapSetLogLevel",
             "DapShowLog",
@@ -397,13 +541,13 @@ return require('packer').startup(function(use)
         end
     }
 
-    use {
-        -- Build and run tasks
-        'pianocomposer321/yabs.nvim',
-        requires = { 'nvim-lua/plenary.nvim' },
-        cmd = { "YabsTask", "YabsDefaultTask" },
-        config = function() require("custom.yabs") end
-    }
+    -- use {
+    --     -- Build and run tasks
+    --     'pianocomposer321/yabs.nvim',
+    --     requires = { 'nvim-lua/plenary.nvim' },
+    --     cmd = { "YabsTask", "YabsDefaultTask" },
+    --     config = function() require("custom.yabs") end
+    -- }
 
 
     --- Project and session management ---
@@ -412,9 +556,10 @@ return require('packer').startup(function(use)
         "ahmedkhalf/project.nvim",
         config = function()
             require("project_nvim").setup {
-                patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", ".projectile" },
-                detection_methods = { "pattern" },
-                silent_chdir = true,
+                patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", "CMakeLists.txt",
+                    ".projectile" },
+                detection_methods = { "lsp", "pattern" },
+                -- silent_chdir = true,
             }
         end
     }

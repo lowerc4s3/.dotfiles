@@ -1,11 +1,13 @@
-require'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup {
     -- One of "all", "maintained" (parsers with maintainers), or a list of languages
     -- ensure_installed = "maintained",
     ensure_installed = {
         "yaml", "python"  , "c"   ,
         "cpp" , "lua"     , "bash",
-        "vim" , "markdown", "make"
-    }, -- "comment"
+        "vim" , "markdown", "make",
+        "rust", "asm"     , "comment",
+        "latex"
+    },
 
     -- Install languages synchronously (only applied to `ensure_installed`)
     sync_install = false,
@@ -48,5 +50,13 @@ require'nvim-treesitter.configs'.setup {
                 ["iP"] = "@parameter.inner",
             },
         },
+    },
+}
+
+require('nvim-treesitter.parsers').get_parser_configs().asm = {
+    install_info = {
+        url = 'https://github.com/rush-rs/tree-sitter-asm.git',
+        files = { 'src/parser.c' },
+        branch = 'main',
     },
 }

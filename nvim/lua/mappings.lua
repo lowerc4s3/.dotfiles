@@ -3,6 +3,12 @@ local opts = { silent = true }
 
 map({ 'n', 'v' }, '<Space>', '<Nop>', opts)
 
+-- Replace the word under cursor
+map("n", "<cr>", "ciw", opts)
+
+-- Make cursor stay when yanking in visual mode
+map("v", "y", "ygv<esc>", opts)
+
 -- Navigate windows
 map("n", "<C-h>", "<C-w>h", opts)
 map("n", "<C-j>", "<C-w>j", opts)

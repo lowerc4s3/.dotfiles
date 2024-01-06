@@ -1,7 +1,8 @@
--- Load impatient
-if not pcall(require, "impatient") then
-    vim.notify("Error loading impatient")
-end
+vim.loader.enable()
+-- Load impatient (disabled in nvim 0.9)
+-- if not pcall(require, "impatient") then
+--     vim.notify("Error loading impatient")
+-- end
 
 -- Use filetype.lua instead if filetype.vim
 vim.g.do_filetype_lua = 1

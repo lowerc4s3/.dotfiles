@@ -10,7 +10,7 @@ CHARGING=$(pmset -g batt | grep 'AC Power')
 
 ICON_HL=off
 
-if [ $PERCENTAGE = "" ]; then
+if [[ $PERCENTAGE = "" ]]; then
     exit 0
 fi
 
@@ -33,6 +33,7 @@ case ${PERCENTAGE} in
         ICON_HL_COLOR=$BATTERY_LOW
 esac
 
+# if [[ $INFO == "AC" ]]; then
 if [[ $CHARGING != "" ]]; then
     ICON="􀢋"
     ICON_HL=on

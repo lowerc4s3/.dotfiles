@@ -4,36 +4,35 @@ require('nvim-tree').setup {
     sync_root_with_cwd = true,
     view = {
         width = 30,
-        hide_root_folder = true,
     },
     renderer = {
-        root_folder_label = ':e',
+        root_folder_label = false,
         highlight_git = true,
         full_name = true,
         indent_markers = {
             enable = true,
         },
         icons = {
-            symlink_arrow = '  ',
+            symlink_arrow = ' 󰁔 ',
             show = {
                 git = false,
             },
             glyphs = {
-                bookmark = '',
+                bookmark = '󰃀',
                 folder = {
-                    default      = '',
-                    open         = '',
-                    empty        = '',
-                    empty_open   = '',
-                    symlink      = '',
-                    symlink_open = '',
+                    default      = '󰉋',
+                    open         = '󰉋',
+                    empty        = '󰉖',
+                    empty_open   = '󰉖',
+                    symlink      = '󰉒',
+                    symlink_open = '󰉒',
                 },
                 git = {
                     unstaged  = '',
                     staged    = '',
-                    unmerged  = 'שׂ',
+                    unmerged  = '󰘬',
                     renamed   = '',
-                    untracked = 'ﲉ',
+                    untracked = '󰞋',
                     deleted   = '',
                     ignored   = '',
                 },
@@ -58,6 +57,6 @@ require('nvim-tree').setup {
         cmd = "trash -rf",
     },
     live_filter = {
-        prefix = "[]",
+        prefix = "[󰈶]",
     }
 }

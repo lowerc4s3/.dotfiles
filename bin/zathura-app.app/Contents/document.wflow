@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AMApplicationBuild</key>
+	<string>521.1</string>
+	<key>AMApplicationVersion</key>
+	<string>2.10</string>
+	<key>AMDocumentVersion</key>
+	<string>2</string>
+	<key>actions</key>
+	<array>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<true/>
+					<key>Types</key>
+					<array>
+						<string>com.apple.applescript.object</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>1.0.2</string>
+				<key>AMApplication</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>source</key>
+					<dict/>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>com.apple.applescript.object</string>
+					</array>
+				</dict>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Run AppleScript.action</string>
+				<key>ActionName</key>
+				<string>Запустить AppleScript</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>source</key>
+					<string>on activate_open_instance(quoted_win_title, unquoted_win_title, is_first_time)
+  tell application "System Events"
+    set zathuraProcList to a reference to (every process whose name is "zathura")
+    repeat with proc in zathuraProcList
+      set PID to proc's unix id
+      -- I needed to figure out if this is the instance of Zathura with the
+      -- file on hand. And if it is, then focus on that window. Guess what?
+      -- Apparently you cannot grab list of all windows for a process (through
+      -- "System Events") if that process has fullscreen windows. It just not
+      -- possible. You have to do something like:
+      -- `tell application "zathura"`
+      -- alas, Zathura is not a "Cocoa Application"
+      -- so I had to run lsof for the process PID and strip down the output to contain only filenames 
+      set myFiles to paragraphs of (do shell script "lsof -F -p " &amp; PID &amp; " | grep ^n/ | cut -c2-")
+      -- have to use unquoted win title or comparison won't work
+      if myFiles contains unquoted_win_title then
+        tell proc
+          set frontmost to true
+        end tell
+        return true
+      end if
+    end repeat
+  end tell
+  
+  return false
+end activate_open_instance
+
+on single_run {single_input}
+  set quoted_filePath to quoted form of POSIX path of single_input
+  set unquoted_filePath to POSIX path of single_input
+  -- first we try to find it (in case it's already opened)
+  if not my activate_open_instance(quoted_filePath, unquoted_filePath, false) then
+    set zathura to "/usr/local/bin/zathura "
+    do shell script zathura &amp; quoted_filePath &amp; " &gt; /dev/null 2&gt;&amp;1 &amp;"
+    delay 0.8 -- delay is required so it can set the window to fullscreen, but until the window is created, you can't set its properties
+    my activate_open_instance(quoted_filePath, unquoted_filePath, true)
+  end if
+end single_run
+
+on run {input, parameters}
+  set SelectedItems to input
+  repeat with aFile in SelectedItems -- the loop through all selected items
+      single_run(aFile)
+  end repeat
+end run</string>
+				</dict>
+				<key>BundleIdentifier</key>
+				<string>com.apple.Automator.RunScript</string>
+				<key>CFBundleVersion</key>
+				<string>1.0.2</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<false/>
+				<key>CanShowWhenRun</key>
+				<true/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryUtilities</string>
+				</array>
+				<key>Class Name</key>
+				<string>RunScriptAction</string>
+				<key>InputUUID</key>
+				<string>6E05505A-D65C-48E7-B9C6-6288369840C2</string>
+				<key>Keywords</key>
+				<array>
+					<string>Запустить</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>4EBC6C78-7300-48C6-B6ED-6278736F4C09</string>
+				<key>UUID</key>
+				<string>F25174D3-FDE9-4C98-9244-869D3EBCE4E2</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<string>on run {input, parameters}
+	
+	(* Your script goes here *)
+	
+	return input
+end run</string>
+						<key>name</key>
+						<string>source</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+				</dict>
+				<key>conversionLabel</key>
+				<integer>0</integer>
+				<key>isViewVisible</key>
+				<integer>1</integer>
+				<key>location</key>
+				<string>524.000000:315.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>connectors</key>
+	<dict/>
+	<key>workflowMetaData</key>
+	<dict>
+		<key>workflowTypeIdentifier</key>
+		<string>com.apple.Automator.application</string>
+	</dict>
+</dict>
+</plist>

@@ -21,5 +21,12 @@ require("toggleterm").setup {
     },
 }
 
+-- Disable signcolumn in terminal
+vim.api.nvim_create_autocmd("FileType", {
+    desc = "Disable signcolumn in terminal",
+    pattern = "toggleterm",
+    command = 'set signcolumn=no'
+})
+
 -- Open terminal with command
 -- exec(cmd, num, size, dir, direction, go_back, open)

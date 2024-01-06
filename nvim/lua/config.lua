@@ -18,17 +18,19 @@ opt.autoindent     = true                             -- Autoindent new lines
 --- Editor prefs ---
 opt.mouse               = "a"                         -- Mouse support in all modes
 opt.clipboard           = "unnamedplus"               -- System clipboard
-opt.ignorecase          = true                        -- Case insensetive search...
+opt.ignorecase          = true                        -- Case insensitive search...
 opt.smartcase           = true                        -- ...unless capital is typed
 opt.scrolloff           = 8                           -- Cursor indent
 opt.sidescrolloff       = 8                           -- Cursor indent
-opt.wrap                = false                       -- Dont wrap lines
+opt.wrap                = false                       -- Don't wrap lines
 opt.timeoutlen          = 500                         -- Timeout for which-key plugin
 opt.updatetime          = 4000                        -- Swap file update delay
 g.cursorhold_updatetime = 400                         -- CursorHold activation time (used for lsp diagnostics)
 g.mapleader             = " "                         -- Set leader key
 g.maplocalleader        = " "                         -- Set leader key
 cmd 'language en_US.UTF-8'                            -- Set english
+-- opt.spell               = true
+opt.spelllang           = "en_us,ru"
 
 --- Folds ---
 opt.foldmethod     = "expr"
@@ -40,6 +42,7 @@ opt.splitright     = true                             -- Split window on the rig
 opt.splitbelow     = true                             -- Spawn window below
 
 --- UI prefs ---
+opt.shortmess      = opt.shortmess + { S = true, s = true, }
 opt.showmode       = false                            -- Dont show current mode in command line
 opt.fillchars      = { eob = " " }                    -- Remove "~" chars at EOB
 opt.termguicolors  = true                             -- 24-bit colors
@@ -50,9 +53,9 @@ opt.signcolumn     = "yes"                            -- Always show signcolumn 
 opt.ruler          = false                            -- Disable cursor position (done by lualine)
 opt.laststatus     = 3                                -- Global statusline
 opt.guifont="JetBrainsMono_Nerd_Font:h14"             -- Set font for GUI clients
+opt.showcmd        = false
 
 --- Autocmds ---
--- Highlight yank
 augroup("YankHighlight", { clear = false })
 autocmd("TextYankPost", {
     desc = "Highlight yank",
@@ -63,19 +66,28 @@ autocmd("TextYankPost", {
     end
 })
 
--- Quit help pages with 'q'
 autocmd("FileType", {
     desc = "Quit help pages with 'q'",
     pattern = { "help", "qf", "man" },
     command = "nnoremap <silent> <buffer> q :close<CR>"
 })
 
--- Autoformating opts (don't insert comment symbol after hitting o, O or <CR>)
-autocmd("BufEnter", {
-    desc = "Autoformating opts (don't insert comment symbol after hitting o, O or <CR>)",
-    pattern = "*",
-    command = 'set formatoptions-=ro'
-})
+-- autocmd("FileType", {
+--     desc = "Set wrap, linebreak and some keymaps for markdown files",
+--     pattern = "markdown",
+--     callback = function()
+--         vim.keymap.set({ "n", "v" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
+--         vim.keymap.set({ "n", "v" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
+--         opt.wrap = true
+--         opt.linebreak = true
+--     end
+-- })
+
+-- autocmd("BufEnter", {
+--     desc = "Autoformating opts (don't insert comment symbol after hitting o, O or <CR>)",
+--     pattern = "*",
+--     command = 'set formatoptions-=ro'
+-- })
 
 -- Compile plugins file whenever it's updated
 -- augroup("PackerAutoCompile", {clear = true})

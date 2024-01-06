@@ -5,7 +5,7 @@ local fb_actions = require("telescope").extensions.file_browser.actions
 telescope.setup {
     defaults = {
         initial_mode = 'insert',
-        prompt_prefix = " ",
+        prompt_prefix = "  ",
         selection_caret = " ",
         entry_prefix = " ",
         scroll_strategy = "limit",
@@ -13,6 +13,7 @@ telescope.setup {
         results_title = false,
         borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
         layout_strategy = "horizontal",
+        -- layout_strategy = "bottom_pane",
         layout_config = {
             prompt_position = 'top',
             horizontal = {
@@ -24,10 +25,10 @@ telescope.setup {
         },
         mappings = {
             i = {
-                ["<C-j>"]   = actions.move_selection_next,
-                ["<C-k>"]   = actions.move_selection_previous,
-                ["<tab>"]   = actions.select_default,
-                ["<esc>"]   = actions.close,
+                ["<C-j>"] = actions.move_selection_next,
+                ["<C-k>"] = actions.move_selection_previous,
+                ["<tab>"] = actions.select_default,
+                ["<esc>"] = actions.close,
             }
         }
     },
@@ -36,21 +37,29 @@ telescope.setup {
         file_browser = {
             mappings = {
                 i = {
-                    ["<C-a>"]   = fb_actions.create,
-                    ["<C-r>"]   = fb_actions.rename,
-                    ["<C-d>"]   = fb_actions.remove,
-                    ["["]       = fb_actions.goto_parent_dir,
-                    ["<C-.>"]   = fb_actions.change_cwd,
-                    ["<tab>"]   = actions.select_default,
+                    ["<C-a>"] = fb_actions.create,
+                    ["<C-r>"] = fb_actions.rename,
+                    ["<C-d>"] = fb_actions.remove,
+                    ["["]     = fb_actions.goto_parent_dir,
+                    ["<C-.>"] = fb_actions.change_cwd,
+                    ["<tab>"] = actions.select_default,
                 }
             }
         },
+        ["ui-select"] = {
+            layout_strategy = "bottom_pane",
+            layout_config = {
+                height = 10,
+            },
+            codeactions = false,
+        }
     }
 }
 
 telescope.load_extension("projects")
 telescope.load_extension("fzf")
 telescope.load_extension("file_browser")
+telescope.load_extension("ui-select")
 
 -- Set telescope highlights
 -- vim.cmd [[

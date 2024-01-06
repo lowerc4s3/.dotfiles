@@ -14,69 +14,74 @@ vim.g.completeopt = { 'menu', 'menuone', 'noselect' }
 
 -- local border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 
--- -- Codicons
+-- Codicons
+local icons = {
+    Text          = "",
+    Method        = "",
+    Function      = "",
+    Constructor   = "",
+    Field         = "",
+    Variable      = "",
+    Class         = "",
+    Interface     = "",
+    Module        = "",
+    Property      = "",
+    Unit          = "",
+    Value         = "",
+    Enum          = "",
+    Keyword       = "",
+    Snippet       = "",
+    Color         = "",
+    File          = "",
+    Reference     = "",
+    Folder        = "",
+    EnumMember    = "",
+    Constant      = "",
+    Struct        = "",
+    Event         = "",
+    Operator      = "",
+    TypeParameter = "",
+}
+
+-- -- Old icons
 -- local icons = {
---     Text          = "",
---     Method        = "",
---     Function      = "",
---     Constructor   = "",
---     Field         = "",
---     Variable      = "",
---     Class         = "",
---     Interface     = "",
---     Module        = "",
---     Property      = "",
---     Unit          = "",
---     Value         = "",
---     Enum          = "",
---     Keyword       = "",
---     Snippet       = "",
---     Color         = "",
---     File          = "",
---     Reference     = "",
---     Folder        = "",
---     EnumMember    = "",
---     Constant      = "",
---     Struct        = "",
---     Event         = "",
---     Operator      = "",
+--     Text          = "", -- 󰚞 
+--     Method        = "󰆧",
+--     Function      = "λ",
+--     Constructor   = "", -- ⌘
+--     Field         = "#", -- 󰜢 󰘎 
+--     Variable      = "󰈜",
+--     Class         = "󰊱", -- 󰒕
+--     Interface     = "",
+--     Module        = "󰏓",
+--     Property      = "#", -- 󰜢 󰘎 
+--     Unit          = "", -- 󰖷
+--     Value         = "󰎠",
+--     Enum          = "",
+--     Keyword       = "", -- 󰌆
+--     Snippet       = "󰅱",
+--     Color         = "󰌁",
+--     File          = "󰈙",
+--     Reference     = "󰈇",
+--     Folder        = "",
+--     EnumMember    = "",
+--     Constant      = "󰐀",
+--     Struct        = "󰙅",
+--     Event         = "󰉁",
+--     Operator      = "󰆖", -- 󰆕 󰇕
 --     TypeParameter = "",
 -- }
-
--- Old icons
-local icons = {
-    Text          = "", -- ﮜ 
-    Method        = "",
-    Function      = "λ",
-    Constructor   = "", -- ⌘
-    Field         = "#", -- ﰠ ﬍ 
-    Variable      = "",
-    Class         = "", -- ﴯ
-    Interface     = "",
-    Module        = "",
-    Property      = "#", -- ﰠ ﬍ 
-    Unit          = "", -- 襁
-    Value         = "",
-    Enum          = "",
-    Keyword       = "", -- 
-    Snippet       = "",
-    Color         = "",
-    File          = "",
-    Reference     = "",
-    Folder        = "",
-    EnumMember    = "",
-    Constant      = "",
-    Struct        = "פּ",
-    Event         = "",
-    Operator      = "", --  
-    TypeParameter = "",
-}
 
 cmp.setup {
     window = {
         documentation = {
             maxheight = 15,
             maxwidth = 50,
+        },
+        completion = {
+            col_offset = -3,
+            side_padding = 0,
+            winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
         },
     },
 
@@ -88,8 +93,7 @@ cmp.setup {
     formatting = {
         fields = { "kind", "abbr" },
         format = function(_, item)
-            item.kind = icons[item.kind]
-
+            item.kind = " " .. icons[item.kind] .. " "
             return item
         end
     },
@@ -162,23 +166,12 @@ cmp.setup {
     experimental = { ghost_text = true },
 }
 
--- Use buffer source for `/`
-cmp.setup.cmdline('/', {
+-- Use buffer source for `/` and '?'
+cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline(),
     completion = {
         keyword_length = 1,
     },
-    enabled = true,
-    sources = { { name = 'buffer' } }
-})
-
--- Use buffer source for `?`
-cmp.setup.cmdline('?', {
-    mapping = cmp.mapping.preset.cmdline(),
-    completion = {
-        keyword_length = 1,
-    },
-    enabled = true,
     sources = { { name = 'buffer' } }
 })
 

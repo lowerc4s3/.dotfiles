@@ -1,18 +1,17 @@
 local alpha = require("alpha")
 
 local ascii = {
-    "  ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠿⠿⠿⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿  ",
-    "  ⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⣉⡥⠶⢶⣿⣿⣿⣿⣷⣆⠉⠛⠿⣿⣿⣿⣿⣿⣿⣿  ",
-    "  ⣿⣿⣿⣿⣿⣿⣿⡿⢡⡞⠁⠀⠀⠤⠈⠿⠿⠿⠿⣿⠀⢻⣦⡈⠻⣿⣿⣿⣿⣿  ",
-    "  ⣿⣿⣿⣿⣿⣿⣿⡇⠘⡁⠀⢀⣀⣀⣀⣈⣁⣐⡒⠢⢤⡈⠛⢿⡄⠻⣿⣿⣿⣿  ",
-    "  ⣿⣿⣿⣿⣿⣿⣿⡇⠀⢀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣶⣄⠉⠐⠄⡈⢀⣿⣿⣿⣿  ",
-    "  ⣿⣿⣿⣿⣿⣿⣿⠇⢠⣿⣿⣿⣿⡿⢿⣿⣿⣿⠁⢈⣿⡄⠀⢀⣀⠸⣿⣿⣿⣿  ",
-    "  ⣿⣿⣿⣿⡿⠟⣡⣶⣶⣬⣭⣥⣴⠀⣾⣿⣿⣿⣶⣾⣿⣧⠀⣼⣿⣷⣌⡻⢿⣿  ",
-    "  ⣿⣿⠟⣋⣴⣾⣿⣿⣿⣿⣿⣿⣿⡇⢿⣿⣿⣿⣿⣿⣿⡿⢸⣿⣿⣿⣿⣷⠄⢻  ",
-    "  ⡏⠰⢾⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⢂⣭⣿⣿⣿⣿⣿⠇⠘⠛⠛⢉⣉⣠⣴⣾  ",
-    "  ⣿⣷⣦⣬⣍⣉⣉⣛⣛⣉⠉⣤⣶⣾⣿⣿⣿⣿⣿⣿⡿⢰⣿⣿⣿⣿⣿⣿⣿⣿  ",
-    "  ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⡘⣿⣿⣿⣿⣿⣿⣿⣿⡇⣼⣿⣿⣿⣿⣿⣿⣿⣿  ",
-    "  ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⢸⣿⣿⣿⣿⣿⣿⣿⠁⣿⣿⣿⣿⣿⣿⣿⣿⣿  ",
+   "   ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣿⣶⣿⣦⣼⣆          ",
+   "    ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦       ",
+   "          ⠈⢿⣿⣟⠦ ⣾⣿⣿⣷    ⠻⠿⢿⣿⣧⣄     ",
+   "           ⣸⣿⣿⢧ ⢻⠻⣿⣿⣷⣄⣀⠄⠢⣀⡀⠈⠙⠿⠄    ",
+   "          ⢠⣿⣿⣿⠈    ⣻⣿⣿⣿⣿⣿⣿⣿⣛⣳⣤⣀⣀   ",
+   "   ⢠⣧⣶⣥⡤⢄ ⣸⣿⣿⠘  ⢀⣴⣿⣿⡿⠛⣿⣿⣧⠈⢿⠿⠟⠛⠻⠿⠄  ",
+   "  ⣰⣿⣿⠛⠻⣿⣿⡦⢹⣿⣷   ⢊⣿⣿⡏  ⢸⣿⣿⡇ ⢀⣠⣄⣾⠄   ",
+   " ⣠⣿⠿⠛ ⢀⣿⣿⣷⠘⢿⣿⣦⡀ ⢸⢿⣿⣿⣄ ⣸⣿⣿⡇⣪⣿⡿⠿⣿⣷⡄  ",
+   " ⠙⠃   ⣼⣿⡟  ⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿ ⣿⣿⡇ ⠛⠻⢷⣄ ",
+   "      ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆     ",
+   "       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃     ",
 }
 
 local header = {
@@ -26,7 +25,7 @@ local header = {
 
 local footer = {
     type = "text",
-    val = "Учи уроки дебил",
+    val = "найди работу еблан",
     opts = {
         position = "center",
         hl = "Comment",
@@ -66,13 +65,13 @@ end
 local buttons = {
     type = "group",
     val = {
-        button(" n ", "  New File  ", ":enew<CR>"),
-        button(" f ", "  Find File  ", ":Telescope find_files<CR>"),
-        button(" r ", "  Recent Files  ", ":Telescope oldfiles<CR>"),
-        button(" p ", "  Open Project  ", ":Telescope projects<CR>"),
-        button(" d ", "  Open directory  ", ":Telescope file_browser<CR>"),
-        button(" l ", "  Load last session  ", ":lua require('persistence').load({ last = true })<CR>"),
-        button(" q ", "  Quit  ", ":qa!<CR>"),
+        button(" n ", "󰈙  new file  ", ":enew<CR>"),
+        button(" f ", "󰈞  find file  ", ":Telescope find_files<CR>"),
+        button(" r ", "󰥔  recent files  ", ":Telescope oldfiles<CR>"),
+        button(" p ", "  open project  ", ":Telescope projects<CR>"),
+        button(" d ", "  open directory  ", ":Telescope file_browser<CR>"),
+        button(" l ", "󰁯  load last session  ", ":lua require('persistence').load({ last = true })<CR>"),
+        button(" q ", "󰅗  quit  ", ":qa!<CR>"),
     },
     opts = {
         spacing = 1,
@@ -91,8 +90,8 @@ alpha.setup {
         section.header,
         { type = "padding", val = 3 },
         section.buttons,
-        -- { type = "padding", val = 3 },
-        -- section.footer,
+        { type = "padding", val = 3 },
+        section.footer,
     },
     opts = {},
 }

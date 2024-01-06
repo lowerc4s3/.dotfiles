@@ -5,6 +5,9 @@
 # Open terminal
 lalt - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
 
+# Open firefox
+shift + lalt - b : open -a Firefox
+
 #
 # yabai bindings
 #
@@ -65,6 +68,11 @@ ctrl + lalt - x : yabai -m space --destroy
 # move workspaces (0x2B – ,; 0x2F – .)
 shift + lalt - 0x2F : yabai -m space --swap next
 shift + lalt - 0x2B : yabai -m space --swap prev
+
+# shift + lalt - 0x2F : yabai -m space --swap next && \
+#                     sketchybar --trigger spaces_swapped
+# shift + lalt - 0x2B : yabai -m space --swap prev && \
+#                     sketchybar --trigger spaces_swapped
 
 # Resize windows
 shift + lctrl + lalt - h : yabai -m window --resize left:-50:0; \

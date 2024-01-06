@@ -16,11 +16,11 @@ SANS_FONT='SF UI Text'
 sketchybar --bar    height=34           \
                     blur_radius=50      \
                     position=bottom     \
-                    padding_left=6      \
+                    padding_left=0      \
                     padding_right=0     \
                     margin=5            \
                     y_offset=2          \
-                    corner_radius=11    \
+                    corner_radius=8     \
                     sticky=on           \
                     color="$SK_BAR"
 
@@ -41,11 +41,9 @@ sketchybar --default    updates=when_shown                                  \
                         icon.padding_right=3                                \
                         background.padding_left=5                           \
                         background.padding_right=5                          \
-                        background.corner_radius=6                          \
-                        background.height=24                                \
+                        background.corner_radius=8                          \
+                        background.height=34                                \
 
-
-# sketchybar --add event spaces_swapped
 
 #
 # Right items
@@ -54,7 +52,6 @@ sketchybar --default    updates=when_shown                                  \
 ## Space indicators
 
 # SPACE_ICONS=("一" "二" "三" "四" "五" "六" "七" "八" "九" "十")
-# SPACE_ICONS=("1 􀎟" "2 􀵶" "3 􀑪" "4 􀅼" "5" "6" "7" "8" "9" "10")
 SPACE_ICONS=("1" "2" "3" "4" "5" "6" "7" "8" "9" "10")
 SPACES=()
 
@@ -71,12 +68,12 @@ do
                                             background.padding_left=0                   \
                                             background.padding_right=0                  \
                                             background.color="$SK_SPACE_HL_BG"          \
-                                            background.height=24                        \
+                                            background.corner_radius=8                  \
+                                            background.height=34                        \
                                             background.drawing=off                      \
                                             label.drawing=off                           \
-                                            script="TEXT=$SK_SUBTEXT SPACE_OCCUPIED_FG=$SK_TEXT $PLUGIN_DIR/space.sh"               \
+                                            script="TEXT=$SK_TEXT SPACE_OCCUPIED_FG=$SK_SPACE_OCCUPIED_FG $PLUGIN_DIR/space.sh"               \
                                             click_script="yabai -m space --focus $sid"
-                # --subscribe space.$sid      spaces_swapped
 done
 
 sketchybar --add            bracket         spaces_br "${SPACES[@]}"    \
@@ -107,7 +104,7 @@ sketchybar --add        item            clock right                     \
                                         label.padding_right=8           \
                                         label.font="$MONOSPACE_FONT:Regular:16.0"    \
                                         script="$PLUGIN_DIR/clock.sh"   \
-           --subscirbe  clock           system_woke                     \
+                                        background.padding_right=0                          \
 \
            --add        event           input_change 'AppleSelectedInputSourcesChangedNotification' \
            --add        item            keyboard right                                              \
@@ -122,7 +119,9 @@ sketchybar --add        item            clock right                     \
 \
            --add        item            wifi right                      \
            --set        wifi            script="$PLUGIN_DIR/wifi.sh"    \
-           --subscribe  wifi            system_woke wifi_change
+           --subscribe  wifi            wifi_change
+
+                                        # update_freq=10                  \
 
 sketchybar --update
 echo "sketchybar configuration loaded.."

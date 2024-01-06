@@ -60,7 +60,7 @@ font:
     x: 0
     y: 0
   size: 15
-  use_thin_strokes: true
+  AppleFontSmoothing: true
 key_bindings:
 - action: Paste
   key: V
