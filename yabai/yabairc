@@ -10,6 +10,7 @@ yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 yabai -m config external_bar all:0:38
 
 # Global settings
+yabai -m debug_output on
 yabai -m config window_shadow                float
 yabai -m config window_opacity               on
 yabai -m config window_opacity_duration      0.05
@@ -17,13 +18,8 @@ yabai -m config active_window_opacity        1.0
 yabai -m config normal_window_opacity        0.9
 yabai -m config split_ratio                  0.50
 yabai -m config auto_balance                 off
-
-# Borders
-yabai -m config window_border                off
-yabai -m config window_border_width          1
-yabai -m config active_window_border_color   0xff81a1c1
-yabai -m config normal_window_border_color   0x002e3440
-yabai -m config insert_feedback_color        0xffd75f5f
+# yabai -m config window_animation_duration    0.05
+# yabai -m config window_animation_frame_rate  60
 
 # Mouse settings
 yabai -m config mouse_follows_focus          on
@@ -78,6 +74,9 @@ yabai -m rule --add app="^Twitter$" title="(Медиа)"               manage=of
 yabai -m rule --add app="^Spark$"                                 manage=off
 yabai -m rule --add app="^Safari$" title="$safari_title"          manage=off
 
-yabai -m signal --add event=space_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq '.[1].id // .[0].jd' )"
+yabai -m rule --add app="^Arc$" subrole='AXSystemDialog' manage=off mouse_follows_focus=off
+yabai -m rule --add app='^Arc$' title='^Space.*$' manage=off
+
+# yabai -m signal --add event=space_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq '.[1].id // .[0].jd' )"
 
 echo "yabai configuration loaded.."

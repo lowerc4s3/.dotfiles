@@ -36,7 +36,7 @@ source $ZSH/oh-my-zsh.sh
 # Path
 path+=( ~/.emacs.d/bin ~/bin ~/.local/bin ~/.spicetify )
 # PATH="/usr/local/opt/llvm/bin:/usr/local/opt/qt@5/bin:$PATH"
-PATH="/usr/local/opt/llvm/bin:$PATH"
+PATH="/usr/local/opt/llvm/bin:/usr/local/opt/postgresql@16/bin:$PATH"
 export PATH
 
 # Env variables
@@ -44,28 +44,38 @@ export LESSHISTFILE='-'             # Don't create .lesshst
 export EDITOR='nvim'                # Set default editor
 export HOMEBREW_NO_ENV_HINTS=1      # Don't show homebrew's hints
 export ASAN_OPTIONS=detect_leaks=1  # Enable LeakSanitizer on macOS
+export CPPFLAGS="-I/usr/local/opt/llvm/include"
 # export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/qt@5/lib/pkgconfig"
 
 #
 # Aliases
 #
 
-# General aliases
+# general aliases
 alias v='nvim'                  # Neovim shortcut
 alias o='open'                  # macOS open shortcut
 alias owd='open ./'             # Open current dir in Finder (macOS)
-alias fm='. ranger'             # Ranger shortcut (switches dir when leaving ranger)
+# alias fm='. ranger'             # Ranger shortcut (switches dir when leaving ranger)
 alias rf='rifle'                # Rifle, the ranger file opener shortcut
 alias fhistory='history | rg'   # Searches history
 alias info='info --vi-keys'     # Enables vi keybindigs in info
 alias vc='v *.c'                # Opens all C files in cwd
 alias vch='v *.h *.c'           # Opens all C and header files in cwd
-alias pdb='python3 -m pdb'      # Python debugger shortcut
-alias py='python3'              # Python
+alias pdb='python3.12 -m pdb'   # Python debugger shortcut
+alias py='python3.12'           # Python
+
+function fm() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 
 source "$HOME/.private.zsh"
 
-# Git aliases
+# git aliases
 alias gl='git log --graph --abbrev-commit --decorate --date=relative --all'
 alias glo='git log --oneline --graph --abbrev-commit --decorate --date=relative --all'
 alias gst='git status --short --find-renames --branch'
@@ -76,7 +86,7 @@ alias gcm='git commit -m'
 alias gcam='git commit -am'
 alias gd='git diff'
 
-# Exa aliases
+# exa aliases
 alias ls='exa --icons --group-directories-first'
 alias la='exa -a --icons --group-directories-first'
 alias lsa='exa -a --icons --group-directories-first'
@@ -84,7 +94,7 @@ alias ll='exa -lah --icons --group-directories-first'
 alias l='exa -lh --icons --group-directories-first'
 alias tree='exa --tree --icons --group-directories-first'
 
-# Brew aliases
+# brew aliases
 alias bupd='brew update'
 alias bupg='brew upgrade'
 alias binfo='brew info'
@@ -101,6 +111,9 @@ alias bsrch='brew search'
 alias yrestart='yabai --restart-service'
 alias ystop='yabai --stop-service'
 alias ystart='yabai --start-service'
+
+# sketchybar shortcuts
+alias skreload='sketchybar --reload'
 
 #
 # Set fzf theme

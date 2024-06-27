@@ -7,6 +7,15 @@ dap.adapters.lldb = {
     name = "lldb"
 }
 
+dap.adapters.delve = {
+    type = 'server',
+    port = '${port}',
+    executable = {
+        command = 'dlv',
+        args = { 'dap', '-l', '127.0.0.1:${port}' },
+    }
+}
+
 dap.configurations.cpp = {
     {
         name = 'Launch',
@@ -21,11 +30,26 @@ dap.configurations.cpp = {
     }
 }
 
+dap.configurations.go = {
+    {
+        type = "delve",
+        name = "Debug",
+        request = "launch",
+        program = "${file}"
+    },
+}
+
 dap.configurations.c = dap.configurations.cpp
 
-vim.fn.sign_define('DapBreakpoint', {text='', texthl='DiagnosticSignError', linehl='', numhl='DiagnosticSignError'})
-vim.fn.sign_define('DapStopped', {text='󰁔', texthl='', linehl='CursorLine', numhl=''})
-vim.fn.sign_define('DapBreakpointCondition' , {text='󰁔', texthl='', linehl='CursorLine', numhl=''})
+vim.fn.sign_define('DapBreakpoint', {
+    text = '',
+    texthl = 'DiagnosticSignError',
+    linehl = '',
+    numhl =
+    'DiagnosticSignError'
+})
+vim.fn.sign_define('DapStopped', { text = '󰁔', texthl = '', linehl = 'CursorLine', numhl = '' })
+vim.fn.sign_define('DapBreakpointCondition', { text = '󰁔', texthl = '', linehl = 'CursorLine', numhl = '' })
 
 dap.defaults.fallback.focus_terminal = true
 
@@ -81,8 +105,8 @@ dapui.setup({
         position = "bottom", -- Can be "left", "right", "top", "bottom"
     }, ]]
     floating = {
-        max_height = nil, -- These can be integers or a float between 0 and 1.
-        max_width = nil, -- Floats will be treated as percentage of your screen.
+        max_height = nil,  -- These can be integers or a float between 0 and 1.
+        max_width = nil,   -- Floats will be treated as percentage of your screen.
         border = "single", -- Border style. Can be "single", "double" or "rounded"
         mappings = {
             close = { "q", "<Esc>" },

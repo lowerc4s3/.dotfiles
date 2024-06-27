@@ -8,6 +8,7 @@ require("null-ls").setup {
         builtins.diagnostics.shellcheck.with({
             extra_filetypes = { "bash" }
         }),
+        builtins.formatting.black,
         -- builtins.diagnostics.cppcheck
     }
 }

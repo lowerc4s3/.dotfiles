@@ -28,8 +28,8 @@ lalt - 6 : yabai -m space --focus 6
 lalt - 7 : yabai -m space --focus 7
 lalt - 8 : yabai -m space --focus 8
 # 0x2B – <; 0x2F – >
-lalt - 0x2F : yabai -m space --focus next
-lalt - 0x2B : yabai -m space --focus prev
+lalt - 0x2F : yabai -m space --focus next || yabai -m space --focus first
+lalt - 0x2B : yabai -m space --focus prev || yabai -m space --focus last
 
 # Moving windows
 ctrl + lalt - h : yabai -m window --warp west
@@ -42,6 +42,16 @@ shift + lalt - h : yabai -m window --swap west
 shift + lalt - j : yabai -m window --swap south
 shift + lalt - k : yabai -m window --swap north
 shift + lalt - l : yabai -m window --swap east
+
+# Stack windows
+cmd + shift + lalt - h : yabai -m window --stack west
+cmd + shift + lalt - j : yabai -m window --stack south
+cmd + shift + lalt - k : yabai -m window --stack north
+cmd + shift + lalt - l : yabai -m window --stack east
+
+# Traverse stack
+lalt - q : yabai -m window --focus stack.prev
+lalt - w : yabai -m window --focus stack.next
 
 # Move focus container to workspace
 ctrl + lalt + cmd - h : yabai -m window --space prev; yabai -m space --focus prev
@@ -66,8 +76,8 @@ ctrl + lalt - n : yabai -m space --create && \
 ctrl + lalt - x : yabai -m space --destroy
 
 # move workspaces (0x2B – ,; 0x2F – .)
-shift + lalt - 0x2F : yabai -m space --swap next
-shift + lalt - 0x2B : yabai -m space --swap prev
+shift + lalt - 0x2F : yabai -m space --move next
+shift + lalt - 0x2B : yabai -m space --move prev
 
 # shift + lalt - 0x2F : yabai -m space --swap next && \
 #                     sketchybar --trigger spaces_swapped
@@ -89,6 +99,9 @@ lctrl + lalt - b : yabai -m space --balance
 
 # Rotate window tree
 lctrl + lalt - r : yabai -m space --rotate 90
+
+# Change split
+lalt - t : yabai -m window --toggle split
 
 # Enable / Disable gaps in current workspace
 lctrl + lalt - g : yabai -m space --toggle padding; yabai -m space --toggle gap

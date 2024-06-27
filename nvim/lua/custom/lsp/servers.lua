@@ -3,7 +3,7 @@ local M = {}
 local lspconfig = require('lspconfig')
 local map = vim.keymap.set
 
-M.on_attach = function(_, bufnr)
+M.on_attach = function(client, bufnr)
     local oa_opts = { silent = true, buffer = bufnr }
     map('n', 'gD', vim.lsp.buf.declaration, oa_opts)
     map('n', 'gd', vim.lsp.buf.definition, oa_opts)
@@ -16,11 +16,14 @@ M.on_attach = function(_, bufnr)
         handler_opts = { border = "solid" },
         hint_enable = false,
     })
+    if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint.enable(true)
+    end
 end
 
 M.capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local no_setup = { 'bashls', 'cmake', 'rust_analyzer', 'texlab' }
+local no_setup = { 'bashls', 'cmake', 'rust_analyzer', 'texlab', 'basedpyright', 'tsserver' }
 for _, server in ipairs(no_setup) do
     lspconfig[server].setup {
         on_attach = M.on_attach,
@@ -28,25 +31,42 @@ for _, server in ipairs(no_setup) do
     }
 end
 
-lspconfig.pylsp.setup {
-    on_attach = M.on_attach,
-    capabilities = M.capabilities,
-    settings = {
-        pylsp = {
-            plugins = {
-                jedi_completion = {
-                    include_params = true, -- this line enables snippets
-                    fuzzy = true
-                },
-            },
-        },
-    },
-}
+-- lspconfig.pylsp.setup {
+--     on_attach = M.on_attach,
+--     capabilities = M.capabilities,
+--     settings = {
+--         pylsp = {
+--             plugins = {
+--                 jedi_completion = {
+--                     include_params = true, -- this line enables snippets
+--                     fuzzy = true
+--                 },
+--                 pylsp_mypy = {
+--                     enabled = true,
+--                 },
+--             },
+--         },
+--     },
+-- }
 
 lspconfig.clangd.setup {
     on_attach = M.on_attach,
     capabilities = M.capabilities,
     cmd = { "clangd", "--fallback-style=Microsoft" }
+}
+
+lspconfig.gopls.setup {
+    on_attach = M.on_attach,
+    capabilities = M.capabilities,
+    settings = {
+        gopls = {
+            ["ui.inlayhint.hints"] = {
+                compositeLiteralFields = true,
+                constantValues = true,
+                parameterNames = true
+            },
+        }
+    }
 }
 
 -- Make runtime files discoverable to the server
