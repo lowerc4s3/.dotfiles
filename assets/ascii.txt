@@ -1,3 +1,5 @@
+TODO: create .lua file with ascii art for dashboard
+
 kitty
     " /| ､        ",
     "(°､ ｡ 7      ",
