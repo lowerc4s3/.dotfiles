@@ -5,8 +5,11 @@
 # Open terminal
 lalt - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
 
-# Open firefox
-shift + lalt - b : open -a Firefox
+# Open browser
+shift + lalt - b : open -a qutebrowser
+
+# Open neovide
+shift + lalt - v : open -a neovide
 
 #
 # yabai bindings
@@ -56,14 +59,14 @@ lalt - w : yabai -m window --focus stack.next
 # Move focus container to workspace
 ctrl + lalt + cmd - h : yabai -m window --space prev; yabai -m space --focus prev
 ctrl + lalt + cmd - l : yabai -m window --space next; yabai -m space --focus next
-ctrl + lalt + cmd - 1 : yabai -m window --space 1; yabai -m space --focus 1
-ctrl + lalt + cmd - 2 : yabai -m window --space 2; yabai -m space --focus 2
-ctrl + lalt + cmd - 3 : yabai -m window --space 3; yabai -m space --focus 3
-ctrl + lalt + cmd - 4 : yabai -m window --space 4; yabai -m space --focus 4
-ctrl + lalt + cmd - 5 : yabai -m window --space 5; yabai -m space --focus 5
-ctrl + lalt + cmd - 6 : yabai -m window --space 6; yabai -m space --focus 6
-ctrl + lalt + cmd - 7 : yabai -m window --space 7; yabai -m space --focus 7
-ctrl + lalt + cmd - 8 : yabai -m window --space 8; yabai -m space --focus 8
+shift + lalt - 1 : yabai -m window --space 1; yabai -m space --focus 1
+shift + lalt - 2 : yabai -m window --space 2; yabai -m space --focus 2
+shift + lalt - 3 : yabai -m window --space 3; yabai -m space --focus 3
+shift + lalt - 4 : yabai -m window --space 4; yabai -m space --focus 4
+shift + lalt - 5 : yabai -m window --space 5; yabai -m space --focus 5
+shift + lalt - 6 : yabai -m window --space 6; yabai -m space --focus 6
+shift + lalt - 7 : yabai -m window --space 7; yabai -m space --focus 7
+shift + lalt - 8 : yabai -m window --space 8; yabai -m space --focus 8
 
 # create desktop and follow focus
 shift + ctrl + cmd + lalt - n : yabai -m space --create && \
