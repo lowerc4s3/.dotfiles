@@ -28,7 +28,7 @@ map("i", "<C-k>", "<Up>", opts)
 map("i", "<C-l>", "<Right>", opts)
 
 -- Disable search highlight in insert and leave insert mode in terminal
-map("t", "<ESC>", "<C-\\><C-N>", opts)
+-- map("t", "<ESC>", "<C-\\><C-N>", opts)
 map("n", "<ESC>", ":noh<CR>", opts)
 
 -- Open ToggleTerm
@@ -44,5 +44,5 @@ map("n", "<S-TAB>", "<cmd>BufferLineCyclePrev<CR>", opts)
 map("n", "@", '<cmd>execute "noautocmd norm!" . v:count1 . "@" . getcharstr()<CR>', opts)
 
 -- Jump to diagnostics
-map('n', '[d', vim.diagnostic.goto_prev, opts)
-map('n', ']d', vim.diagnostic.goto_next, opts)
+map('n', '[d', function() vim.diagnostic.jump { count = 1 } end, opts)
+map('n', ']d', function() vim.diagnostic.jump { count = -1 } end, opts)

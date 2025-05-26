@@ -1,0 +1,153 @@
+{
+    "level 1 header": {
+        "prefix": "h1",
+        "body": [
+            "# $0"
+        ],
+        "description": "Insert level 1 header"
+    },
+    "level 2 header": {
+        "prefix": "h2",
+        "body": [
+            "## $0"
+        ],
+        "description": "Insert level 2 header"
+    },
+    "level 3 header": {
+        "prefix": "h3",
+        "body": [
+            "### $0"
+        ],
+        "description": "Insert level 3 header"
+    },
+    "level 4 header": {
+        "prefix": "h4",
+        "body": [
+            "#### $0"
+        ],
+        "description": "Insert level 4 header"
+    },
+    "level 5 header": {
+        "prefix": "h5",
+        "body": [
+            "##### $0"
+        ],
+        "description": "Insert level 5 header"
+    },
+    "level 6 header": {
+        "prefix": "h6",
+        "body": [
+            "###### $0"
+        ],
+        "description": "Insert level 6 header"
+    },
+    "italic": {
+        "prefix": [
+            "it",
+            "italic"
+        ],
+        "body": [
+            "_$0_"
+        ],
+        "description": "Italic text"
+    },
+    "bold": {
+        "prefix": [
+            "bf",
+            "bold"
+        ],
+        "body": [
+            "*$0*"
+        ],
+        "description": "Bold text"
+    },
+    "strikethrough": {
+        "prefix": [
+            "st",
+            "strikethrough"
+        ],
+        "body": [
+            "~~$0~~"
+        ],
+        "description": "Strikethrough text"
+    },
+    "monospace": {
+        "prefix": [
+            "tt",
+            "monospace"
+        ],
+        "body": [
+            "`$0`"
+        ],
+        "description": "Monospace text"
+    },
+    "code block": {
+        "prefix": "code",
+        "body": [
+            "```${1:lang}",
+            "$0",
+            "```"
+        ],
+        "description": "Code block"
+    },
+    "link": {
+        "prefix": [
+            "ln",
+            "img"
+        ],
+        "body": [
+            "[${1:name}](${2:url})$0"
+        ],
+        "description": "Insert link or image"
+    },
+    "alert": {
+        "prefix": "alert",
+        "body": [
+            "> [!${1:TODO}]",
+            "> $0"
+        ],
+        "description": "Insert an alert quote"
+    },
+    "task list": {
+        "prefix": [
+            "alert",
+            "todo"
+        ],
+        "body": [
+            "- [${1| ,x|}] $0"
+        ],
+        "description": "Insert task list"
+    },
+    "reference link": {
+        "prefix": "ref",
+        "body": [
+            "[${1:name}][$0]"
+        ],
+        "description": "Insert reference link"
+    },
+    "new reference link": {
+        "prefix": "newref",
+        "body": [
+            "[${1:name}][${2:ref_name}]",
+            "",
+            "[$2]: $0"
+        ],
+        "description": "Insert reference link and add new reference"
+    },
+    "footnote": {
+        "prefix": "footnote",
+        "body": [
+            "[^$0]"
+        ],
+        "description": "Insert footnote"
+    },
+    "new footnote": {
+        "prefix": "newfootnote",
+        "body": [
+            "[^${1:name}]",
+            "",
+            "[^$1]: $0"
+        ],
+        "description": "Insert footnote and new footnote id"
+    }
+}

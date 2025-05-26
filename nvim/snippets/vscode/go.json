@@ -1,0 +1,88 @@
+{
+    "function": {
+        "prefix": "func",
+        "body": [
+            "func ${1:name}($2) $3 {",
+            "\t$0",
+            "}"
+        ],
+        "description": "Declare a function"
+    },
+    "interface": {
+        "prefix": "interface",
+        "body": [
+            "type ${1:name} interface {",
+            "\t$0",
+            "}"
+        ],
+        "description": "Define an interface"
+    },
+    "struct": {
+        "prefix": "struct",
+        "body": [
+            "type ${1:name} struct {",
+            "\t$0",
+            "}"
+        ],
+        "description": "Define a struct"
+    },
+    "error check": {
+        "prefix": "errnil",
+        "body": [
+            "if err != nil {",
+            "\treturn nil, ${1:err}",
+            "}",
+            "$0"
+        ],
+        "description": "Insert error check"
+    },
+    "anon goroutine": {
+        "prefix": "gofunc",
+        "body": [
+            "go func($1) {",
+            "\t$0",
+            "}"
+        ],
+        "description": "Start a new anonymous goroutine"
+    },
+    "json tag": {
+        "prefix": "json",
+        "body": [
+            "`json:\"$1\"$0`"
+        ],
+        "description": "Insert a json struct tag"
+    },
+    "fmt.Println": {
+        "prefix": "println",
+        "body": [
+            "fmt.Println($0)"
+        ],
+        "description": "Insert a fmt.Println call"
+    },
+    "fmt.Print": {
+        "prefix": "print",
+        "body": [
+            "fmt.Print($0)"
+        ],
+        "description": "Insert a fmt.Print call"
+    },
+    "fmt.Printf": {
+        "prefix": "printf",
+        "body": [
+            "fmt.Printf(\"${1:%fmt}\", $0)"
+        ],
+        "description": "Insert a fmt.Printf call"
+    },
+    "enum": {
+        "prefix": "enum",
+        "body": [
+            "type ${1:EnumName} ${2:type}",
+            "",
+            "const (",
+            "\t${3:ValueName} ${1:EnumName} = ${4:iota}",
+            "\t$0",
+            ")"
+        ],
+        "description": "Declare a new enum"
+    }
+}

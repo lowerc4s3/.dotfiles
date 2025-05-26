@@ -1,0 +1,43 @@
+{
+    "name": "personal-snippets",
+    "contributes": {
+        "snippets": [
+            {
+                "language": "c",
+                "path": "./c.json"
+            },
+            {
+                "language": "cpp",
+                "path": "./cpp.json"
+            },
+            {
+                "language": "rust",
+                "path": "./rust.json"
+            },
+            {
+                "language": "shell",
+                "path": "./shell.json"
+            },
+            {
+                "language": "markdown",
+                "path": "./markdown.json"
+            },
+            {
+                "language": "tex",
+                "path": "./latex.json"
+            },
+            {
+                "language": "go",
+                "path": "./go.json"
+            },
+            {
+                "language": "lua",
+                "path": "./lua.json"
+            },
+            {
+                "language": "python",
+                "path": "./python.json"
+            }
+        ]
+    }
+}

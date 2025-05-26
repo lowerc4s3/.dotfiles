@@ -52,6 +52,16 @@ telescope.setup {
                 height = 10,
             },
             codeactions = false,
+        },
+        zoxide = {
+            mappings = {
+                ["<C-b>"] = {
+                    keepinsert = true,
+                    action = function(selection)
+                        require("telescope").extensions.file_browser.file_browser({ cwd = selection.path })
+                    end
+                },
+            }
         }
     }
 }
@@ -60,6 +70,7 @@ telescope.load_extension("projects")
 telescope.load_extension("fzf")
 telescope.load_extension("file_browser")
 telescope.load_extension("ui-select")
+telescope.load_extension("zoxide")
 
 -- Set telescope highlights
 -- vim.cmd [[

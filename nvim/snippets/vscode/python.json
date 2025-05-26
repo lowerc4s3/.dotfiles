@@ -1,0 +1,58 @@
+{
+    "shebang": {
+        "prefix": "shebang",
+        "body": [
+            "#!/usr/bin/env python"
+        ],
+        "description": "Insert python shebang"
+    },
+    "if __name__ == __main__": {
+        "prefix": "ifmain",
+        "body": [
+            "if __name__ == __main__:",
+            "    ${1:main()}"
+        ],
+        "description": "Insert if __name__ == __main__ block"
+    },
+    "from module import object": {
+        "prefix": "fromimport",
+        "body": [
+            "from ${1:module} import $0"
+        ],
+        "description": "Import objects from module"
+    },
+    "for loop": {
+        "prefix": "for",
+        "body": [
+            "for ${1:value} in ${2:iter}:",
+            "    ${3:pass}"
+        ],
+        "description": "Insert for loop"
+    },
+    "for range loop": {
+        "prefix": "forrange",
+        "body": [
+            "for ${1:i} in range($2):",
+            "    ${3:pass}"
+        ],
+        "description": "Insert for range loop"
+    },
+    "function": {
+        "prefix": "func",
+        "body": [
+            "def ${1:name}($2) -> ${2:None}:",
+            "    ${3:pass}"
+        ],
+        "description": "Declare a function"
+    },
+    "try/except": {
+        "prefix": "try",
+        "body": [
+            "try:",
+            "    ${4:pass}",
+            "except ${1:Exception} as ${2:e}:",
+            "    ${3:pass}"
+        ],
+        "description": "Insert a try/except block"
+    }
+}

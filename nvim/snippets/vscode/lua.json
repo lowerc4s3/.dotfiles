@@ -1,0 +1,20 @@
+{
+    "assign function": {
+        "prefix": "funcassign",
+        "body": [
+            "${1:var} = function($2)",
+            "    $0",
+            "end"
+        ],
+        "description": "Assign function to variable"
+    },
+    "function": {
+        "prefix": "func",
+        "body": [
+            "function ${1: name}($2)",
+            "    $0",
+            "end"
+        ],
+        "description": "Declare a function"
+    }
+}

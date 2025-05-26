@@ -15,25 +15,26 @@ for type, icon in pairs(signs) do
 end
 
 vim.diagnostic.config({
-    virtual_text = {
-        prefix = '●', --  • ■
-    },
+    virtual_text = false, -- Disabled in favour of 
+    -- virtual_text = {
+    --     prefix = '●', --  • ■
+    -- },
     update_in_insert = false,
     severety_sort = true,
 })
 
 -- Show diagnostics in floating window
-vim.api.nvim_create_autocmd("CursorHold", {
-    pattern = "*",
-    callback = function()
-        local opts = {
-            focusable = false,
-            close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-            border = 'solid',
-            source = 'always',
-            prefix = ' ',
-            scope = 'cursor',
-        }
-        vim.diagnostic.open_float(nil, opts)
-    end
-})
+-- vim.api.nvim_create_autocmd("CursorHold", {
+--     pattern = "*",
+--     callback = function()
+--         local opts = {
+--             focusable = false,
+--             close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+--             border = 'solid',
+--             source = 'always',
+--             prefix = ' ',
+--             scope = 'cursor',
+--         }
+--         vim.diagnostic.open_float(nil, opts)
+--     end
+-- })

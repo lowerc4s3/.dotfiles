@@ -34,7 +34,7 @@ opt.spelllang           = "en_us,ru"
 
 --- Folds ---
 opt.foldmethod     = "expr"
-opt.foldexpr       = "nvim_treesitter#foldexpr()"     -- Treesitter folds
+-- opt.foldexpr       = "nvim_treesitter#foldexpr()"     -- Treesitter folds
 opt.foldlevel      = 999                              -- Disable autofolding
 
 --- Window splits ---
@@ -52,8 +52,9 @@ opt.cursorline     = true                             -- Highlight line with cur
 opt.signcolumn     = "yes"                            -- Always show signcolumn (e.g. LSP warnings)
 opt.ruler          = false                            -- Disable cursor position (done by lualine)
 opt.laststatus     = 3                                -- Global statusline
-opt.guifont="JetBrainsMono_Nerd_Font:h14"             -- Set font for GUI clients
+opt.title          = true                             -- Set title
 opt.showcmd        = false
+opt.guicursor:prepend { "a:Cursor" }                  -- Force Cursor hl in all modes
 
 --- Autocmds ---
 augroup("YankHighlight", { clear = false })
@@ -72,31 +73,18 @@ autocmd("FileType", {
     command = "nnoremap <silent> <buffer> q :close<CR>"
 })
 
--- autocmd("FileType", {
---     desc = "Set wrap, linebreak and some keymaps for markdown files",
---     pattern = "markdown",
---     callback = function()
---         vim.keymap.set({ "n", "v" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
---         vim.keymap.set({ "n", "v" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
---         opt.wrap = true
---         opt.linebreak = true
---     end
--- })
+autocmd('CmdlineEnter', {
+    desc = "Set cmdheight = 1 when entering command mode",
+    command = "set cmdheight=1"
+})
+
+autocmd('CmdlineLeave', {
+    desc = "Set cmdheight = 0 when leaving command mode",
+    command = "set cmdheight=0"
+})
 
 -- autocmd("BufEnter", {
 --     desc = "Autoformating opts (don't insert comment symbol after hitting o, O or <CR>)",
 --     pattern = "*",
 --     command = 'set formatoptions-=ro'
 -- })
-
--- Compile plugins file whenever it's updated
--- augroup("PackerAutoCompile", {clear = true})
--- autocmd("BufWritePost", {
---     group = "PackerAutoCompile",
---     pattern = "plugins.lua",
---     command = "source <afile> | PackerCompile"
--- })
-
--- Don't show any numbers inside terminals
--- NOTE: enabling this breaks toggleterm
--- cmd [[ au TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal ]]
