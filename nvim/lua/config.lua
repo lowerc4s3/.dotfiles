@@ -72,19 +72,3 @@ autocmd("FileType", {
     pattern = { "help", "qf", "man" },
     command = "nnoremap <silent> <buffer> q :close<CR>"
 })
-
-autocmd('CmdlineEnter', {
-    desc = "Set cmdheight = 1 when entering command mode",
-    command = "set cmdheight=1"
-})
-
-autocmd('CmdlineLeave', {
-    desc = "Set cmdheight = 0 when leaving command mode",
-    command = "set cmdheight=0"
-})
-
--- autocmd("BufEnter", {
---     desc = "Autoformating opts (don't insert comment symbol after hitting o, O or <CR>)",
---     pattern = "*",
---     command = 'set formatoptions-=ro'
--- })
