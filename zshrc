@@ -1,51 +1,36 @@
-# Path to your oh-my-zsh installation.
-export ZSH="/Users/foreverd34d/.oh-my-zsh"
+# P10k instant prompt
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
+fpath+=("$XDG_CACHE_HOME"/zsh_completions)
 
-zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+##
+## Plugins
+##
 
-# Uncomment the following line if pasting URLs and other text is messed up.
-DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# zsh-vi-mode last-working-dir 
-plugins=(zsh-autosuggestions fast-syntax-highlighting zoxide)
+ZIM_HOME="$XDG_CACHE_HOME"/zim
+ZIM_CONFIG_FILE="$XDG_CONFIG_HOME/zimrc"
+# TODO: Add paths for linux
+ZIM_PATH=$(brew --prefix)/opt/zimfw/share
 
 ZSH_AUTOSUGGEST_STRATEGY=(completion history)
 
-ZSH_CACHE_DIR="$ZSH/cache"
-ZSH_COMPDUMP="$ZSH_CACHE_DIR/.zcompdump"
+zstyle ':zim:input' double-dot-expand yes
+zstyle ':zim' 'disable-version-check' 'true'
 
-# Additional zsh completions (https://github.com/zsh-users/zsh-completions required)
-fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+# Initialize modules.
+source ${ZIM_HOME}/init.zsh
 
-source $ZSH/oh-my-zsh.sh
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# zimfw/utility inserts --no-init to less options which breaks scrollback,
+# so we remove that
+export LESS=${LESS//--no-init}
 
 ##
 ## User configuration
 ##
-
-# Path
-path+=( ~/.emacs.d/bin ~/bin ~/.local/bin ~/.spicetify )
-# PATH="/usr/local/opt/llvm/bin:/usr/local/opt/qt@5/bin:$PATH"
-PATH="/usr/local/opt/llvm/bin:/usr/local/opt/postgresql@16/bin:$PATH"
-export PATH
-
-# Env variables
-export LESSHISTFILE='-'             # Don't create .lesshst
-export EDITOR='nvim'                # Set default editor
-export HOMEBREW_NO_ENV_HINTS=1      # Don't show homebrew's hints
-export ASAN_OPTIONS=detect_leaks=1  # Enable LeakSanitizer on macOS
-export CPPFLAGS="-I/usr/local/opt/llvm/include"
-# export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/qt@5/lib/pkgconfig"
 
 #
 # Aliases
@@ -55,15 +40,14 @@ export CPPFLAGS="-I/usr/local/opt/llvm/include"
 alias v='nvim'                  # Neovim shortcut
 alias o='open'                  # macOS open shortcut
 alias owd='open ./'             # Open current dir in Finder (macOS)
-# alias fm='. ranger'             # Ranger shortcut (switches dir when leaving ranger)
-alias rf='rifle'                # Rifle, the ranger file opener shortcut
 alias fhistory='history | rg'   # Searches history
+alias md='mkdir -p'
 alias info='info --vi-keys'     # Enables vi keybindigs in info
-alias vc='v *.c'                # Opens all C files in cwd
-alias vch='v *.h *.c'           # Opens all C and header files in cwd
 alias pdb='python3.12 -m pdb'   # Python debugger shortcut
 alias py='python3.12'           # Python
+alias zathura='open -a /Applications/Zathura.app/Contents/MacOS/zathura'
 
+# Yazi alias (cd after exit)
 function fm() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
 	yazi "$@" --cwd-file="$tmp"
@@ -72,8 +56,6 @@ function fm() {
 	fi
 	rm -f -- "$tmp"
 }
-
-source "$HOME/.private.zsh"
 
 # git aliases
 alias gl='git log --graph --abbrev-commit --decorate --date=relative --all'
@@ -87,25 +69,12 @@ alias gcam='git commit -am'
 alias gd='git diff'
 
 # exa aliases
-alias ls='exa --icons --group-directories-first'
-alias la='exa -a --icons --group-directories-first'
-alias lsa='exa -a --icons --group-directories-first'
-alias ll='exa -lah --icons --group-directories-first'
-alias l='exa -lh --icons --group-directories-first'
-alias tree='exa --tree --icons --group-directories-first'
-
-# brew aliases
-alias bupd='brew update'
-alias bupg='brew upgrade'
-alias binfo='brew info'
-alias bsync='brew update && brew upgrade'
-alias brm='brew rm'
-alias bout='brew outdated'
-alias binst='brew install'
-alias bsstop='brew services stop'
-alias bsstart='brew services start'
-alias bsrestart='brew services restart'
-alias bsrch='brew search'
+alias ls='eza --icons --group-directories-first'
+alias la='eza -a --icons --group-directories-first'
+alias lsa='eza -a --icons --group-directories-first'
+alias ll='eza -lah --icons --group-directories-first'
+alias l='eza -lh --icons --group-directories-first'
+alias tree='eza --tree --icons --group-directories-first'
 
 # yabai shortcuts
 alias yrestart='yabai --restart-service'
@@ -120,13 +89,13 @@ alias skreload='sketchybar --reload'
 #
 
 # Catppuccin mocha
-# export FZF_DEFAULT_OPTS='--color=bg+:#302D41,bg:#1E1E2E,spinner:#F8BD96,hl:#F28FAD --color=fg:#D9E0EE,header:#F28FAD,info:#DDB6F2,pointer:#F8BD96 --color=marker:#F8BD96,fg+:#F2CDCD,prompt:#DDB6F2,hl+:#F28FAD'
+export FZF_DEFAULT_OPTS='--color=bg+:#302D41,bg:#1E1E2E,spinner:#F8BD96,hl:#F28FAD --color=fg:#D9E0EE,header:#F28FAD,info:#DDB6F2,pointer:#F8BD96 --color=marker:#F8BD96,fg+:#F2CDCD,prompt:#DDB6F2,hl+:#F28FAD'
 
 # Catppuccin frappe
-export FZF_DEFAULT_OPTS=" \
---color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \
---color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf \
---color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284"
+# export FZF_DEFAULT_OPTS=" \
+# --color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \
+# --color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf \
+# --color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284"
 
 # # Onedark
 # export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
@@ -134,4 +103,6 @@ export FZF_DEFAULT_OPTS=" \
 # " --color=fg:#565c64,header:#61afef,info:#e5c07b,pointer:#56b6c2"\
 # " --color=marker:#56b6c2,fg+:#b6bdca,prompt:#e5c07b,hl+:#61afef"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+PATH="Library/Frameworks/Python.framework/Versions/3.10/bin:/usr/local/opt/llvm/bin:/usr/local/opt/postgresql@16/bin:$PATH"
+PATH="$PATH:$HOME/bin:$HOME/.local/bin:$GOPATH/bin"
+export PATH
