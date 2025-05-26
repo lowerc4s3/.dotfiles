@@ -32,8 +32,6 @@ return {
             ["<C-b>"] = { "scroll_documentation_up", "fallback" },
             ["<C-f>"] = { "scroll_documentation_down", "fallback" },
             ["<C-e>"] = { "cancel", "fallback" },
-            -- ["<Tab>"] = { "select_next", "accept", "snippet_forward", "fallback" },
-            -- ["<S-Tab"] = { "select_prev", "snippet_backward", "fallback" },
             ["<Tab>"] = {
                 function(cmp)
                     if cmp.is_visible() then
@@ -103,14 +101,6 @@ return {
         completion = {
             documentation = {
                 auto_show = true,
-                draw = function(opts)
-                    if opts.item and opts.item.documentation then
-                        local out = require("pretty_hover.parser").parse(opts.item.documentation.value)
-                        opts.item.documentation.value = out:string()
-                    end
-
-                    opts.default_implementation(opts)
-                end,
             },
             ghost_text = {
                 enabled = false,
@@ -159,8 +149,15 @@ return {
                 if success and node and vim.tbl_contains({ 'comment', 'line_comment', 'block_comment' }, node:type()) then
                     return { 'buffer' }
                 end
-                return { "snippets", "lsp" }
+                return { "snippets", "lazydev", "lsp" }
             end,
+            providers = {
+                lazydev = {
+                    name = "LazyDev",
+                    module = "lazydev.integrations.blink",
+                    score_offset = 100,
+                },
+            }
             -- min_keyword_length = 1
         },
         snippets = { preset = 'luasnip' },

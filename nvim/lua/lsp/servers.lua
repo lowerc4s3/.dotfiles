@@ -21,22 +21,6 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-lsp.config('lua_ls', {
-    settings = {
-        Lua = {
-            runtime = {
-                version = 'LuaJIT',
-                path = runtime_path,
-            },
-            workspace = {
-                library = vim.api.nvim_get_runtime_file('', true),
-            },
-            diagnostics = { globals = { 'vim' } },
-            telemetry = { enable = false },
-        }
-    }
-})
-
 lsp.config('rust_analyzer', {
     settings = {
         ["rust-analyzer"] = {

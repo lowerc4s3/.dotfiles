@@ -185,5 +185,16 @@ return {
     },
 
     -- JSON schemas catalog
-    "b0o/schemastore.nvim"
+    "b0o/schemastore.nvim",
+
+    {
+        -- LuaLS config for Neovim
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            library = {
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
+        },
+    }
 }
