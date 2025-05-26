@@ -18,20 +18,31 @@
 # RED='bf616a'
 # CYAN='88c0d0'
 
-## Catppuccin frappe
-BG='303446'
-BG_SEC='414559'
-FG='c6d0f5'
-BLUE='8caaee'
-GREEN='a6d189'
-RED='e78284'
-PINK='f4b8e4'
-SUBTEXT='838ba7'
+# ## Catppuccin frappe
+# BG='303446'
+# BG_SEC='414559'
+# FG='c6d0f5'
+# BLUE='8caaee'
+# GREEN='a6d189'
+# RED='e78284'
+# PINK='f4b8e4'
+# SUBTEXT='838ba7'
+
+## Catppuccin mocha
+BG='1e1e2e'
+BG_SEC='313244'
+FG='cdd6f4'
+BLUE='89b4fa'
+GREEN='a6e3a1'
+RED='f38ba8'
+PINK='f5c2e7'
+MAUVE='cba6f7'
+SUBTEXT='7f849c'
 
 ## Bar colors
 SK_BAR=0xff$BG
 SK_TEXT=0xff$FG
-SK_SPACE_HL_BG=0xff$BLUE
+SK_SPACE_HL_BG=0xff$MAUVE
 SK_SPACE_HL_FG=0xff$BG
 SK_SPACE_OCCUPIED_FG=0xff$PINK
 SK_ITEM_BG=0xff$BG_SEC
