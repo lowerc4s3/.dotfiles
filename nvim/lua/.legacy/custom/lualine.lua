@@ -74,7 +74,7 @@ local fileformat = {
 
 local progress = {
     '%P',
-    icon = "",
+    icon = "󰍜",
     padding = { left = 1, right = 0 }
 }
 

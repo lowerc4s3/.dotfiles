@@ -1,0 +1,77 @@
+{
+    "#define constant": {
+        "prefix": "def",
+        "body": [
+            "#define ${1:NAME} $0"
+        ],
+        "description": "Define constant"
+    },
+    "#include <>": {
+        "prefix": "incs",
+        "body": [
+            "#include <$0>"
+        ],
+        "description": "Include std header"
+    },
+    "#include \"\"": {
+        "prefix": "incu",
+        "body": [
+            "#include \"$0\""
+        ],
+        "description": "Include user header"
+    },
+    "main(void)": {
+        "prefix": "main",
+        "body": [
+            "int main(void) {",
+            "    $0",
+            "    return 0;",
+            "}"
+        ],
+        "description": "Declare main(void)"
+    },
+    "main(int argc, char **argv)": {
+        "prefix": "mainargs",
+        "body": [
+            "int main(int argc, char **argv) {",
+            "    $0",
+            "    return 0;",
+            "}"
+        ],
+        "description": "Declare main(int argc, char **argv)"
+    },
+    "function declaration": {
+        "prefix": "func",
+        "body": [
+            "${1:void} ${2:name}(${3:void}) {",
+            "    $0",
+            "}"
+        ],
+        "description": "Declare a function"
+    },
+    "function definition": {
+        "prefix": "deffunc",
+        "body": [
+            "${1:void} ${2:name}(${3:void});"
+        ],
+        "description": "Define a function"
+    },
+    "struct": {
+        "prefix": "struct",
+        "body": [
+            "typedef struct ${1:name} {",
+            "    $0",
+            "} ${1:name}_t;"
+        ],
+        "description": "Declare a struct"
+    },
+    "union": {
+        "prefix": "union",
+        "body": [
+            "typedef union ${1:name} {",
+            "    $0",
+            "} ${1:name}_t;"
+        ],
+        "description": "Declare an union"
+    }
+}

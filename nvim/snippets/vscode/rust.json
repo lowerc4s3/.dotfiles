@@ -1,0 +1,114 @@
+{
+    "for range loop": {
+        "prefix": "fori",
+        "body": [
+            "for ${1:i} in 0..${2:len} {",
+            "    $0",
+            "}"
+        ],
+        "description": "Make a for range loop"
+    },
+    "new vector": {
+        "prefix": "vecnew",
+        "body": [
+            "Vec::new()"
+        ],
+        "description": "Create a new empty vector"
+    },
+    "new vector with capacity": {
+        "prefix": "veccap",
+        "body": [
+            "Vec::with_capacity()"
+        ],
+        "description": "Create a new empty vector with capacity"
+    },
+    "derive macro": {
+        "prefix": "derive",
+        "body": [
+            "#[derive(Debug$0)]"
+        ],
+        "description": "Insert a derive macro"
+    },
+    "public function": {
+        "prefix": "pubfunc",
+        "body": [
+            "pub fn ${1:name}($2) -> ${3:RetType} {",
+            "    ${4:todo!();}",
+            "}"
+        ],
+        "description": "Declare a public function"
+    },
+    "function": {
+        "prefix": "func",
+        "body": [
+            "fn ${1:name}($2) -> ${3:RetType} {",
+            "    ${4:todo!();}",
+            "}"
+        ],
+        "description": "Declare a function"
+    },
+    "public method": {
+        "prefix": "pubmethod",
+        "body": [
+            "pub fn ${1:name}(${2|&self,&mut self,self|}$3) -> ${4:RetType} {",
+            "    ${5:todo!();}",
+            "}"
+        ],
+        "description": "Declare a public method"
+    },
+    "method": {
+        "prefix": "method",
+        "body": [
+            "fn ${1:name}(${2|&self,&mut self,self|}$3) -> ${4:RetType} {",
+            "    ${5:todo!();}",
+            "}"
+        ],
+        "description": "Declare a method"
+    },
+    "trait method": {
+        "prefix": "traitmethod",
+        "body": [
+            "fn ${1:name}(${2|&self,&mut self,self|}$3) -> ${4:RetType};$0"
+        ],
+        "description": "Declare a trait method"
+    },
+    "trait function": {
+        "prefix": "traitfunc",
+        "body": [
+            "fn ${1:name}($2) -> ${3:RetType};$0"
+        ],
+        "description": "Declare a trait function"
+    },
+    "Declare a closure": {
+        "prefix": "closure",
+        "body": [
+            "|$1| $0"
+        ],
+        "description": "Declare a closure"
+    },
+    "constructor": {
+        "prefix": "new",
+        "body": [
+            "pub fn new($1) -> ${2:Self} {",
+            "    ${3:todo!();}",
+            "}"
+        ],
+        "description": "Declare a constructor"
+    },
+    "main function": {
+        "prefix": "main",
+        "body": [
+            "fn main() ${1| ,-> Result<()>,-> Result<(), Box<dyn Error>>|}{",
+            "    ${2:todo!();}",
+            "}"
+        ],
+        "description": "Declare a main function"
+    },
+    "match arm": {
+        "prefix": "case",
+        "body": [
+            "${1:pattern} => $0,"
+        ],
+        "description": "Insert a match arm"
+    }
+}

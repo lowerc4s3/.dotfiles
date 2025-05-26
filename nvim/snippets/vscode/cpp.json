@@ -1,0 +1,107 @@
+{
+    "#include <>": {
+        "prefix": "incs",
+        "body": [
+            "#include <$0>"
+        ],
+        "description": "Include std header"
+    },
+    "#include \"\"": {
+        "prefix": "incu",
+        "body": [
+            "#include \"$0\""
+        ],
+        "description": "Include user header"
+    },
+    "include guard": {
+        "prefix": "ifndef",
+        "body": [
+            "#ifndef ${1:HEADER}_H",
+            "#define ${1:HEADER}_H",
+            "",
+            "$0",
+            "",
+            "#endif // !${1:HEADER}_H"
+        ],
+        "description": "Make an include guard"
+    },
+    "pragma once": {
+        "prefix": "once",
+        "body": [
+            "#pragma once"
+        ],
+        "description": "Insert once pragma"
+    },
+    "main(void)": {
+        "prefix": "main",
+        "body": [
+            "auto main(void) -> int {",
+            "    $0",
+            "}"
+        ],
+        "description": "Declare main(void)"
+    },
+    "main(int argc, char **argv)": {
+        "prefix": "mainargs",
+        "body": [
+            "auto main(int argc, char **argv) -> int {",
+            "    $0",
+            "}"
+        ],
+        "description": "Declare main(int argc, char **argv)"
+    },
+    "void function": {
+        "prefix": "voidfunc",
+        "body": [
+            "${1:void} ${2:name}($3) {",
+            "    $0",
+            "}"
+        ],
+        "description": "Define a void function"
+    },
+    "function": {
+        "prefix": "func",
+        "body": [
+            "auto ${1:name}($2) -> ${3:int} {",
+            "    $0",
+            "}"
+        ],
+        "description": "Define a function"
+    },
+    "try/catch": {
+        "prefix": "try",
+        "body": [
+            "try {",
+            "    $0",
+            "} catch (const ${1:std::exception}& ${2:e}) {",
+            "    $3",
+            "}"
+        ],
+        "description": "Insert try/catch block"
+    },
+    "cast": {
+        "prefix": "cast",
+        "body": [
+            "std::static_cast<${1:type}>($0)"
+        ],
+        "description": "Cast an expression"
+    },
+    "for loop": {
+        "prefix": "for",
+        "body": [
+            "for (${1:std::size_t} ${2:i} = ${3:0}; $2 < ${3:len}; $2++) {",
+            "    $0",
+            "}"
+        ],
+        "description": "Insert for range loop"
+    },
+    "for range loop": {
+        "prefix": "foreach",
+        "body": [
+            "for (${1:const auto&} ${2:var} : ${3:iter}) {",
+            "    $0",
+            "}"
+        ],
+        "description": "Insert for range loop"
+    }
+}

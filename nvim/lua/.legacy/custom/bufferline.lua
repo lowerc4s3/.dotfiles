@@ -27,8 +27,6 @@ bufferline.setup {
         sort_by = "insert_after_current",
     },
 
-    -- highlights = require("catppuccin.groups.integrations.bufferline").get()
-
     highlights = {
         modified                    = { bg = { attribute = "bg", highlight = "lualine_c_normal" } },
 

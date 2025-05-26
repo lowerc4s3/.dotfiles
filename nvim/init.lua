@@ -1,8 +1,4 @@
 vim.loader.enable()
--- Load impatient (disabled in nvim 0.9)
--- if not pcall(require, "impatient") then
---     vim.notify("Error loading impatient")
--- end
 
 -- Use filetype.lua instead if filetype.vim
 vim.g.do_filetype_lua = 1
@@ -33,8 +29,13 @@ for _, plugin in pairs(disabled_built_ins) do
     vim.g["loaded_" .. plugin] = 1
 end
 
+if vim.g.neovide then
+    require("neovide")
+end
+
 -- Load configs
 require('config')
 require('mappings')
-require('plugins')
+require('lazypm')
+require('lsp')
 require('after')

@@ -16,9 +16,10 @@ require('lazy').setup({
     'folke/lazy.nvim',
 
     --- Optimization ---
-    { 'lewis6991/impatient.nvim',   enabled = false },
-    'antoinemadec/FixCursorHold.nvim',
+    -- { 'lewis6991/impatient.nvim',   enabled = false },
+    -- 'antoinemadec/FixCursorHold.nvim',
 
+    -- DONE
     --- Themes ---
     { 'ful1e5/onedark.nvim',        lazy = true },
     { 'Shatur/neovim-ayu',          lazy = true },
@@ -39,6 +40,7 @@ require('lazy').setup({
 
 
     --- UI ---
+    -- DONE
     {
         -- Icons
         'kyazdani42/nvim-web-devicons',
@@ -46,6 +48,7 @@ require('lazy').setup({
         config = function() require('custom.devicons') end
     },
 
+    -- DONE
     {
         -- Status line
         'nvim-lualine/lualine.nvim',
@@ -53,6 +56,7 @@ require('lazy').setup({
         config = function() require('custom.lualine') end
     },
 
+    -- DONE
     {
         -- Starting screen
         'goolord/alpha-nvim',
@@ -107,9 +111,11 @@ require('lazy').setup({
     {
         -- Smooth scrolling
         'karb94/neoscroll.nvim',
+        cond = vim.g.neovide, -- Disable if using neovide
         config = function() require('custom.neoscroll') end
     },
 
+    -- DONE
     {
         -- Scrollbar
         'petertriho/nvim-scrollbar',
@@ -126,10 +132,11 @@ require('lazy').setup({
         }
     },
 
+    -- DONE
     {
         -- Nested mappings with mappings cheatsheet
         'folke/which-key.nvim',
-        config = function() require('custom.which-key') end
+        config = function() require('custom.wk') end
     },
 
     {
@@ -166,6 +173,7 @@ require('lazy').setup({
         build = ':call mkdp#util#install()'
     },
 
+    -- DONE
     {
         -- Native finder for telescope
         'nvim-telescope/telescope-fzf-native.nvim',
@@ -174,19 +182,23 @@ require('lazy').setup({
         'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
     },
 
+    -- DONE
     {
         -- Fuzzy finder
         'nvim-telescope/telescope.nvim',
         dependencies = {
             'nvim-lua/plenary.nvim',
+            'nvim-lua/popup.nvim',
             'nvim-telescope/telescope-fzf-native.nvim',
             'nvim-telescope/telescope-file-browser.nvim', -- File browser in telescope
             'nvim-telescope/telescope-ui-select.nvim',    -- Telescope picker for vim.ui.select
+            'jvgrootveld/telescope-zoxide'                -- Zoxide support
         },
         cmd = { 'Telescope' },
         config = function() require('custom.telescope') end
     },
 
+    -- DONE
     {
         -- File tree
         'kyazdani42/nvim-tree.lua',
@@ -204,6 +216,7 @@ require('lazy').setup({
     },
 
 
+    -- DONE
     --- Git ---
     {
         -- Git integration
@@ -244,11 +257,41 @@ require('lazy').setup({
     {
         -- Surround word with quotes or parentheses
         -- (local copy of blackCauldron7's surround.nvim, original was deleted)
+        -- (disabled and replaced with kylechui/nvim-surround)
         dir = '~/.config/nvim/localplug/surround.nvim',
+        enabled = false,
         opts = { mappings_style = 'surround' }
     },
 
+    -- DONE
     {
+        -- Surround word with quotes or parentheses
+        "kylechui/nvim-surround",
+        version = "^3.0.0",
+        event = "VeryLazy",
+        opts = {}
+    },
+
+    -- DONE
+    {
+        "monaqa/dial.nvim",
+        keys = {
+            { "<C-a>",  function() require("dial.map").manipulate("increment", "normal") end },
+            { "<C-x>",  function() require("dial.map").manipulate("decrement", "normal") end },
+            { "g<C-a>", function() require("dial.map").manipulate("increment", "gnormal") end },
+            { "g<C-x>", function() require("dial.map").manipulate("decrement", "gnormal") end },
+            { "<C-a>",  function() require("dial.map").manipulate("increment", "visual") end,  mode = "v" },
+            { "<C-x>",  function() require("dial.map").manipulate("decrement", "visual") end,  mode = "v" },
+            { "g<C-a>", function() require("dial.map").manipulate("increment", "gvisual") end, mode = "v" },
+            { "g<C-x>", function() require("dial.map").manipulate("decrement", "gvisual") end, mode = "v" },
+        },
+        config = function() require("custom.dial") end
+    },
+
+    -- DONE
+    {
+        -- Enhance w, e, b motions
+        -- (disabled atm)
         "chrisgrieser/nvim-spider",
         enabled = false,
         keys = {
@@ -275,6 +318,7 @@ require('lazy').setup({
         },
     },
 
+    -- DONE
     {
         -- Jump out of quotes and parentheses
         'abecodes/tabout.nvim',
@@ -296,6 +340,7 @@ require('lazy').setup({
         },
     },
 
+    -- DONE
     {
         -- Comment lines (disabled, nvim v.0.10 added commenting)
         'numToStr/Comment.nvim',
@@ -304,6 +349,7 @@ require('lazy').setup({
         config = function() require('Comment').setup() end
     },
 
+    -- DONE
     {
         -- Autocomplete quotes and parentheses
         'windwp/nvim-autopairs',
@@ -311,6 +357,7 @@ require('lazy').setup({
         config = function() require('nvim-autopairs').setup() end
     },
 
+    -- DONE
     {
         -- Alignment by character
         'tommcdo/vim-lion',
@@ -319,6 +366,7 @@ require('lazy').setup({
         },
     },
 
+    -- DONE
     {
         -- Repeat more commands with dot
         'tpope/vim-repeat',
@@ -343,7 +391,7 @@ require('lazy').setup({
     {
         -- Indentation lines
         'lukas-reineke/indent-blankline.nvim',
-        version = '2.20.8', -- TODO: update to v3
+        version = '2.20.8',
         -- main = 'ibl',
         -- config = function()
         --     require("ibl").setup {
@@ -374,15 +422,31 @@ require('lazy').setup({
     --- LSP ---
     {
         'neovim/nvim-lspconfig',
-        event = { 'BufReadPre', 'BufNewFile' },
+        -- event = { 'BufReadPre', 'BufNewFile' },
         config = function() require('custom.lsp') end
     },
 
     'ray-x/lsp_signature.nvim', -- Function arguments floating window
 
     {
+        "rachartier/tiny-inline-diagnostic.nvim",
+        event = "LspAttach",
+        priority = 1000,
+        opts = {
+            preset = "simple",
+            options = {
+                multilines = {
+                    enabled = true
+                }
+            }
+        }
+    },
+
+    {
         -- Clangd extensions support
+        -- (disabled atm)
         'p00f/clangd_extensions.nvim',
+        enabled = false,
         dependencies = {
             'neovim/nvim-lspconfig',
         },
@@ -394,22 +458,23 @@ require('lazy').setup({
 
     {
         "ray-x/go.nvim",
-        dependencies = { -- optional packages
+        dependencies = {
             "ray-x/guihua.lua",
-            "neovim/nvim-lspconfig",
             "nvim-treesitter/nvim-treesitter",
         },
         config = function()
             require("go").setup()
         end,
-        -- event = { "CmdlineEnter" },
         ft = { "go", 'gomod' },
         build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
     },
 
     {
         -- Code checking utilities integration
+        -- (disabled atm)
+        -- NOTE: change to none-ls in case null-ls is needed
         'jose-elias-alvarez/null-ls.nvim',
+        enabled = false,
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = 'nvim-lua/plenary.nvim',
         config = function()
@@ -498,6 +563,11 @@ require('lazy').setup({
         config = function() require('custom.cmp') end
     },
 
+    {
+        -- Snippet engine
+        'L3MON4D3/LuaSnip',
+        build = "make install_jsregexp",
+    },
 
     --- Terminal ---
     {
@@ -600,4 +670,6 @@ require('lazy').setup({
         event = 'BufReadPre',
         config = function() require('persistence').setup() end,
     },
+
+    install = { colorscheme = "catppuccin" }
 })

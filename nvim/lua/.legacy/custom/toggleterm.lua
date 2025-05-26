@@ -19,6 +19,9 @@ require("toggleterm").setup {
             background = "Normal",
         }
     },
+    winbar = {
+        enabled = false,
+    },
 }
 
 -- Disable signcolumn in terminal
