@@ -1,5 +1,0 @@
-set adjust-open "best-fit"
-set statusbar-page-percent true
-set font "JetBrainsMono Nerd Font 12"
-set selection-clipboard clipboard
-include themes/catppuccin-mocha
