@@ -49,7 +49,6 @@ return {
         local diagnostics = {
             'diagnostics',
             update_in_insert = false,
-            -- always_visible = true,
             symbols = { error = " ", warn = " ", hint = "󰌶 ", info = "󰋽 " },
         }
 
@@ -86,6 +85,7 @@ return {
         local showmode = {
             require("noice").api.status.mode.get,
             cond = require("noice").api.status.mode.has,
+            color = "NoiceVirtualText"
         }
 
         local filename_inactive = {
@@ -110,7 +110,7 @@ return {
                 lualine_a = { mode, searchcount, selectioncount },
                 lualine_b = { branch, diff },
                 lualine_c = { filetype, filename },
-                lualine_x = { showmode, diagnostics },
+                lualine_x = { diagnostics, showmode },
                 lualine_y = { tabsize, encoding, fileformat },
                 lualine_z = { progress, 'location' }
             },
