@@ -7,14 +7,17 @@ return {
         build = ':TSUpdate',
         dependencies = 'OXY2DEV/markview.nvim',
         config = function()
-            vim.api.nvim_create_autocmd('FileType', {
-                pattern = require("nvim-treesitter.config").installed_parsers(),
-                callback = function()
-                    vim.treesitter.start()
-                    vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-                    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-                end
-            })
+            local parsers = require("nvim-treesitter.config").installed_parsers()
+            if parsers == nil then
+                vim.api.nvim_create_autocmd('FileType', {
+                    pattern = require("nvim-treesitter.config").installed_parsers(),
+                    callback = function()
+                        vim.treesitter.start()
+                        vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+                        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                    end
+                })
+            end
         end
     },
 
