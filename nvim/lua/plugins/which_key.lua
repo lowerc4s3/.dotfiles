@@ -99,6 +99,7 @@ return {
             { "<leader>pi", "<cmd>Lazy install<CR>", icon = "", desc = "Install" },
             { "<leader>pl", "<cmd>Lazy log<CR>", icon = "󱒋", desc = "Log" },
             { "<leader>pp", "<cmd>Lazy<CR>", icon = "󰏓", desc = "Show" },
+            { "<leader>pm", "<cmd>Mason<CR>", icon = "", desc = "Mason" },
 
             { "<leader>w", group = "Window", icon = "󰗘" },
             { "<leader>ws", "<C-w>s", icon = "󰇘", desc = "Horizontal split" },
