@@ -14,6 +14,10 @@ ZIM_CONFIG_FILE="$XDG_CONFIG_HOME/zimrc"
 # TODO: Add paths for linux
 ZIM_PATH=$(brew --prefix)/opt/zimfw/share
 
+if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZIM_CONFIG_FILE:-${ZDOTDIR:-${HOME}}/.zimrc} ]]; then
+  source "$ZIM_PATH"/zimfw.zsh init
+fi
+
 ZSH_AUTOSUGGEST_STRATEGY=(completion history)
 
 zstyle ':zim:input' double-dot-expand yes
@@ -102,7 +106,3 @@ export FZF_DEFAULT_OPTS='--color=bg+:#302D41,bg:#1E1E2E,spinner:#F8BD96,hl:#F28F
 # " --color=bg+:#353b45,bg:#282c34,spinner:#56b6c2,hl:#61afef"\
 # " --color=fg:#565c64,header:#61afef,info:#e5c07b,pointer:#56b6c2"\
 # " --color=marker:#56b6c2,fg+:#b6bdca,prompt:#e5c07b,hl+:#61afef"
-
-PATH="Library/Frameworks/Python.framework/Versions/3.10/bin:/usr/local/opt/llvm/bin:/usr/local/opt/postgresql@16/bin:$PATH"
-PATH="$PATH:$HOME/bin:$HOME/.local/bin:$GOPATH/bin"
-export PATH
