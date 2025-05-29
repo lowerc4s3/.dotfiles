@@ -6,6 +6,12 @@ return {
     },
 
     {
+        -- External tooling installer
+        "mason-org/mason.nvim",
+        opts = {}
+    },
+
+    {
         -- Function arguments floating window
         'ray-x/lsp_signature.nvim',
         event = "InsertEnter",
