@@ -1,9 +1,5 @@
 local lsp = vim.lsp
 
-lsp.config('clangd', {
-    cmd = { "clangd", "--fallback-style=Microsoft" }
-})
-
 lsp.config('gopls', {
     settings = {
         gopls = {
@@ -15,11 +11,6 @@ lsp.config('gopls', {
         }
     }
 })
-
--- Make runtime files discoverable to the server
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, 'lua/?.lua')
-table.insert(runtime_path, 'lua/?/init.lua')
 
 lsp.config('rust_analyzer', {
     settings = {
@@ -46,7 +37,8 @@ lsp.config('jsonls', {
     }
 })
 
-lsp.enable({ 'bashls',
+lsp.enable({
+    'bashls',
     'cmake',
     'rust_analyzer',
     'texlab',
