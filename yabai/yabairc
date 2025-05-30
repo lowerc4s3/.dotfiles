@@ -39,6 +39,9 @@ yabai -m config window_gap                   05
 
 
 ### Rules ###
+# # HACK: Experimenting with putting all windows on normal sub-layer
+# yabai -m rule --add app=".*" sub-layer=normal
+
 if [ "$(defaults read -g AppleLocale)" = "ru_RU" ]; then
     safari_title="(Основные|Вкладки|Автозаполнение|Пароли|Поиск|Безопасность|Веб-сайты|Расширения|Дополнения)"
     yabai -m rule --add app="^Системные настройки$"                   manage=off
@@ -63,9 +66,6 @@ else
     yabai -m rule --add app="^Twitter$" title="(Media)"               manage=off
 fi
 
-# HACK: Experimenting with putting all windows on normal sub-layer
-yabai -m rule --add app=".*" sub-layer=normal
-
 yabai -m rule --add label="App Store" app="^App Store$"           manage=off
 yabai -m rule --add app="^Keka$"                                  manage=off
 yabai -m rule --add app="^Vimari$"                                manage=off
@@ -79,8 +79,6 @@ yabai -m rule --add app="^Arc$" subrole='AXSystemDialog' manage=off mouse_follow
 yabai -m rule --add app='^Arc$' title='^Space.*$' manage=off
 
 yabai -m rule --add app="^qutebrowser$" title!="^$" role="AXWindow" subrole="AXDialog" manage=on
-
-# yabai -m signal --add event=space_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq '.[1].id // .[0].jd' )"
 
 yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
 yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
