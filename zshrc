@@ -42,13 +42,12 @@ export LESS=${LESS//--no-init}
 
 # general aliases
 alias v='nvim'                  # Neovim shortcut
+alias vv='neovide'              # Neovide shortcut
 alias o='open'                  # macOS open shortcut
 alias owd='open ./'             # Open current dir in Finder (macOS)
 alias fhistory='history | rg'   # Searches history
 alias md='mkdir -p'
-alias info='info --vi-keys'     # Enables vi keybindigs in info
 alias pdb='python3.12 -m pdb'   # Python debugger shortcut
-alias py='python3.12'           # Python
 alias zathura='open -a /Applications/Zathura.app/Contents/MacOS/zathura'
 
 # Yazi alias (cd after exit)
