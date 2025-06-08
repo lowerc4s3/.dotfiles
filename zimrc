@@ -1,5 +1,4 @@
 # Brew aliases
-zmodule homebrew
 
 # Sets sane Zsh built-in environment options.
 zmodule environment
