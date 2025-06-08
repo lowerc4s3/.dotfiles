@@ -79,6 +79,38 @@ alias ll='eza -lah --icons --group-directories-first'
 alias l='eza -lh --icons --group-directories-first'
 alias tree='eza --tree --icons --group-directories-first'
 
+# homebrew
+alias brewa='brew autoremove'
+alias brewc='brew cleanup'
+alias brewC='brew cleanup -s'
+alias brewd='brew doctor --verbose'
+alias brewe='brew edit --formula'
+alias brewi='brew info --formula'
+alias brewI='brew install --formula'
+alias brewl='brew list --formula'
+alias brewL='brew leaves'
+alias brewo='brew outdated --formula'
+alias brewr='brew reinstall --formula'
+alias brews='brew search --formula'
+alias brewS='brew services'
+alias brewu='brew update'
+alias brewU='brew upgrade --formula'
+alias brewx='brew uninstall --formula'
+alias brewX='brew uninstall --formula --force'
+
+# homebrew cask
+alias caske='brew edit --cask'
+alias caski='brew info --cask'
+alias caskI='brew install --cask'
+alias caskl='brew list --cask'
+alias casko='brew outdated --cask'
+alias caskr='brew reinstall --cask'
+alias casks='brew search --cask'
+alias caskU='brew upgrade --cask'
+alias caskx='brew uninstall --cask'
+alias caskX='brew uninstall --cask --force'
+alias caskz='brew uninstall --cask --zap'
+
 # yabai shortcuts
 alias yrestart='yabai --restart-service'
 alias ystop='yabai --stop-service'
@@ -93,6 +125,8 @@ alias skreload='sketchybar --reload'
 
 # Catppuccin mocha
 export FZF_DEFAULT_OPTS='--color=bg+:#302D41,bg:#1E1E2E,spinner:#F8BD96,hl:#F28FAD --color=fg:#D9E0EE,header:#F28FAD,info:#DDB6F2,pointer:#F8BD96 --color=marker:#F8BD96,fg+:#F2CDCD,prompt:#DDB6F2,hl+:#F28FAD'
+
+eval "$(/usr/local/bin/brew shellenv)"
 
 # Catppuccin frappe
 # export FZF_DEFAULT_OPTS=" \
