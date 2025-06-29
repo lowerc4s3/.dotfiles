@@ -21,7 +21,7 @@
         "break",
         {
             "type": "title",
-            "format": "{user-name-colored}{at-symbol-colored}homepod-алиса"
+            "format": "{user-name-colored}@{host-name-colored}"
         },
         {
             "type": "custom",
