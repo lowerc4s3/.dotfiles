@@ -13,10 +13,10 @@ use = "yazi-rs/plugins:toggle-pane"
 rev = "b12a9ab"
 hash = "5c9dda1a587b8f5b6f63e3d5375bda88"
 
-[[plugin.deps]]
-use = "ndtoan96/ouch"
-rev = "2496cd9"
-hash = "5b9dea47776a30946cfbf83232d18fb1"
+# [[plugin.deps]]
+# use = "ndtoan96/ouch"
+# rev = "2496cd9"
+# hash = "5b9dea47776a30946cfbf83232d18fb1"
 
 [[plugin.deps]]
 use = "kirasok/torrent-preview"

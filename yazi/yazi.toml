@@ -1,14 +1,14 @@
-[manager]
+[mgr]
 ratio = [1, 3, 4]
 linemode = "size"
 
 [plugin]
 prepend_previewers = [
-	{ mime = "application/*zip",          run = "ouch" },
-	{ mime = "application/tar",           run = "ouch" },
-	{ mime = "application/bzip2",         run = "ouch" },
-	{ mime = "application/7z-compressed", run = "ouch" },
-	{ mime = "application/rar",           run = "ouch" },
-	{ mime = "application/xz",            run = "ouch" },
+	# { mime = "application/*zip",          run = "ouch" },
+	# { mime = "application/tar",           run = "ouch" },
+	# { mime = "application/bzip2",         run = "ouch" },
+	# { mime = "application/7z-compressed", run = "ouch" },
+	# { mime = "application/rar",           run = "ouch" },
+	# { mime = "application/xz",            run = "ouch" },
 	{ mime = "application/bittorrent",    run = "torrent-preview" },
 ]
