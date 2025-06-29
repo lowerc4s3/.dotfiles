@@ -1,5 +1,14 @@
 set adjust-open "best-fit"
-set statusbar-page-percent true
+
 set font "JetBrainsMono Nerd Font 12"
+
+set statusbar-page-percent true
+
 set selection-clipboard clipboard
+
+set scroll-step 10
+set scroll-hstep 10
+
+set window-title-basename true
+
 include themes/catppuccin-mocha
