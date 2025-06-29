@@ -23,6 +23,9 @@ ZSH_AUTOSUGGEST_STRATEGY=(completion history)
 zstyle ':zim:input' double-dot-expand yes
 zstyle ':zim' 'disable-version-check' 'true'
 
+# Init fzf through ZVM
+zvm_after_init_commands+=('source <(fzf --zsh)')
+
 # Initialize modules.
 source ${ZIM_HOME}/init.zsh
 
@@ -51,7 +54,7 @@ alias pdb='python3.12 -m pdb'   # Python debugger shortcut
 alias zathura='open -a /Applications/Zathura.app/Contents/MacOS/zathura'
 
 # Yazi alias (cd after exit)
-function fm() {
+function fm {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
 	yazi "$@" --cwd-file="$tmp"
 	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
@@ -119,23 +122,30 @@ alias ystart='yabai --start-service'
 # sketchybar shortcuts
 alias skreload='sketchybar --reload'
 
-#
-# Set fzf theme
-#
-
-# Catppuccin mocha
-export FZF_DEFAULT_OPTS='--color=bg+:#302D41,bg:#1E1E2E,spinner:#F8BD96,hl:#F28FAD --color=fg:#D9E0EE,header:#F28FAD,info:#DDB6F2,pointer:#F8BD96 --color=marker:#F8BD96,fg+:#F2CDCD,prompt:#DDB6F2,hl+:#F28FAD'
-
 eval "$(/usr/local/bin/brew shellenv)"
 
-# Catppuccin frappe
-# export FZF_DEFAULT_OPTS=" \
-# --color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \
-# --color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf \
-# --color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284"
+#
+# fzf config
+#
 
-# # Onedark
-# export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
-# " --color=bg+:#353b45,bg:#282c34,spinner:#56b6c2,hl:#61afef"\
-# " --color=fg:#565c64,header:#61afef,info:#e5c07b,pointer:#56b6c2"\
-# " --color=marker:#56b6c2,fg+:#b6bdca,prompt:#e5c07b,hl+:#61afef"
+export FZF_THEME_CTP_MOCHA=" \
+--color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 \
+--color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC \
+--color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
+--color=selected-bg:#45475A \
+--color=border:#313244,label:#CDD6F4"
+
+export FZF_THEME_CTP_FRAPPE=" \
+--color=bg+:#414559,bg:#303446,spinner:#F2D5CF,hl:#E78284 \
+--color=fg:#C6D0F5,header:#E78284,info:#CA9EE6,pointer:#F2D5CF \
+--color=marker:#BABBF1,fg+:#C6D0F5,prompt:#CA9EE6,hl+:#E78284 \
+--color=selected-bg:#51576D \
+--color=border:#414559,label:#C6D0F5"
+
+export FZF_THEME_ONEDARK=" \
+--color=bg+:#353b45,bg:#282c34,spinner:#56b6c2,hl:#61afef \
+--color=fg:#565c64,header:#61afef,info:#e5c07b,pointer:#56b6c2 \
+--color=marker:#56b6c2,fg+:#b6bdca,prompt:#e5c07b,hl+:#61afef"
+
+export FZF_DEFAULT_OPTS="$FZF_THEME_CTP_MOCHA"
+bindkey -M viins '^R' fzf-history-widget
