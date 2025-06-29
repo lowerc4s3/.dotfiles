@@ -6,53 +6,49 @@ PLUGIN_DIR="$SKETCHYBAR_DIR/plugins"
 # Source colors
 source "$SKETCHYBAR_DIR/colors"
 
-MONOSPACE_FONT='JetBrainsMono Nerd Font'
+MONOSPACE_FONT='JetBrains Mono'
 SANS_FONT='SF UI Text'
-
 
 #
 # Events
 #
 
 sketchybar --add event window_focus \
-           --add event title_change
-
+    --add event title_change
 
 #
 # Bar settings
 #
 
-sketchybar --bar    height=34           \
-                    blur_radius=50      \
-                    position=bottom     \
-                    padding_left=6      \
-                    padding_right=0     \
-                    margin=5            \
-                    y_offset=2          \
-                    corner_radius=11    \
-                    sticky=on           \
-                    color="$SK_BAR"
-
+sketchybar --bar height=34 \
+    blur_radius=50 \
+    position=bottom \
+    padding_left=6 \
+    padding_right=0 \
+    margin=5 \
+    y_offset=2 \
+    corner_radius=11 \
+    sticky=on \
+    color="$SK_BAR"
 
 #
 # Item defaults
 #
 
-sketchybar --default    updates=when_shown                                  \
-                        drawing=on                                          \
-                        icon.font="$MONOSPACE_FONT:Regular:16.0"            \
-                        icon.color="$SK_TEXT"                               \
-                        label.font="$SANS_FONT:Regular:14.5"                \
-                        label.color="$SK_TEXT"                              \
-                        label.padding_left=2                                \
-                        label.padding_right=2                               \
-                        icon.padding_left=3                                 \
-                        icon.padding_right=3                                \
-                        background.padding_left=5                           \
-                        background.padding_right=5                          \
-                        background.corner_radius=6                          \
-                        background.height=24                                \
-
+sketchybar --default updates=when_shown \
+    drawing=on \
+    icon.font="$MONOSPACE_FONT:Regular:16.0" \
+    icon.color="$SK_TEXT" \
+    label.font="$SANS_FONT:Regular:14.5" \
+    label.color="$SK_TEXT" \
+    label.padding_left=2 \
+    label.padding_right=2 \
+    icon.padding_left=3 \
+    icon.padding_right=3 \
+    background.padding_left=5 \
+    background.padding_right=5 \
+    background.corner_radius=6 \
+    background.height=24
 
 # sketchybar --add event spaces_swapped
 
@@ -63,41 +59,39 @@ sketchybar --default    updates=when_shown                                  \
 ## Space indicators
 
 # SPACE_ICONS=("一" "二" "三" "四" "五" "六" "七" "八" "九" "十")
-# SPACE_ICONS=("1 􀎟" "2 􀵶" "3 􀑪" "4 􀅼" "5" "6" "7" "8" "9" "10")
 SPACE_ICONS=("1" "2" "3" "4" "5" "6" "7" "8" "9" "10")
 SPACES=()
 
-for i in "${!SPACE_ICONS[@]}"
-do
+for i in "${!SPACE_ICONS[@]}"; do
     sid=$((i + 1))
     SPACES+=("space.$sid")
-    sketchybar  --add       space           space.$sid left                               \
-                --set       space.$sid      associated_space=$sid                         \
-                                            icon="${SPACE_ICONS[i]}"                      \
-                                            icon.padding_left=14                          \
-                                            icon.padding_right=14                         \
-                                            icon.highlight_color="$SK_SPACE_HL_FG"        \
-                                            label.font="sketchybar-app-font:Regular:10.0" \
-                                            label.color="$SK_SUBTEXT"                     \
-                                            label.highlight_color="$SK_SPACE_HL_FG"       \
-                                            label.padding_right=14                        \
-                                            label.y_offset=-1                             \
-                                            background.padding_left=0                     \
-                                            background.padding_right=0                    \
-                                            background.color="$SK_SPACE_HL_BG"            \
-                                            background.height=24                          \
-                                            background.drawing=off                        \
-                                            script="TEXT=$SK_SUBTEXT SPACE_OCCUPIED_FG=$SK_TEXT $PLUGIN_DIR/space.sh"               \
-                                            click_script="yabai -m space --focus $sid"
+    sketchybar --add space space.$sid left \
+        --set space.$sid associated_space=$sid \
+        icon="${SPACE_ICONS[i]}" \
+        icon.padding_left=14 \
+        icon.padding_right=14 \
+        icon.highlight_color="$SK_SPACE_HL_FG" \
+        label.font="sketchybar-app-font:Regular:10.0" \
+        label.color="$SK_SUBTEXT" \
+        label.highlight_color="$SK_SPACE_HL_FG" \
+        label.padding_right=14 \
+        label.y_offset=-1 \
+        background.padding_left=0 \
+        background.padding_right=0 \
+        background.color="$SK_SPACE_HL_BG" \
+        background.height=24 \
+        background.drawing=off \
+        script="TEXT=$SK_SUBTEXT SPACE_OCCUPIED_FG=$SK_TEXT $PLUGIN_DIR/space.sh" \
+        click_script="yabai -m space --focus $sid"
 done
 
-sketchybar --add            bracket         spaces_br "${SPACES[@]}"    \
-           --set            spaces_br       background.color="$SK_ITEM_BG"
+sketchybar --add bracket spaces_br "${SPACES[@]}" \
+    --set spaces_br background.color="$SK_ITEM_BG"
 
-sketchybar --add            item              space_apps_helper left             \
-           --set            space_apps_helper label=''                           \
-                                              script="$PLUGIN_DIR/space_apps.sh" \
-           --subscribe      space_apps_helper space_windows_change
+sketchybar --add item space_apps_helper left \
+    --set space_apps_helper label='' \
+    script="$PLUGIN_DIR/space_apps.sh" \
+    --subscribe space_apps_helper space_windows_change
 
 # { "space": 2, "apps": { "Finder": 1, "qutebrowser": 1, "kitty": 1 } }
 
@@ -106,42 +100,41 @@ sketchybar --add            item              space_apps_helper left            
 #
 
 ## Focused window name
-sketchybar --add        item front_app      center                              \
-           --set        front_app           script="$PLUGIN_DIR/front_app.sh"   \
-                                            icon.drawing=off                    \
-           --subscribe  front_app           front_app_switched window_focus title_change
-
+sketchybar --add item front_app center \
+    --set front_app script="$PLUGIN_DIR/front_app.sh" \
+    icon.drawing=off \
+    --subscribe front_app front_app_switched window_focus title_change
 
 #
 # Right items
 #
 
-
-sketchybar --add        item            clock right                     \
-           --set        clock           update_freq=10                  \
-                                        background.color="$SK_ITEM_BG"  \
-                                        icon.drawing=off                \
-                                        icon="􀐬"                        \
-                                        label.padding_left=8            \
-                                        label.padding_right=8           \
-                                        label.font="$MONOSPACE_FONT:Regular:16.0"    \
-                                        script="$PLUGIN_DIR/clock.sh"   \
-           --subscribe  clock           system_woke                     \
-\
-           --add        event           input_change 'AppleSelectedInputSourcesChangedNotification' \
-           --add        item            keyboard right                                              \
-           --set        keyboard        script="$PLUGIN_DIR/keyboard.sh"                            \
-                                        label.font="$MONOSPACE_FONT:Regular:14.5"                   \
-           --subscribe  keyboard        input_change                                                \
-\
-           --add        item            battery right                   \
-           --set        battery         script="BATTERY_LOW=$SK_BATTERY_LOW BATTERY_CHARGING=$SK_BATTERY_CHARGING $PLUGIN_DIR/battery.sh" \
-                                        update_freq=30                  \
-           --subscribe  battery         system_woke power_source_change \
-\
-           --add        item            wifi right                      \
-           --set        wifi            script="$PLUGIN_DIR/wifi.sh"    \
-           --subscribe  wifi            system_woke wifi_change
+sketchybar --add item clock right \
+    --set clock update_freq=10 \
+    background.color="$SK_ITEM_BG" \
+    icon.drawing=off \
+    icon="􀐬" \
+    label.padding_left=8 \
+    label.padding_right=8 \
+    label.font="$MONOSPACE_FONT:Regular:16.0" \
+    script="$PLUGIN_DIR/clock.sh" \
+    --subscribe clock system_woke \
+    \
+    --add event input_change 'AppleSelectedInputSourcesChangedNotification' \
+    --add item keyboard right \
+    --set keyboard script="$PLUGIN_DIR/keyboard.sh" \
+    label.font="$MONOSPACE_FONT:Regular:14.5" \
+    --subscribe keyboard input_change \
+    \
+    --add item battery right \
+    --set battery script="BATTERY_LOW=$SK_BATTERY_LOW BATTERY_CHARGING=$SK_BATTERY_CHARGING $PLUGIN_DIR/battery.sh" \
+    update_freq=30 \
+    --subscribe battery system_woke power_source_change \
+    \
+    --add item wifi right \
+    --set wifi script="$PLUGIN_DIR/wifi.sh" \
+    --subscribe wifi system_woke wifi_change
+# TODO: Create VPN status component
 
 sketchybar --update
 echo "sketchybar configuration loaded.."
