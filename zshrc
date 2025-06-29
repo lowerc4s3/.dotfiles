@@ -11,8 +11,11 @@ fpath+=("$XDG_CACHE_HOME"/zsh_completions)
 
 ZIM_HOME="$XDG_CACHE_HOME"/zim
 ZIM_CONFIG_FILE="$XDG_CONFIG_HOME/zimrc"
-# TODO: Add paths for linux
-ZIM_PATH=$(brew --prefix)/opt/zimfw/share
+if [[ $(uname) == 'Darwin' ]]; then
+    ZIM_PATH=$(brew --prefix)/opt/zimfw/share
+else
+    ZIM_PATH=$XDG_CACHE_HOME/zimfw
+fi
 
 if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZIM_CONFIG_FILE:-${ZDOTDIR:-${HOME}}/.zimrc} ]]; then
   source "$ZIM_PATH"/zimfw.zsh init
@@ -52,6 +55,8 @@ alias fhistory='history | rg'   # Searches history
 alias md='mkdir -p'
 alias pdb='python3.12 -m pdb'   # Python debugger shortcut
 alias zathura='open -a /Applications/Zathura.app/Contents/MacOS/zathura'
+
+# alias fm='. ranger'
 
 # Yazi alias (cd after exit)
 function fm {
@@ -122,7 +127,9 @@ alias ystart='yabai --start-service'
 # sketchybar shortcuts
 alias skreload='sketchybar --reload'
 
-eval "$(/usr/local/bin/brew shellenv)"
+if [[ $(uname) == 'Darwin' ]]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
 
 #
 # fzf config
