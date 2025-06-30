@@ -6,3 +6,4 @@ private.zsh
 .luarc.json
 nvim/spell/**
 qutebrowser/bookmarks/
+qutebrowser/quickmarks
