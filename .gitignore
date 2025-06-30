@@ -3,7 +3,6 @@
 nvim/sessions
 nvim/plugin
 private.zsh
-discord/BetterDiscord/data/**
-discord/BetterDiscord/Dictionaries/**
 .luarc.json
 nvim/spell/**
+qutebrowser/bookmarks/
