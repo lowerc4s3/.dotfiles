@@ -36,7 +36,7 @@ source ${ZIM_HOME}/init.zsh
 
 # zimfw/utility inserts --no-init to less options which breaks scrollback,
 # so we remove that
-export LESS=${LESS//--no-init}
+export LESS=${${LESS//--no-init}//--quit-if-one-screen}
 
 ##
 ## User configuration
@@ -56,16 +56,9 @@ alias md='mkdir -p'
 alias pdb='python3.12 -m pdb'   # Python debugger shortcut
 alias zathura='open -a /Applications/Zathura.app/Contents/MacOS/zathura'
 
-# alias fm='. ranger'
-
-# Yazi alias (cd after exit)
-function fm {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
+lf () {
+    # `command` is needed in case `lfcd` is aliased to `lf`
+    cd "$(command lf -print-last-dir "$@")"
 }
 
 # git aliases
