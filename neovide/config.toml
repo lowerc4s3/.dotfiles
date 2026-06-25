@@ -3,20 +3,8 @@ title-hidden = true
 srgb = true
 
 [font]
+normal = ["Lilex", "Lilex Nerd Font"]
 size = 12
 
-[font.normal]
-family = "JetBrainsMono Nerd Font"
-style = "Regular"
-
-[font.bold]
-family = "JetBrainsMono Nerd Font"
-style = "Bold"
-
-[font.italic]
-family = "JetBrainsMono Nerd Font"
-style = "Medium Italic"
-
-[font.bold_italic]
-family = "JetBrainsMono Nerd Font"
-style = "Bold Italic"
+[font.features]
+"Lilex" = ["+cv13", "+cv09"]

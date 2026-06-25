@@ -134,7 +134,6 @@ sketchybar --add item clock right \
     --add item wifi right \
     --set wifi script="$PLUGIN_DIR/wifi.sh" \
     --subscribe wifi system_woke wifi_change
-# TODO: Create VPN status component
 
 sketchybar --update
 echo "sketchybar configuration loaded.."
