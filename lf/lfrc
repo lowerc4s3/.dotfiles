@@ -1,0 +1,198 @@
+# warn if lf is nested
+&[ "$LF_LEVEL" -eq 1 ] || lf -remote "send $id echoerr \"Warning: You're in a nested lf instance!\""
+
+#
+# shell
+#
+
+set shellopts '-eu'
+set ifs "\n"
+set filesep "\n"
+
+map <enter> shell-pipe
+map ; shell
+map ` !true # show the result of execution of previous commands
+
+#
+# fs
+#
+
+set watch # autoupdate on fs changes
+set hiddenfiles .*:lost+found:__pycache__
+
+#
+# search
+#
+
+set incsearch
+set incfilter
+
+map f filter
+map F setfilter # clear filter
+
+#
+# selection
+#
+
+map u clear
+map v visual
+map V invert
+vmap <enter> visual-accept
+vmap v visual-accept
+vmap y :visual-accept; copy
+vmap d :visual-accept; cut
+
+nmap <esc> unselect
+
+#
+# file manipulation
+#
+
+cmd bulkrename !{{
+    vimv -- $(basename -a -- $fx)
+    lf -remote "send $id :load; unselect"
+}}
+
+# if selection is empty, rename the file under the cursor,
+# otherwise bulk rename selected files
+cmd smartrename &{{
+    if [ -z "$fs" ]; then
+        lf -remote "send $id rename"
+    else
+        lf -remote "send $id bulkrename"
+    fi
+}}
+
+# ranger-like rename maps
+map r smartrename
+map I :rename; cmd-home
+map A :rename; cmd-end
+map c :rename; cmd-delete-home
+map C :rename; cmd-end; cmd-delete-home
+
+cmd trash &set -f; trash $fx
+map D delete
+map T trash
+
+map Y %printf '%s' "$fx" | pbcopy; echo "yanked paths to clipboard"
+
+cmd link %{{
+    if [ -z "$fs" ]; then
+        lf -remote "send $id echoerr no files to link"
+        exit
+    fi
+    ln -s -- $fs "$PWD"
+}}
+
+map P link
+
+# open text files in $EDITOR and everything else with $OPENER
+cmd open &{{
+    set -f
+    case $(file --mime-type -Lb "$f") in
+        text/*) lf -remote "send $id \$$EDITOR \$fx";;
+        *) for f in $fx; do $OPENER "$f" > /dev/null 2> /dev/null & done;;
+    esac
+}}
+
+#
+# navigation
+#
+
+map . set hidden!
+
+cmd z %{{
+    result="$(zoxide query --exclude "$PWD" "$@" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    lf -remote "send $id cd \"$result\""
+}}
+
+cmd zi ${{
+    result="$(zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    lf -remote "send $id cd \"$result\""
+}}
+
+map zz push :z<space>
+map Z zi
+
+cmd on-cd &{{
+    # add visited dirs to zoxide db
+    zoxide add "$PWD"
+    # set window title to PWD 
+    lf -remote "send $id tty-write \"\033]0;lf: ${PWD/#$HOME/~}\007\""
+}}
+
+# set window title on startup
+&lf -remote "send $id tty-write \"\033]0;lf: ${PWD/#$HOME/~}\007\""
+
+# set $lf_user_OLDPWD upon startup
+&lf -remote "send $id set user_OLDPWD \"$PWD\""
+# quit without cd
+map Q %lf -remote "send $id :cd \"$lf_user_OLDPWD\"; quit"
+
+#
+# preview
+#
+
+set previewer ~/.config/lf/previewer
+set cleaner ~/.config/lf/cleaner
+
+cmd preview ${{
+    case "$(file -Lb --mime-type "$f")" in 
+      image/*) kitten icat --stdin no --hold --clear --transfer-mode memory "$f" ;;
+      *) LESSOPEN='| pistol %s' less -R $f
+    esac
+}}
+
+map i preview
+
+#
+# ui
+#
+
+set icons
+set rulerfile ~/.config/lf/ruler
+set cursorpreviewfmt "\033[7m" # use highlight instead of underline in the preview pane
+set mouse
+set number
+set relativenumber
+set scrolloff 10
+set tabstop 4
+
+#
+# completion
+#
+
+cmap <tab> cmd-menu-complete
+cmap <backtab> cmd-menu-complete-back
+
+#
+# archives
+#
+
+cmd extract ${{
+    set -f
+    case "$f" in
+        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar -xjvf "$f";;
+        *.tar.gz|*.tgz) tar -xzvf "$f";;
+        *.tar.xz|*.txz) tar -xJvf "$f";;
+        *.zip) unzip "$f";;
+        *.rar) unrar x "$f";;
+        *.7z) 7z x "$f";;
+    esac
+}}
+
+cmd tar ${{
+    set -f
+    mkdir "$1"
+    cp -r $fx "$1"
+    tar -czf "$1.tar.gz" "$1"
+    rm -rf "$1"
+}}
+
+cmd zip ${{
+    set -f
+    mkdir "$1"
+    cp -r $fx "$1"
+    zip -r "$1.zip" "$1"
+    rm -rf "$1"
+}}
