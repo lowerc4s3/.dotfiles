@@ -17,7 +17,6 @@ zmodule zdharma-continuum/fast-syntax-highlighting
 zmodule kiesman99/zim-zoxide
 
 # Autocompletion
-zmodule zsh-users/zsh-autosuggestions
 zmodule completion
 
 # Better vi mode
