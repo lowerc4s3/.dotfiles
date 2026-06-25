@@ -13,7 +13,6 @@ type | soft
 **theme** | [oxocarbon](https://github.com/nyoom-engineering/oxocarbon)
 **prompt** | [powerline10k](https://github.com/romkatv/powerlevel10k) (theme inspired by _parsenoob#2556 on discord)
 **font** | [lilex](https://lilex.myrt.co)
-**wallpapers** | [here](/wallpapers)
 **browser**| [qutebrowser](https://github.com/qutebrowser/qutebrowser)
 
 *also some terminal tools*:
