@@ -151,12 +151,16 @@ map i preview
 
 set icons
 set rulerfile ~/.config/lf/ruler
-set cursorpreviewfmt "\033[7m" # use highlight instead of underline in the preview pane
+set cursorpreviewfmt "\033[7m"
 set mouse
 set number
 set relativenumber
 set scrolloff 10
 set tabstop 4
+set timefmt "02 Jan 15:04 2006"
+set infotimefmtnew "02 Jan 15:04"
+set infotimefmtold "02 Jan 2006"
+set numberfmt "\033[0;90m"
 
 #
 # completion
