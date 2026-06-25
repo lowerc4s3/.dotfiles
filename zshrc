@@ -147,5 +147,14 @@ export FZF_THEME_ONEDARK=" \
 --color=fg:#565c64,header:#61afef,info:#e5c07b,pointer:#56b6c2 \
 --color=marker:#56b6c2,fg+:#b6bdca,prompt:#e5c07b,hl+:#61afef"
 
-export FZF_DEFAULT_OPTS="$FZF_THEME_CTP_MOCHA"
+export FZF_THEME_OXOCARBON="--color=fg:#ffffff,bg:#161616,hl:#08bdba \
+--color=fg+:#f2f4f8,bg+:#262626,hl+:#3ddbd9 \
+--color=info:#78a9ff,prompt:#33b1ff,pointer:#ff7eb6 \
+--color=marker:#ee5396,spinner:#ff7eb6,header:#be95ff"
+
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS $FZF_THEME_OXOCARBON"
 bindkey -M viins '^R' fzf-history-widget
+
+[[ ! -r '/Users/lowerc4s3/.opam/opam-init/init.zsh' ]] || source '/Users/lowerc4s3/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+
+[ -f "/Users/lowerc4s3/.ghcup/env" ] && . "/Users/lowerc4s3/.ghcup/env" # ghcup-env
