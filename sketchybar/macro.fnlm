@@ -1,0 +1,62 @@
+(local ->str tostring)
+
+;; idea and implementation by spore
+;; (https://blog.spore.ink/editor/fennel-macros/dot.html)
+(λ => [expr & calls]
+  "table function chaining macro. evaluates `expr` chains all
+consequential forms into methods calls. behaves similarly to
+clojure's `..` macro.
+example:
+  ```fennel
+  (=> (require :module) (modfn :arg1 :arg2) (another-modfn 3 4))
+  ;; notice how this resembles lua table function chaining:
+  ;; require('module').modfn('arg1, 'arg2').another_modfn(3, 4)
+  ```"
+  (fn transform [tbl form]
+    (case form
+      ;; (=> tbl form) -> (. tbl "form")
+      (where field (sym? field))
+      `(. ,tbl ,(->str field))
+      ;; (=> tbl [x y]) -> (. tbl x y)
+      (where fields (sequence? fields))
+      `(. ,tbl ,(unpack fields))
+      ;; (=> tbl (f x)) -> ((. tbl "f") x)
+      [field & rest]
+      `((. ,tbl ,(->str field)) ,(unpack rest))
+      ;; (=> tbl ()) -> (tbl)
+      []
+      `(,tbl)))
+
+  (case calls
+    ;; (=> expr calls ...) -> (=> (=> expr form) ...)
+    [form & rest]
+    (=> (transform expr form) (unpack rest))
+    ;; (=> expr) -> expr
+    []
+    expr))
+
+;; inspired by olical's `tx` macro
+;; and spore's `|` macro (https://blog.spore.ink/editor/fennel-macros/bar.html)
+(λ | [& args]
+  "mixed sequential and associative tables syntax.
+all args before associative table are considered sequential elements
+and the associative table elements are considered as key-value pairs. so this form
+  ```fennel
+  (| :fst :sec :trd {:key-a 10 :key-b 20})
+  ```
+is equivalent to this
+  ```fennel
+  {1 :fst 2 :sec 3 :trd :key-a 10 :key-b 20}
+  ```"
+  (let [kv-table (if (table? (. args (length args))) (table.remove args))]
+    (when kv-table
+      (each [key value (pairs kv-table)]
+        (tset args key value)))
+    args))
+
+(lambda with-exec [[result exit-code cmd] ...]
+  `(sbar.exec ,cmd (fn [,result ,exit-code] ,...)))
+
+{: =>
+ : |
+ : with-exec}

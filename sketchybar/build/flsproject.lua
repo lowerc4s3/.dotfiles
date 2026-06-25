@@ -1,0 +1,1 @@
+return {["extra-globals"] = "sbar"}
