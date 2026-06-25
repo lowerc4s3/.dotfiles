@@ -1,4 +1,0 @@
-[submodule "nvim"]
-	path = nvim
-	url = https://github.com/lowerc4s3/nvim.git
-	branch = main
