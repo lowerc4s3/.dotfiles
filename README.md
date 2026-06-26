@@ -16,6 +16,7 @@ type | soft
 **browser**| [qutebrowser](https://github.com/qutebrowser/qutebrowser)
 
 *also some terminal tools*:
+- stow
 - [zoxide](https://github.com/ajeetdsouza/zoxide)
 - [eza](https://github.com/eza-community/eza)
 - [fzf](https://github.com/junegunn/fzf)
@@ -23,5 +24,6 @@ type | soft
 ## installation
 ```bash
 git clone https://github.com/lowerc4s3/.dotfiles.git
-# then link configs into .config/
+stow zsh
+# use stow to symlink required configs
 ```
