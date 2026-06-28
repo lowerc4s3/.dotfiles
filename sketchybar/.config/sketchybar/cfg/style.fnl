@@ -22,7 +22,7 @@
           :label col.fg.primary
           :space {:label {:inactive col.fg.secondary :active col.bg.primary}
                   :icon {:inactive col.fg.primary :active col.bg.primary}
-                  :bg col.pink}
+                  :bg col.red}
           :bracket col.bg.secondary
           :battery {:charging col.green :low col.red}
           :clock-bg col.bg.secondary}]
