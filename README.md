@@ -23,7 +23,7 @@ type | soft
 
 ## installation
 ```bash
-git clone https://github.com/lowerc4s3/.dotfiles.git ~/dots
+git clone https://github.com/lowerc4s3/dots.git ~/dots
 cd ~/dots
 stow zsh
 # use stow to symlink required configs
