@@ -9,28 +9,28 @@ end
 time:subscribe({"forced", "routine", "system_woke"}, _3_)
 sbar.add("event", "input_change", "AppleSelectedInputSourcesChangedNotification")
 local im = sbar.add("item", {position = "right", label = {font = fonts.kbd}, icon = "\244\128\135\179"})
-local function update_im()
+local function _4_()
   local get_im = "defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleCurrentKeyboardLayoutInputSourceID"
-  local function _4_(im_name, _)
-    local _6_
+  local function _5_(im_name, _)
+    local _7_
     do
-      local case_5_ = im_name:gsub("%s", "")
-      if (case_5_ == "com.apple.keylayout.ABC") then
-        _6_ = "EN"
-      elseif (case_5_ == "com.apple.keylayout.RussianWin") then
-        _6_ = "RU"
+      local case_6_ = im_name:gsub("%s", "")
+      if (case_6_ == "com.apple.keylayout.ABC") then
+        _7_ = "EN"
+      elseif (case_6_ == "com.apple.keylayout.RussianWin") then
+        _7_ = "RU"
       else
-        local _0 = case_5_
-        _6_ = "??"
+        local _0 = case_6_
+        _7_ = "??"
       end
     end
-    return im:set({label = _6_})
+    return im:set({label = _7_})
   end
-  return sbar.exec(get_im, _4_)
+  return sbar.exec(get_im, _5_)
 end
-im:subscribe({"input_change", "forced"}, update_im)
+im:subscribe({"input_change", "forced"}, _4_)
 local battery = sbar.add("item", {position = "right", update_freq = 30})
-local function update_battery()
+local function _12_()
   local function _25__3eicon(charging_3f, percent)
     if charging_3f then
       return {"\244\128\139\166", hi.battery.charging}
@@ -46,45 +46,45 @@ local function update_battery()
       return {"\244\128\155\170", hi.battery.low}
     end
   end
-  local function _12_(status, _)
-    local charging_3f = (string.match(status, "AC Power") ~= nil)
+  local function _14_(status, _)
+    local charging_3f = (status:match("AC Power") ~= nil)
     local percent = tonumber(string.gsub(string.match(status, "%d+%%"), "%%", ""), nil)
-    local _let_13_ = _25__3eicon(charging_3f, percent)
-    local string = _let_13_[1]
-    local _3fhighlight_color = _let_13_[2]
+    local _let_15_ = _25__3eicon(charging_3f, percent)
+    local string = _let_15_[1]
+    local _3fhighlight_color = _let_15_[2]
     return battery:set({icon = {string = string, highlight = (_3fhighlight_color ~= nil), highlight_color = _3fhighlight_color}, label = (percent .. "%")})
   end
-  return sbar.exec("pmset -g batt", _12_)
+  return sbar.exec("pmset -g batt", _14_)
 end
-battery:subscribe({"power_source_change", "forced", "system_woke"}, update_battery)
+battery:subscribe({"power_source_change", "forced", "system_woke"}, _12_)
 local net = sbar.add("item", {position = "right"})
-local function update_network()
-  local function _14_(summary, _)
-    local _3fssid
+local function _16_()
+  local function _17_(summary, _)
+    local _3fname
     if (nil ~= summary) then
       local tmp_3_ = string.match(summary, "  SSID : (.+)  ")
       if (nil ~= tmp_3_) then
-        _3fssid = string.gsub(tmp_3_, "%s+$", "")
+        _3fname = string.gsub(tmp_3_, "%s+$", "")
       else
-        _3fssid = nil
+        _3fname = nil
       end
     else
-      _3fssid = nil
+      _3fname = nil
     end
     local icon
-    if _3fssid then
+    if _3fname then
       icon = "\244\128\164\134"
     else
       icon = "\244\129\163\161"
     end
     local label
-    if _3fssid then
-      label = {drawing = true, string = _3fssid}
+    if _3fname then
+      label = {drawing = true, string = _3fname}
     else
       label = {drawing = false}
     end
     return net:set({icon = icon, label = label})
   end
-  return sbar.exec("ipconfig getsummary en0", _14_)
+  return sbar.exec("ipconfig getsummary en0", _17_)
 end
-return net:subscribe({"system_woke", "wifi_change", "forced"}, update_network)
+return net:subscribe({"system_woke", "wifi_change", "forced"}, _16_)

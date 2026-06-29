@@ -54,9 +54,14 @@ is equivalent to this
         (tset args key value)))
     args))
 
-(lambda with-exec [[result exit-code cmd] ...]
+(λ with-exec [[result exit-code cmd] ...]
   `(sbar.exec ,cmd (fn [,result ,exit-code] ,...)))
+
+
+(λ defsub [[item events ?args] ...]
+  `(: ,item :subscribe ,events (fn [,?args] ,...)))
 
 {: =>
  : |
- : with-exec}
+ : with-exec
+ : defsub}

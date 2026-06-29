@@ -1,5 +1,9 @@
-(import-macros {: with-exec} :macro)
+(import-macros {: with-exec : defsub} :macro)
 (local {:oxocarbon {: hi} : fonts} (require :cfg.style))
+
+;;
+;; datetime
+;;
 
 (local time (sbar.add :item
                       {:position :right
@@ -10,8 +14,12 @@
                                :padding_right 8
                                :font fonts.clock}}))
 
-(time:subscribe [:forced :routine :system_woke]
-                #(time:set {:label (os.date "%d|%m|%y %H:%M")}))
+(defsub [time [:forced :routine :system_woke]]
+  (time:set {:label (os.date "%d|%m|%y %H:%M")}))
+
+;;
+;; current input method
+;;
 
 (sbar.add :event :input_change :AppleSelectedInputSourcesChangedNotification)
 
@@ -19,7 +27,7 @@
                            :label {:font fonts.kbd}
                            :icon "􀇳"}))
 
-(fn update-im []
+(defsub [im [:input_change :forced]]
   (let [get-im "defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleCurrentKeyboardLayoutInputSourceID"]
     (with-exec [im-name _ get-im]
       (im:set {:label (case (im-name:gsub "%s" "")
@@ -27,11 +35,12 @@
                         :com.apple.keylayout.RussianWin "RU"
                         _ "??")}))))
 
-(im:subscribe [:input_change :forced] update-im)
+;;
+;; battery status and percentage
+;;
 
 (local battery (sbar.add :item {:position :right :update_freq 30}))
-
-(fn update-battery []
+(defsub [battery [:power_source_change :forced :system_woke]]
   (fn %->icon [charging? percent]
     (if charging? ["􀋦" hi.battery.charging]
         (>= 100 percent 75) ["􀛨"]
@@ -41,9 +50,7 @@
         ["􀛪" hi.battery.low]))
 
   (with-exec [status _ "pmset -g batt"]
-    (let [charging? (-> status
-                        (string.match "AC Power")
-                        (not= nil))
+    (let [charging? (not= (status:match "AC Power") nil)
           percent (-> status
                       (string.match "%d+%%")
                       (string.gsub "%%" "")
@@ -54,17 +61,16 @@
                            :highlight_color ?highlight-color}
                     :label (.. percent "%")}))))
 
-(battery:subscribe [:power_source_change :forced :system_woke] update-battery)
+;;
+;; wifi status
+;;
 
 (local net (sbar.add :item {:position :right}))
-
-(fn update-network []
+(defsub [net [:system_woke :wifi_change :forced]]
   (with-exec [summary _ "ipconfig getsummary en0"]
-    (let [?ssid (-?> summary
+    (let [?name (-?> summary
                      (string.match "  SSID : (.+)  ")
                      (string.gsub "%s+$" ""))
-          icon (if ?ssid "􀤆" "􁣡")
-          label (if ?ssid {:drawing true :string ?ssid} {:drawing false})]
+          icon (if ?name "􀤆" "􁣡")
+          label (if ?name {:drawing true :string ?name} {:drawing false})]
       (net:set {: icon : label}))))
-
-(net:subscribe [:system_woke :wifi_change :forced] update-network)

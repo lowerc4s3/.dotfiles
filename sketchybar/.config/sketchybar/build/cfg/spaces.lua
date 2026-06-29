@@ -54,17 +54,18 @@ do
   end
   sbar.add("bracket", space_ids, {background = {color = hi.bracket}})
 end
-local function update_app_icons(_7_)
+local app_observer = sbar.add("item", {updates = true, drawing = false})
+local function _9_(_7_)
   local _arg_8_ = _7_.INFO
   local apps = _arg_8_.apps
   local space = _arg_8_.space
   local space0 = spaces[space]
   local default = icons.Default
   local join
-  local function _9_(_241)
+  local function _10_(_241)
     return table.concat(_241, " ")
   end
-  join = _9_
+  join = _10_
   local app_icons
   do
     local tbl_26_ = {}
@@ -72,7 +73,7 @@ local function update_app_icons(_7_)
     for app, cnt in pairs(apps) do
       local val_28_
       if (cnt ~= 1) then
-        local function _10_()
+        local function _11_()
           local tbl_26_0 = {}
           local i_27_0 = 0
           for _ = 1, cnt do
@@ -85,7 +86,7 @@ local function update_app_icons(_7_)
           end
           return tbl_26_0
         end
-        val_28_ = join(_10_())
+        val_28_ = join(_11_())
       else
         val_28_ = (icons[app] or default)
       end
@@ -104,5 +105,4 @@ local function update_app_icons(_7_)
     return space0:set({label = {drawing = true, string = icon_strip}, icon = {padding_right = 0}})
   end
 end
-local observer = sbar.add("item", {updates = true, drawing = false})
-return observer:subscribe("space_windows_change", update_app_icons)
+return app_observer:subscribe("space_windows_change", _9_)

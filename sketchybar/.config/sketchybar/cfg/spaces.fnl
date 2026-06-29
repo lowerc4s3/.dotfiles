@@ -1,4 +1,4 @@
-(import-macros {: |} :macro)
+(import-macros {: | : defsub} :macro)
 (local {:oxocarbon {: hi} : fonts} (require :cfg.style))
 (local icons (require :lib.icon_map))
 
@@ -37,7 +37,8 @@
 (let [space-ids (icollect [_ space (pairs spaces)] space.name)]
   (sbar.add :bracket space-ids {:background {:color hi.bracket}}))
 
-(fn update-app-icons [{:INFO {: apps : space}}]
+(local app-observer (sbar.add :item {:drawing false :updates true}))
+(defsub [app-observer :space_windows_change {:INFO {: apps : space}}]
   (let [space (. spaces space)
         default (. icons :Default)
         join #(table.concat $ " ")
@@ -50,6 +51,3 @@
         (space:set {:label {:drawing false} :icon {:padding_right 14}})
         (space:set {:label {:drawing true :string icon-strip}
                     :icon {:padding_right 0}}))))
-
-(let [observer (sbar.add :item {:drawing false :updates true})]
-  (observer:subscribe :space_windows_change update-app-icons))
