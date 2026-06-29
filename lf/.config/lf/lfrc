@@ -48,6 +48,11 @@ nmap <esc> unselect
 # file manipulation
 #
 
+set dupfilefmt "%b-%n%e"
+
+cmd mkcd &mkdir -p $1 && lf -remote "send $id cd $1"
+cmd md &mkdir -p $@
+
 cmd bulkrename !{{
     vimv -- $(basename -a -- $fx)
     lf -remote "send $id :load; unselect"
@@ -70,7 +75,7 @@ map A :rename; cmd-end
 map c :rename; cmd-delete-home
 map C :rename; cmd-end; cmd-delete-home
 
-cmd trash &set -f; trash $fx
+cmd trash &set -f; trash $fx && lf -remote "send unselect"
 map D delete
 map T trash
 
@@ -129,6 +134,14 @@ cmd on-cd &{{
 # quit without cd
 map Q %lf -remote "send $id :cd \"$lf_user_OLDPWD\"; quit"
 
+cmd move-parent &{{
+    dironly="setlocal \"$(dirname -- "$PWD" | sed 's/\\/\\\\/g;s/"/\\"/g')\" dironly"
+    lf -remote "send $id :updir; $dironly true; $1; $dironly false; open"
+}}
+
+map J move-parent down
+map K move-parent up
+
 #
 # preview
 #
@@ -151,7 +164,8 @@ map i preview
 
 set icons
 set rulerfile ~/.config/lf/ruler
-set cursorpreviewfmt "\033[7m"
+set cursorpreviewfmt "\033[40m"
+set errorfmt "\033[0;31m"
 set mouse
 set number
 set relativenumber
