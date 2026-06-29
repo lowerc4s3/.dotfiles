@@ -31,7 +31,7 @@
 
 (local battery (sbar.add :item {:position :right :update_freq 30}))
 
-(fn update-battery [{: INFO}]
+(fn update-battery []
   (fn %->icon [charging? percent]
     (if charging? ["􀋦" hi.battery.charging]
         (>= 100 percent 75) ["􀛨"]
@@ -41,7 +41,9 @@
         ["􀛪" hi.battery.low]))
 
   (with-exec [status _ "pmset -g batt"]
-    (let [charging? (= INFO :AC)
+    (let [charging? (-> status
+                        (string.match "AC Power")
+                        (not= nil))
           percent (-> status
                       (string.match "%d+%%")
                       (string.gsub "%%" "")
@@ -55,9 +57,6 @@
 (battery:subscribe [:power_source_change :forced :system_woke] update-battery)
 
 (local net (sbar.add :item {:position :right}))
-
-; (with-exec [summary _ "ipconfig getsummary en0 | awk -F ' SSID : '  '/ SSID : / {print $2}'"])
-; (net:set)
 
 (fn update-network []
   (with-exec [summary _ "ipconfig getsummary en0"]

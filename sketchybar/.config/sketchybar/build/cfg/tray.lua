@@ -30,8 +30,7 @@ local function update_im()
 end
 im:subscribe({"input_change", "forced"}, update_im)
 local battery = sbar.add("item", {position = "right", update_freq = 30})
-local function update_battery(_11_)
-  local INFO = _11_.INFO
+local function update_battery()
   local function _25__3eicon(charging_3f, percent)
     if charging_3f then
       return {"\244\128\139\166", hi.battery.charging}
@@ -47,20 +46,20 @@ local function update_battery(_11_)
       return {"\244\128\155\170", hi.battery.low}
     end
   end
-  local function _13_(status, _)
-    local charging_3f = (INFO == "AC")
+  local function _12_(status, _)
+    local charging_3f = (string.match(status, "AC Power") ~= nil)
     local percent = tonumber(string.gsub(string.match(status, "%d+%%"), "%%", ""), nil)
-    local _let_14_ = _25__3eicon(charging_3f, percent)
-    local string = _let_14_[1]
-    local _3fhighlight_color = _let_14_[2]
+    local _let_13_ = _25__3eicon(charging_3f, percent)
+    local string = _let_13_[1]
+    local _3fhighlight_color = _let_13_[2]
     return battery:set({icon = {string = string, highlight = (_3fhighlight_color ~= nil), highlight_color = _3fhighlight_color}, label = (percent .. "%")})
   end
-  return sbar.exec("pmset -g batt", _13_)
+  return sbar.exec("pmset -g batt", _12_)
 end
 battery:subscribe({"power_source_change", "forced", "system_woke"}, update_battery)
 local net = sbar.add("item", {position = "right"})
 local function update_network()
-  local function _15_(summary, _)
+  local function _14_(summary, _)
     local _3fssid
     if (nil ~= summary) then
       local tmp_3_ = string.match(summary, "  SSID : (.+)  ")
@@ -86,6 +85,6 @@ local function update_network()
     end
     return net:set({icon = icon, label = label})
   end
-  return sbar.exec("ipconfig getsummary en0", _15_)
+  return sbar.exec("ipconfig getsummary en0", _14_)
 end
 return net:subscribe({"system_woke", "wifi_change", "forced"}, update_network)
