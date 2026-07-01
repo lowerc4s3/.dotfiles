@@ -54,7 +54,8 @@ alias owd='open ./'             # Open current dir in Finder (macOS)
 alias fhistory='history | rg'   # Searches history
 alias md='mkdir -p'
 alias pdb='python3.12 -m pdb'   # Python debugger shortcut
-alias zathura='open -a /Applications/Zathura.app/Contents/MacOS/zathura'
+alias setfree='xattr -r -d com.apple.quarantine'
+alias zathura='zathura --fork -T 2> /dev/null'
 
 lf () {
     # `command` is needed in case `lfcd` is aliased to `lf`

@@ -21,5 +21,3 @@ set statusbar-bg "#262626"
 
 set default-bg "#161616"
 set recolor-lightcolor "#161616"
-set default-bg rgba(0,0,0,0.7)
-set recolor-lightcolor rgba(255,255,255,0)

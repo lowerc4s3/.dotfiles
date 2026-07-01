@@ -1,6 +1,6 @@
 set adjust-open "best-fit"
 
-set font "JetBrainsMono Nerd Font 12"
+set font "Lilex Nerd Font 12"
 
 set statusbar-page-percent true
 
@@ -11,4 +11,4 @@ set scroll-hstep 10
 
 set window-title-basename true
 
-include themes/catppuccin-mocha
+include themes/oxocarbon
